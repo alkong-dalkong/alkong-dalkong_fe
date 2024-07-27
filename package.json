@@ -11,6 +11,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.15",
     "axios": "^1.7.2",
     "next": "14.2.4",
     "react": "^18",
