@@ -47,3 +47,4 @@ next-env.d.ts
 
 # ignore too large file in .yarn/cache
 .yarn/cache/@next-swc-*
+*storybook.log
