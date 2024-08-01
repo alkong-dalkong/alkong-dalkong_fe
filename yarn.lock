@@ -5576,7 +5576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:^11.4.0":
+"chromatic@npm:^11.4.0, chromatic@npm:^11.7.0":
   version: 11.7.0
   resolution: "chromatic@npm:11.7.0"
   peerDependencies:
@@ -10037,6 +10037,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^7.16.0"
     "@typescript-eslint/parser": "npm:^7.16.0"
     axios: "npm:^1.7.2"
+    chromatic: "npm:^11.7.0"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.4"
     eslint-config-prettier: "npm:^9.1.0"
