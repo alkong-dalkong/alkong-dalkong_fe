@@ -9,7 +9,7 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
-    // "source.addMissingImports": "always"
+    "source.fixAll.eslint": "always",
+    "source.addMissingImports": "always"
   }
 }
