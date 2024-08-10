@@ -1,0 +1,24 @@
+name: Push Alkong Repo 🐳
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  Push-Alkong-Repo:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the code 🏃‍➡️
+      uses: actions/checkout@v3
+
+    - name: Set up Git User 🔨
+      run: |
+        git config --global user.name "AlkongDalkong"
+        git config --global user.email "alkongd29@gmail.com"
+
+    - name: Set destination repo 🌈
+      run: |
+        git remote add destination-repo https://github.com/AlkongDalkong/alkong-dalkong_fe.git
+
+    - name: Push develop to main 🚀
+      run: |
+        git push destination-repo develop:main
