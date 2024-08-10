@@ -2,31 +2,31 @@
 
 @layer utilities {
   .logo {
-    @apply text-logo font-bold tracking-[-2%];
+    @apply text-logo font-bold tracking-[-0.32px];
   }
   .title-B {
-    @apply text-title leading-title font-bold tracking-[-2%];
+    @apply text-title leading-title font-bold tracking-[-0.32px];
   }
   .title-M {
-    @apply text-title leading-title font-medium tracking-[-2%];
+    @apply text-title leading-title font-medium tracking-[-0.32px];
   }
   .subtitle-B {
-    @apply text-subtitle leading-subtitle font-bold tracking-[-2%];
+    @apply text-subtitle leading-subtitle font-bold tracking-[-0.32px];
   }
   .subtitle-M {
-    @apply text-subtitle leading-subtitle font-medium tracking-[-2%];
+    @apply text-subtitle leading-subtitle font-medium tracking-[-0.32px];
   }
   .subtitle-R {
-    @apply text-subtitle leading-subtitle font-regular tracking-[-2%];
+    @apply text-subtitle leading-subtitle font-regular tracking-[-0.32px];
   }
   .headline-B {
-    @apply text-headline leading-headline font-bold tracking-[-1%];
+    @apply text-headline leading-headline font-bold tracking-[-0.16px];
   }
   .headline-M {
-    @apply text-headline leading-headline font-medium tracking-[-1%];
+    @apply text-headline leading-headline font-medium tracking-[-0.16px];
   }
   .headline-R {
-    @apply text-headline leading-headline font-regular tracking-[-1%];
+    @apply text-headline leading-headline font-regular tracking-[-0.16px];
   }
   .body-B {
     @apply text-body leading-body font-bold;
