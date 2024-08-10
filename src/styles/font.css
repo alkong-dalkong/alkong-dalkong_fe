@@ -1,0 +1,46 @@
+@tailwind utilities;
+
+@layer utilities {
+  .logo {
+    @apply text-logo font-bold tracking-[-2%];
+  }
+  .title-B {
+    @apply text-title leading-title font-bold tracking-[-2%];
+  }
+  .title-M {
+    @apply text-title leading-title font-medium tracking-[-2%];
+  }
+  .subtitle-B {
+    @apply text-subtitle leading-subtitle font-bold tracking-[-2%];
+  }
+  .subtitle-M {
+    @apply text-subtitle leading-subtitle font-medium tracking-[-2%];
+  }
+  .subtitle-R {
+    @apply text-subtitle leading-subtitle font-regular tracking-[-2%];
+  }
+  .headline-B {
+    @apply text-headline leading-headline font-bold tracking-[-1%];
+  }
+  .headline-M {
+    @apply text-headline leading-headline font-medium tracking-[-1%];
+  }
+  .headline-R {
+    @apply text-headline leading-headline font-regular tracking-[-1%];
+  }
+  .body-B {
+    @apply text-body leading-body font-bold;
+  }
+  .body-M {
+    @apply text-body leading-body font-medium;
+  }
+  .body-R {
+    @apply text-body leading-body font-regular;
+  }
+  .caption-M {
+    @apply text-caption leading-caption font-medium;
+  }
+  .caption-R {
+    @apply text-caption leading-caption font-regular;
+  }
+}
