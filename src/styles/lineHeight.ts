@@ -1,4 +1,4 @@
-export const LINE_HEIGHT = {
+export const lineHeight = {
   title: '36px',
   subtitle: '28px',
   headline: '26px',

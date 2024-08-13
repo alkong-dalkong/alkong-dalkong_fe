@@ -1,4 +1,4 @@
-export const FONT_SIZE = {
+export const fontSize = {
   logo: '32px',
   title: '24px',
   subtitle: '19px',

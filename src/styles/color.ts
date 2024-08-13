@@ -1,4 +1,4 @@
-export const COLORS = {
+export const colors = {
   mint: {
     1: '#C5FDEC',
     2: '#98F9DC',
