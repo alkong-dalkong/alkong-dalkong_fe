@@ -1,5 +1,15 @@
 import type { Config } from 'tailwindcss'
 
+import {
+  backgroundImage,
+  boxShadow,
+  colors,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  lineHeight,
+} from './src/styles'
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,11 +18,15 @@ const config: Config = {
     './src/stories/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontWeight,
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+      fontFamily,
+      backgroundImage,
+      backgroundColor: colors,
+      colors,
+      fontSize,
+      lineHeight,
+      boxShadow,
     },
   },
   plugins: [],
