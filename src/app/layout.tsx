@@ -13,7 +13,7 @@ const notoSansKR = Noto_Sans_KR({
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className={notoSansKR.className}>
+    <html lang="ko" className={notoSansKR.className}>
       <head />
       <body className="flex-center font-medium">
         <QueryProvider>
