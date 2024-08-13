@@ -5,11 +5,15 @@ import QueryProvider from '@/hooks/QueryProvider'
 
 import './globals.css'
 
-const notoSans = Noto_Sans_KR({ subsets: ['latin'], weight: ['400', '500', '700'] })
+const notoSansKR = Noto_Sans_KR({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-notoSansKR',
+})
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className={notoSans.className}>
+    <html lang="en" className={notoSansKR.className}>
       <head />
       <body className="flex-center font-medium">
         <QueryProvider>

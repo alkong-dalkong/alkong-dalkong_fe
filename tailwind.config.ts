@@ -1,6 +1,14 @@
 import type { Config } from 'tailwindcss'
 
-import { backgroundImage, boxShadow, colors, fontSize, fontWeight, lineHeight } from './src/styles'
+import {
+  backgroundImage,
+  boxShadow,
+  colors,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  lineHeight,
+} from './src/styles'
 
 const config: Config = {
   content: [
@@ -12,6 +20,7 @@ const config: Config = {
   theme: {
     fontWeight,
     extend: {
+      fontFamily,
       backgroundImage,
       backgroundColor: colors,
       colors,
