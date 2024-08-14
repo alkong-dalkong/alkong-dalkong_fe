@@ -5,12 +5,15 @@ on:
     branches:
       - develop
 
+permissions:
+  contents: write
+
 jobs:
   Push-Alkong-Repo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code 🏃‍➡️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Git User 🧑‍💻
         run: |
