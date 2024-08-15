@@ -26,11 +26,11 @@ export default function Button({
   )
 }
 
-export function ButtonLong(props: IButtonProps) {
+function ButtonLong(props: IButtonProps) {
   return <Button {...props} width="w-[335px]" height="h-14" />
 }
 
-export function ButtonShort(props: IButtonProps) {
+function ButtonShort(props: IButtonProps) {
   return <Button {...props} width="w-[140px]" height="h-[52px]" />
 }
 
