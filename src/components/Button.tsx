@@ -1,7 +1,7 @@
 'use client'
 
 interface IButtonProps {
-  children: string
+  children?: string
   width?: string
   height?: string
   color?: 'primary' | 'cancel'
@@ -10,7 +10,7 @@ interface IButtonProps {
 }
 
 export default function Button({
-  children,
+  children = '',
   width = 'w-full',
   height = 'h-full',
   color = 'primary',
