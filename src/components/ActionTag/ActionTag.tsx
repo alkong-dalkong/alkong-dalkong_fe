@@ -15,7 +15,7 @@ const ActionTagColors = {
 export default function ActionTag({ children = '', color = 'primary', onClick }: IActionTagProps) {
   return (
     <button
-      className={`${ActionTagColors[color]} rounded-[99px] px-[11px] py-[5px] text-body font-medium`}
+      className={`${ActionTagColors[color]} body-M rounded-[99px] px-[11px] py-[5px]`}
       onClick={onClick}
     >
       {children}
