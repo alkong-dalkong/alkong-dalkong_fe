@@ -9,6 +9,11 @@ interface IButtonProps {
   className?: string
 }
 
+const ButtonColors = {
+  primary: 'bg-mint-6 text-white active:bg-mint-7',
+  cancel: 'bg-gray-3 text-gray-7 active:bg-gray-4',
+}
+
 export default function Button({
   children = '',
   width = 'w-full',
@@ -17,7 +22,7 @@ export default function Button({
   onClick,
   className = '',
 }: IButtonProps) {
-  const baseStyles = `${width} ${height} rounded-xl flex-center ${color === 'primary' ? 'bg-mint-6 text-white active:bg-mint-7' : 'bg-gray-3 text-gray-7 active:bg-gray-4'} active:scale-95`
+  const baseStyles = `${width} ${height} rounded-xl flex-center ${ButtonColors[color]} active:scale-95`
 
   return (
     <button className={`${baseStyles} ${className}`} onClick={onClick}>
