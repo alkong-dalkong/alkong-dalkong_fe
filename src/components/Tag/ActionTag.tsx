@@ -1,13 +1,13 @@
 interface ITagProps {
   children?: string
-  color?: 'primary' | 'add' | 'delete'
+  color?: 'primary' | 'mint' | 'gray'
   onClick?: () => void
 }
 
 const TagColors = {
   primary: 'bg-mint-3 text-black',
-  add: 'bg-gray-2 text-gray-7',
-  delete: 'bg-mint-6 text-white',
+  mint: 'bg-mint-6 text-white',
+  gray: 'bg-gray-2 text-gray-7',
 }
 
 export default function Tag({ children = '', color = 'primary', onClick }: ITagProps) {

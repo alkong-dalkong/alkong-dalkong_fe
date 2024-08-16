@@ -1,21 +1,21 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
-import Tag from './ActionTag'
+import ActionTag from './ActionTag'
 
 export default {
   title: 'Components/Tag',
-  component: Tag,
+  component: ActionTag,
   argTypes: {
     color: {
       control: 'select',
-      options: ['primary', 'add', 'delete'],
+      options: ['primary', 'mint', 'gray'],
     },
     children: { control: 'text' },
     onClick: { action: 'clicked' },
   },
 } as Meta
 
-const Template: StoryFn = (args) => <Tag {...args} />
+const Template: StoryFn = (args) => <ActionTag {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
@@ -23,14 +23,14 @@ Primary.args = {
   color: 'primary',
 }
 
-export const Add = Template.bind({})
-Add.args = {
+export const Gray = Template.bind({})
+Gray.args = {
   children: '+ 속쓰림',
-  color: 'add',
+  color: 'gray',
 }
 
-export const Delete = Template.bind({})
-Delete.args = {
+export const Mint = Template.bind({})
+Mint.args = {
   children: '- 건강검진',
-  color: 'delete',
+  color: 'mint',
 }
