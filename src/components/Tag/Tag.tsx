@@ -3,5 +3,9 @@ interface ITagProps {
 }
 
 export default function Tag({ children = '' }: ITagProps) {
-  return <span className="rounded-[99px] bg-mint-3 px-[11px] py-[5px] text-black">{children}</span>
+  return (
+    <span className="rounded-[99px] bg-mint-3 px-[11px] py-[5px] text-body font-medium text-black">
+      {children}
+    </span>
+  )
 }
