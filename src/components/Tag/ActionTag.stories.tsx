@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import ActionTag from './ActionTag'
 
 export default {
-  title: 'Components/Tag',
+  title: 'Components/ActionTag',
   component: ActionTag,
   argTypes: {
     color: {
