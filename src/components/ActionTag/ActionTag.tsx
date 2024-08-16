@@ -12,7 +12,7 @@ const ActionTagColors = {
   gray: 'bg-gray-2 text-gray-7',
 }
 
-export default function ActionTag({ children = '', color = 'mint', onClick }: IActionTagProps) {
+export default function ActionTag({ children = '', color = 'primary', onClick }: IActionTagProps) {
   return (
     <button
       className={`${ActionTagColors[color]} rounded-[99px] px-[11px] py-[5px]`}
