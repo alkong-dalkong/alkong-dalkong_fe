@@ -1,4 +1,5 @@
 'use client'
+
 interface IActionTagProps {
   children?: string
   color?: 'primary' | 'mint' | 'gray'
