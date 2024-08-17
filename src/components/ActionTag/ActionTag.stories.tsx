@@ -8,7 +8,7 @@ export default {
   argTypes: {
     color: {
       control: 'select',
-      options: ['primary', 'mint', 'gray'],
+      options: ['primary', 'secondary'],
     },
     children: { control: 'text' },
     onClick: { action: 'clicked' },
@@ -20,17 +20,16 @@ const Template: StoryFn = (args) => <ActionTag {...args} />
 export const Primary = Template.bind({})
 Primary.args = {
   children: '건강검진',
-  color: 'primary',
 }
 
-export const Gray = Template.bind({})
-Gray.args = {
-  children: '+ 속쓰림',
-  color: 'gray',
+const PlusTemplate: StoryFn = (args) => <ActionTag.Plus {...args} />
+export const Plus = PlusTemplate.bind({})
+Plus.args = {
+  children: '기침',
 }
 
-export const Mint = Template.bind({})
-Mint.args = {
-  children: '- 건강검진',
-  color: 'mint',
+const MinusTemplate: StoryFn = (args) => <ActionTag.Minus {...args} />
+export const Minus = MinusTemplate.bind({})
+Minus.args = {
+  children: '콧물',
 }
