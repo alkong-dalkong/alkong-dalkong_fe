@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 
 interface Actions {
-  setInitialState: (init: boolean) => void
-  changeIsActive: () => void
+  setInitialToggleState: (init: boolean) => void
+  changeToggleState: () => void
 }
 
 interface ToggleStore {
@@ -13,10 +13,10 @@ interface ToggleStore {
 export const useToggleStore = create<ToggleStore>((set) => ({
   isActive: false,
   actions: {
-    setInitialState: (init: boolean) => {
+    setInitialToggleState: (init: boolean) => {
       set(() => ({ isActive: init }))
     },
-    changeIsActive: () => {
+    changeToggleState: () => {
       set((state) => ({ isActive: !state.isActive }))
     },
   },
