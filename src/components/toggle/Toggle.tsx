@@ -1,24 +1,17 @@
-import { useEffect } from 'react'
-
-import { useToggleActions, useToggleState } from '@/store/toggleStore'
+import { useToggle } from '@/hooks/useToggle'
 
 interface IToggle {
-  initTrue?: boolean
-  onClick: () => void
+  initial?: boolean
+  onClick: (prev: boolean) => void
 }
 
-const Toggle = ({ initTrue = false, onClick }: IToggle) => {
-  const isActive = useToggleState()
-  const { setInitialToggleState, changeToggleState } = useToggleActions()
+const Toggle = ({ initial = false, onClick }: IToggle) => {
+  const [isActive, changeToggleState] = useToggle(initial)
 
   const handleToggleClick = () => {
-    onClick()
+    onClick(isActive)
     changeToggleState()
   }
-
-  useEffect(() => {
-    setInitialToggleState(initTrue)
-  }, [initTrue, setInitialToggleState])
 
   const containerStyle = isActive ? 'bg-mint-6' : 'bg-gray-2'
   const innerStyle = isActive ? 'translate-x-8 bg-white' : 'translate-x-0 bg-mint-6'
