@@ -1,6 +1,6 @@
 'use client'
 
-import CalendarProvider from './CalendarProvider'
+import CalendarProvider from './components/CalendarProvider'
 
 export interface ICalendarProps {
   dateState: Date

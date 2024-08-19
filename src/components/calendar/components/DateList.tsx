@@ -11,8 +11,9 @@ export default function DateList() {
   if (!value) {
     throw new Error('CalendarValueContext is not provided')
   }
-  const { focusDate } = value
-  const { year, month } = { year: focusDate.getFullYear(), month: focusDate.getMonth() }
+  const {
+    focusDate: { year, month },
+  } = value
   const lastDate = new Date(year, month + 1, 0).getDate()
 
   return (

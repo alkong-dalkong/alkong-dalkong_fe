@@ -2,7 +2,8 @@
 
 import { createContext, useCallback, useMemo, useState } from 'react'
 
-import type { ICalendarProps } from './Calendar'
+import type { ICalendarProps } from '@/components/calendar/Calendar'
+
 import DateList from './DateList'
 import EmptyDates from './EmptyDates'
 import MonthNavigator from './MonthNavigator'
@@ -16,11 +17,14 @@ interface ICalendarValueContext {
   today: Date
   dateState: Date
   scheduleDates: string[]
-  focusDate: Date
+  focusDate: {
+    year: number
+    month: number
+  }
 }
 
 interface ICalendarActionsContext {
-  onClick?: (dates: Date) => void
+  onClick: (date: Date) => void
   nextMonth: () => void
   prevMonth: () => void
 }
@@ -35,15 +39,24 @@ export default function CalendarProvider({
   scheduleDates: scheduleDatesProps,
 }: ICalendarProviderProps) {
   const today = useMemo(() => new Date(), [])
-  const [focusDate, setFocusDate] = useState(today)
+  const [focusDate, setFocusDate] = useState({
+    year: today.getFullYear(),
+    month: today.getMonth(),
+  })
   const [scheduleDates, _] = useState<string[]>(scheduleDatesProps)
 
   const nextMonth = useCallback(() => {
-    setFocusDate(new Date(focusDate.getFullYear(), focusDate.getMonth() + 1, 1))
+    setFocusDate({
+      year: focusDate.month === 11 ? focusDate.year + 1 : focusDate.year,
+      month: focusDate.month === 11 ? 0 : focusDate.month + 1,
+    })
   }, [focusDate])
 
   const prevMonth = useCallback(() => {
-    setFocusDate(new Date(focusDate.getFullYear(), focusDate.getMonth() - 1, 1))
+    setFocusDate({
+      year: focusDate.month === 0 ? focusDate.year - 1 : focusDate.year,
+      month: focusDate.month === 0 ? 11 : focusDate.month - 1,
+    })
   }, [focusDate])
 
   const actions = useMemo(

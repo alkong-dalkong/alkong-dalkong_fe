@@ -13,12 +13,15 @@ export default function MonthNavigator() {
   }
 
   const { prevMonth, nextMonth } = actions
+  const {
+    focusDate: { year, month },
+  } = value
 
   return (
     <>
       <button onClick={prevMonth}>{'<'}</button>
       <div className="text-subtitle font-bold">
-        {value.focusDate.getFullYear()}년 {value.focusDate.getMonth() + 1}월
+        {year}년 {month + 1}월
       </div>
       <button onClick={nextMonth}>{'>'}</button>
     </>

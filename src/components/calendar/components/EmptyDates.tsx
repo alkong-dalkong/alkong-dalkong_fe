@@ -11,8 +11,10 @@ export default function EmptyDates() {
     throw new Error('CalendarValueContext is not provided')
   }
 
-  const { focusDate } = value
-  const firstDay = new Date(focusDate.getFullYear(), focusDate.getMonth(), 1).getDay()
+  const {
+    focusDate: { year, month },
+  } = value
+  const firstDay = new Date(year, month, 1).getDay()
 
   if (!firstDay) {
     return null

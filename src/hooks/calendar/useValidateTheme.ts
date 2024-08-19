@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { CalendarValueContext } from '@/components/calendar/CalendarProvider'
+import { CalendarValueContext } from '@/components/calendar/components/CalendarProvider'
 import { parseDate2String } from '@/utils/calendar/parseDate2String'
 
 export default function useValidateTheme(dateParam: Date): string {
