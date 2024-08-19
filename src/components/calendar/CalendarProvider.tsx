@@ -3,6 +3,10 @@
 import { createContext, useCallback, useMemo, useState } from 'react'
 
 import type { ICalendarProps } from './Calendar'
+import DateList from './DateList'
+import EmptyDates from './EmptyDates'
+import MonthNavigator from './MonthNavigator'
+import WeekList from './WeekList'
 
 interface ICalendarProviderProps extends ICalendarProps {
   children: React.ReactNode
@@ -64,3 +68,8 @@ export default function CalendarProvider({
     </CalendarActionsContext.Provider>
   )
 }
+
+CalendarProvider.DateList = DateList
+CalendarProvider.EmptyDates = EmptyDates
+CalendarProvider.MonthNavigator = MonthNavigator
+CalendarProvider.WeekList = WeekList
