@@ -2,20 +2,21 @@
 
 import { createContext, useCallback, useMemo, useState } from 'react'
 
-interface ICalendarProviderProps {
+import type { ICalendarProps } from './Calendar'
+
+interface ICalendarProviderProps extends ICalendarProps {
   children: React.ReactNode
-  scheduleDates: string[]
 }
 
 interface ICalendarValueContext {
   today: Date
-  current: Date
+  dateState: Date
   scheduleDates: string[]
   focusDate: Date
 }
 
 interface ICalendarActionsContext {
-  handleClick?: (dates: Date) => void
+  onClick?: (dates: Date) => void
   nextMonth: () => void
   prevMonth: () => void
 }
@@ -25,10 +26,11 @@ export const CalendarActionsContext = createContext<ICalendarActionsContext | nu
 
 export default function CalendarProvider({
   children,
+  dateState,
+  onClick,
   scheduleDates: scheduleDatesProps,
 }: ICalendarProviderProps) {
   const today = useMemo(() => new Date(), [])
-  const [currentDate, setCurrentDate] = useState(today)
   const [focusDate, setFocusDate] = useState(today)
   const [scheduleDates, _] = useState<string[]>(scheduleDatesProps)
 
@@ -40,14 +42,9 @@ export default function CalendarProvider({
     setFocusDate(new Date(focusDate.getFullYear(), focusDate.getMonth() - 1, 1))
   }, [focusDate])
 
-  const handleClick = (date: Date) => {
-    console.log(date)
-    setCurrentDate(date)
-  }
-
   const actions = useMemo(
     () => ({
-      handleClick,
+      onClick,
       nextMonth,
       prevMonth,
     }),
@@ -56,7 +53,7 @@ export default function CalendarProvider({
 
   const value = {
     today,
-    current: currentDate,
+    dateState,
     scheduleDates,
     focusDate,
   }

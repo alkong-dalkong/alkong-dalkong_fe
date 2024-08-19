@@ -1,8 +1,9 @@
 'use client'
 import { useContext } from 'react'
 
+import useValidateTheme from '@/hooks/calendar/useValidateTheme'
+
 import { CalendarActionsContext, CalendarValueContext } from './CalendarProvider'
-import useValidateTheme from './useValidateTheme'
 
 interface IDateBoxProps {
   date: Date
@@ -16,10 +17,11 @@ export default function DateBox({ date }: IDateBoxProps) {
   if (!value || !actions) {
     throw new Error('Provider is not provided')
   }
-  const { handleClick } = actions
+
+  const { onClick: handleClick } = actions
 
   if (!handleClick) {
-    throw new Error('handleClick is not provided')
+    throw new Error('onClick is not provided')
   }
 
   return (

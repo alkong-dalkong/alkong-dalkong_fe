@@ -6,10 +6,15 @@ import EmptyDates from './EmptyDates'
 import MonthNavigator from './MonthNavigator'
 import WeekList from './WeekList'
 
-const scheduleDates = ['2024-08-19', '2024-08-20', '2024-08-21']
-export default function Calendar() {
+export interface ICalendarProps {
+  dateState: Date
+  onClick: (date: Date) => void
+  scheduleDates: string[]
+}
+
+export default function Calendar(props: ICalendarProps) {
   return (
-    <CalendarProvider scheduleDates={scheduleDates}>
+    <CalendarProvider {...props}>
       <div className="flex-column flex w-full justify-between gap-[12px]">
         <div className="flex shrink gap-3">
           <MonthNavigator />
