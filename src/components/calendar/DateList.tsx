@@ -13,7 +13,7 @@ export default function DateList() {
   }
   const { focusDate } = value
   const { year, month } = { year: focusDate.getFullYear(), month: focusDate.getMonth() }
-  const lastDate = new Date(year, month, 0).getDate()
+  const lastDate = new Date(year, month + 1, 0).getDate()
 
   return (
     <>
