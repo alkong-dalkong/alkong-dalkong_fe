@@ -1,3 +1,4 @@
+'use client'
 import { useToggle } from '@/hooks/useToggle'
 
 interface Props {
