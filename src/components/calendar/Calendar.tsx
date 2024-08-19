@@ -1,46 +1,29 @@
 'use client'
 
-import { useState } from 'react'
+import CalendarProvider from './CalendarProvider'
+import DateList from './DateList'
+import EmptyDates from './EmptyDates'
+import MonthNavigator from './MonthNavigator'
+import WeekList from './WeekList'
 
-const week = ['일', '월', '화', '수', '목', '금', '토']
-
+const scheduleDates = ['2024-08-19', '2024-08-20', '2024-08-21']
 export default function Calendar() {
-  const [date, setDate] = useState(new Date())
-  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay()
-  const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-  const prevMonth = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() - 1))
-  }
-  const nextMonth = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() + 1))
-  }
-
   return (
-    <div className="size-full">
-      <div className="flex shrink justify-between">
-        <button onClick={prevMonth}>{'<'}</button>
-        <div>
-          {date.getFullYear()}년 {date.getMonth() + 1}월
+    <CalendarProvider scheduleDates={scheduleDates}>
+      <div className="flex-column flex w-full justify-between gap-[12px]">
+        <div className="flex shrink gap-3">
+          <MonthNavigator />
         </div>
-        <button onClick={nextMonth}>{'>'}</button>
-      </div>
-      <div className="flex shrink justify-around">
-        {week.map((day, idx) => (
-          <span key={idx} className="text-body font-regular text-gray-6">
-            {day}
-          </span>
-        ))}
-      </div>
-      <div className="grid grid-cols-7 gap-2">
-        {Array.from({ length: firstDay }).map((_, idx) => (
-          <div key={idx} />
-        ))}
-        {Array.from({ length: lastDate }).map((_, idx) => (
-          <div key={idx} className="text-center">
-            {idx + 1}
+        <div className="flex-column flex-1 gap-[8px]">
+          <div className="flex shrink justify-around gap-2">
+            <WeekList />
           </div>
-        ))}
+          <div className="grid grid-cols-7 gap-2">
+            <EmptyDates />
+            <DateList />
+          </div>
+        </div>
       </div>
-    </div>
+    </CalendarProvider>
   )
 }
