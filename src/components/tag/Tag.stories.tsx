@@ -10,7 +10,7 @@ export default {
   },
 } as Meta
 
-const Template: StoryFn<{ tags: { children: string }[] }> = ({ tags }) => (
+const Template: StoryFn<{ tags: { title: string }[] }> = ({ tags }) => (
   <div className="flex gap-3">
     {tags.map((tag, idx) => (
       <Tag key={idx} {...tag} />
@@ -20,10 +20,5 @@ const Template: StoryFn<{ tags: { children: string }[] }> = ({ tags }) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  tags: [
-    { children: '건강검진' },
-    { children: '멍' },
-    { children: '속쓰림' },
-    { children: '기침' },
-  ],
+  tags: [{ title: '건강검진' }, { title: '멍' }, { title: '속쓰림' }, { title: '기침' }],
 }
