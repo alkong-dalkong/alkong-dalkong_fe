@@ -3,7 +3,7 @@
 import Image from 'next/image'
 
 type PlusMinusProps = {
-  title: string
+  label: string
   onClick: () => void
 }
 
@@ -17,14 +17,14 @@ const ActionTagColors = {
   secondary: 'bg-gray-2 text-gray-7',
 }
 
-const ActionTag = ({ title, onClick, color = 'primary', src }: Props) => {
+const ActionTag = ({ label, onClick, color = 'primary', src }: Props) => {
   return (
     <button
       className={`${ActionTagColors[color]} body-M flex-center gap-[4px] rounded-[99px] px-[11px] py-[5px]`}
       onClick={onClick}
     >
-      {src && <Image src={src} alt={title} width={16} height={16} />}
-      {title}
+      {src && <Image src={src} alt={label} width={16} height={16} />}
+      {label}
     </button>
   )
 }

@@ -7,6 +7,8 @@ export default {
   title: 'Components/ActionTag',
   component: ActionTag,
   argTypes: {
+    label: { control: 'text' },
+    color: { control: 'radio', options: ['primary', 'secondary'] },
     onClick: { action: 'clicked' },
   },
 } as Meta
@@ -15,5 +17,5 @@ const Template: StoryFn<Props> = (args) => <ActionTag {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  title: 'Action',
+  label: 'Action',
 }
