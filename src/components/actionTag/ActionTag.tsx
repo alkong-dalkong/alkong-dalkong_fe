@@ -1,10 +1,15 @@
 'use client'
-interface IPlusMinusTagProps {
-  children?: React.ReactNode
-  onClick?: () => void
+
+import Image from 'next/image'
+
+type PlusMinusProps = {
+  title: string
+  onClick: () => void
 }
-interface IActionTagProps extends IPlusMinusTagProps {
+
+export type Props = PlusMinusProps & {
   color?: 'primary' | 'secondary'
+  src?: string
 }
 
 const ActionTagColors = {
@@ -12,28 +17,27 @@ const ActionTagColors = {
   secondary: 'bg-gray-2 text-gray-7',
 }
 
-export default function ActionTag({ children = '', color = 'primary', onClick }: IActionTagProps) {
+const ActionTag = ({ title, onClick, color = 'primary', src }: Props) => {
   return (
     <button
-      className={`${ActionTagColors[color]} body-M rounded-[99px] px-[11px] py-[5px]`}
+      className={`${ActionTagColors[color]} body-M flex-center gap-[4px] rounded-[99px] px-[11px] py-[5px]`}
       onClick={onClick}
     >
-      {children}
+      {src && <Image src={src} alt={title} width={16} height={16} />}
+      {title}
     </button>
   )
 }
 
-function Plus(props: IPlusMinusTagProps) {
-  return (
-    <ActionTag {...props} color="secondary">
-      + {props.children}
-    </ActionTag>
-  )
+const Plus = (props: PlusMinusProps) => {
+  return <ActionTag {...props} color="secondary" />
 }
 
-function Minus(props: IPlusMinusTagProps) {
-  return <ActionTag {...props}>- {props.children}</ActionTag>
+const Minus = (props: PlusMinusProps) => {
+  return <ActionTag {...props} />
 }
 
 ActionTag.Plus = Plus
 ActionTag.Minus = Minus
+
+export default ActionTag
