@@ -6,11 +6,11 @@ export default {
   title: 'Components/Tag',
   component: Tag,
   argTypes: {
-    children: { control: 'text' },
+    label: { control: 'text' },
   },
 } as Meta
 
-const Template: StoryFn<{ tags: { title: string }[] }> = ({ tags }) => (
+const Template: StoryFn<{ tags: { label: string }[] }> = ({ tags }) => (
   <div className="flex gap-3">
     {tags.map((tag, idx) => (
       <Tag key={idx} {...tag} />
@@ -20,5 +20,5 @@ const Template: StoryFn<{ tags: { title: string }[] }> = ({ tags }) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  tags: [{ title: '건강검진' }, { title: '멍' }, { title: '속쓰림' }, { title: '기침' }],
+  tags: [{ label: '건강검진' }, { label: '멍' }, { label: '속쓰림' }, { label: '기침' }],
 }
