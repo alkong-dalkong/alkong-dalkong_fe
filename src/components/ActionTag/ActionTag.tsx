@@ -17,23 +17,28 @@ const ActionTagColors = {
   secondary: 'bg-gray-2 text-gray-7',
 }
 
-const ActionTag = ({ label, onClick, color = 'primary', src }: Props) => {
+type ActionTagType = React.FC<Props> & {
+  Plus: React.FC<PlusMinusProps>
+  Minus: React.FC<PlusMinusProps>
+}
+
+const ActionTag: ActionTagType = ({ label, onClick, color = 'primary', src }: Props) => {
   return (
     <button
       className={`${ActionTagColors[color]} body-M flex-center gap-[4px] rounded-[99px] px-[11px] py-[5px]`}
       onClick={onClick}
     >
       {src && <Image src={src} alt={label} width={16} height={16} />}
-      {label}
+      <span>{label}</span>
     </button>
   )
 }
 
-const Plus = (props: PlusMinusProps) => {
+const Plus: React.FC<PlusMinusProps> = (props: PlusMinusProps) => {
   return <ActionTag {...props} color="secondary" />
 }
 
-const Minus = (props: PlusMinusProps) => {
+const Minus: React.FC<PlusMinusProps> = (props: PlusMinusProps) => {
   return <ActionTag {...props} />
 }
 
