@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-type UseToggleType = (init?: boolean) => [boolean, () => void]
+type UseToggleType = (initalState?: boolean) => [boolean, () => void]
 
-export const useToggle: UseToggleType = (init = false) => {
-  const [state, setState] = useState<boolean>(init)
+export const useToggle: UseToggleType = (initalState = false) => {
+  const [state, setState] = useState<boolean>(initalState)
 
   const toggle = () => {
     setState((prevState) => !prevState)
