@@ -2,12 +2,12 @@
 import { useToggle } from '@/hooks/useToggle'
 
 interface ToggleProps {
-  initial?: boolean
+  initialState?: boolean
   onClick: (prev: boolean) => void
 }
 
-const Toggle = ({ initial = false, onClick }: ToggleProps) => {
-  const [isActive, changeToggleState] = useToggle(initial)
+const Toggle = ({ initialState = false, onClick }: ToggleProps) => {
+  const [isActive, changeToggleState] = useToggle(initialState)
 
   const handleToggleClick = () => {
     onClick(isActive)
