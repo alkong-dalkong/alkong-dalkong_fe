@@ -30,10 +30,5 @@ const config: Config = {
     },
   },
   plugins: [],
-  safelist: [
-    { pattern: /(bg|text)-.*-(0|1|2|3|4|5|6)/ },
-    { pattern: /rounded-.*/ },
-    { pattern: /text-.*/ },
-  ],
 }
 export default config
