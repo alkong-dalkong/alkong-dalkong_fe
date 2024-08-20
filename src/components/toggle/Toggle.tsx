@@ -1,12 +1,12 @@
 'use client'
 import { useToggle } from '@/hooks/useToggle'
 
-interface Props {
+interface ToggleProps {
   initial?: boolean
   onClick: (prev: boolean) => void
 }
 
-const Toggle = ({ initial = false, onClick }: Props) => {
+const Toggle = ({ initial = false, onClick }: ToggleProps) => {
   const [isActive, changeToggleState] = useToggle(initial)
 
   const handleToggleClick = () => {
