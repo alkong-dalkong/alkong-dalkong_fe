@@ -1,11 +1,13 @@
-interface ITagProps {
-  children?: string
+import React from 'react'
+
+type Props = {
+  title: string
 }
 
-export default function Tag({ children = '' }: ITagProps) {
+const Tag = ({ title }: Props) => {
   return (
-    <span className="body-M rounded-[99px] bg-mint-3 px-[11px] py-[5px] text-black">
-      {children}
-    </span>
+    <span className="body-M rounded-[99px] bg-mint-3 px-[11px] py-[5px] text-black">{title}</span>
   )
 }
+
+export default Tag
