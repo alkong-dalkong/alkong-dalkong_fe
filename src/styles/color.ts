@@ -1,5 +1,6 @@
 export const colors = {
   mint: {
+    0: '#E4FDF5',
     1: '#C5FDEC',
     2: '#98F9DC',
     3: '#50E9BB',
