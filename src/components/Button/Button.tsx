@@ -1,43 +1,47 @@
 'use client'
 
-interface IButtonProps {
-  children?: string
+export type Size = {
   width?: string
   height?: string
-  color?: 'primary' | 'cancel'
-  onClick?: () => void
-  className?: string
+}
+
+export type Props = {
+  label: string
+  onClick: () => void
+  color?: 'primary' | 'secondary'
 }
 
 const ButtonColors = {
   primary: 'bg-mint-6 text-white active:bg-mint-7',
-  cancel: 'bg-gray-3 text-gray-7 active:bg-gray-4',
+  secondary: 'bg-gray-3 text-gray-7 active:bg-gray-4',
 }
 
-export default function Button({
-  children = '',
+const Button = ({
+  label,
+  onClick,
   width = 'w-full',
   height = 'h-full',
   color = 'primary',
-  onClick,
-  className = '',
-}: IButtonProps) {
-  const baseStyles = `${width} ${height} rounded-xl flex-center ${ButtonColors[color]} active:scale-95`
-
+}: Props & Size) => {
   return (
-    <button className={`${baseStyles} ${className}`} onClick={onClick}>
-      {children}
+    <button
+      className={`${width} ${height} flex-center rounded-xl ${ButtonColors[color]} active:scale-95`}
+      onClick={onClick}
+    >
+      {label}
     </button>
   )
 }
 
-function ButtonLong(props: IButtonProps) {
+const ButtonLong = (props: Props) => {
   return <Button {...props} width="w-[335px]" height="h-14" />
 }
 
-function ButtonShort(props: IButtonProps) {
+const ButtonShort = (props: Props) => {
   return <Button {...props} width="w-[140px]" height="h-[52px]" />
 }
 
 Button.Long = ButtonLong
 Button.Short = ButtonShort
+
+export default Button

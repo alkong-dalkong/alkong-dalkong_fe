@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Meta, StoryFn } from '@storybook/react'
 
+import type { Props, Size } from './Button'
 import Button from './Button'
 
 export default {
@@ -9,34 +10,45 @@ export default {
   argTypes: {
     color: {
       control: 'select',
-      options: ['primary', 'cancel'],
+      options: ['primary', 'secondary'],
     },
     onClick: { action: 'clicked' },
   },
 } as Meta
 
-const Template: StoryFn = (args) => <Button {...args} />
+const Template: StoryFn<Props & Size> = (args) => <Button {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
-  children: 'Primary Button',
+  label: 'Primary Button',
   color: 'primary',
   width: 'w-[335px]',
   height: 'h-14',
 }
 
-export const Cancel = Template.bind({})
-Cancel.args = {
-  children: 'Cancel Button',
-  color: 'cancel',
+export const Secondary = Template.bind({})
+Secondary.args = {
+  label: 'Cancel Button',
+  color: 'secondary',
   width: 'w-[335px]',
   height: 'h-14',
 }
 
 export const Custom = Template.bind({})
 Custom.args = {
-  children: 'Custom Button',
+  label: 'Custom Button',
   width: 'w-[335px]',
   height: 'h-14',
-  className: 'bg-red text-white',
+}
+
+const LongTemplate: StoryFn<Props> = (args) => <Button.Long {...args} />
+export const Long = LongTemplate.bind({})
+Long.args = {
+  label: 'Long Button',
+}
+
+const ShortTemplate: StoryFn<Props> = (args) => <Button.Short {...args} />
+export const Short = ShortTemplate.bind({})
+Short.args = {
+  label: 'Short Button',
 }
