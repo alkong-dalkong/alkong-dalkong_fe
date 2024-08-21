@@ -34,7 +34,7 @@ const Modal: ModalType = ({ children, isOpen, onClose, size }) => {
         onClick={handleBackgroundClick}
         aria-hidden="true"
       >
-        <div className={`${modalSize} w-[327px] rounded-[12px] bg-white`}>
+        <div className={`${modalSize} w-[87.2%] max-w-[390px] rounded-[12px] bg-white`}>
           <Image
             src={ButtonCloseIcon}
             className="mb-[4px] ml-auto mr-[16px] mt-[20px]"
