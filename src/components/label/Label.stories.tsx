@@ -5,7 +5,7 @@ import Label from './Label'
 import testImage from '/public/next.svg'
 
 const meta: Meta<typeof Label> = {
-  title: 'Components/Label',
+  title: 'Label',
   component: Label,
   argTypes: {
     children: { control: 'text' },
