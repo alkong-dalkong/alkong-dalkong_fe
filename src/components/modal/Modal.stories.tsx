@@ -20,7 +20,7 @@ const MediumTemplate: StoryFn<Props> = () => {
 
   return (
     <>
-      <button onClick={handleOpenModal}>모달</button>
+      <button onClick={handleOpenModal}>모달 열기</button>
       <Modal isOpen={modal} onClose={handleCloseModal} size="md">
         <Modal.Title title="삭제하시겠습니까?" />
         <Modal.SubTitle title="삭제하실 경우 복원이 불가능합니다." />
