@@ -6,17 +6,27 @@ import type { CheckBoxSectionType } from '@/types/common'
 
 import { Icon } from '../icons'
 
-type InputCheckBoxProps = {
+/**
+ * @todo Icon 컴포넌트 수정사항에 따른 버튼 수정
+ * <Icon name="arrow-right" />에 onClick 넘겨줘야할듯
+ */
+
+type CheckBoxProps = {
   section: CheckBoxSectionType
 }
 
-type CheckBoxProps = {
+type CheckBoxViewProps = {
   section: CheckBoxSectionType | 'all'
   isChecked: boolean
   onChange: () => void
 }
 
-const CheckBox = ({ section, isChecked, onChange, children }: PropsWithChildren<CheckBoxProps>) => {
+const CheckBoxView = ({
+  section,
+  isChecked,
+  onChange,
+  children,
+}: PropsWithChildren<CheckBoxViewProps>) => {
   return (
     <div>
       <input
@@ -40,7 +50,7 @@ const CheckBox = ({ section, isChecked, onChange, children }: PropsWithChildren<
   )
 }
 
-export const InputCheckBox = ({ children, section }: PropsWithChildren<InputCheckBoxProps>) => {
+export const CheckBox = ({ children, section }: PropsWithChildren<CheckBoxProps>) => {
   const checkList = useCheckBoxList()
   const isChecked = checkList[section]
   const { setValue } = useFormContext()
@@ -52,13 +62,13 @@ export const InputCheckBox = ({ children, section }: PropsWithChildren<InputChec
   }
 
   return (
-    <CheckBox section={section} isChecked={isChecked} onChange={handleCheck}>
+    <CheckBoxView section={section} isChecked={isChecked} onChange={handleCheck}>
       {children}
-    </CheckBox>
+    </CheckBoxView>
   )
 }
 
-export const InputAllCheckBox = ({ children }: PropsWithChildren) => {
+export const CheckBoxAll = ({ children }: PropsWithChildren) => {
   const checkList = useCheckBoxList()
   const isAllChecked = useAllChecked()
   const { setValue } = useFormContext()
@@ -71,8 +81,8 @@ export const InputAllCheckBox = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <CheckBox section="all" isChecked={isAllChecked} onChange={handleCheck}>
+    <CheckBoxView section="all" isChecked={isAllChecked} onChange={handleCheck}>
       {children}
-    </CheckBox>
+    </CheckBoxView>
   )
 }
