@@ -25,7 +25,7 @@ export function Default() {
       >
         toggle
       </button>
-      <BottomSheet handleClickScrim={toggleShowing} isShowing={isShowing}>
+      <BottomSheet onClickScrim={toggleShowing} isShowing={isShowing}>
         bottom sheet content
       </BottomSheet>
     </LazyMotion>

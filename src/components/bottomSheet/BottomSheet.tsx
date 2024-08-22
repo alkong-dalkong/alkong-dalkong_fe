@@ -5,20 +5,20 @@ import { Icon } from '../icons'
 import { AnimatePortal } from '../portal/AnimatePortal'
 
 type BottomSheetProps = ComponentProps<typeof AnimatePortal> & {
-  handleClickScrim?: VoidFunction
+  onClickScrim?: VoidFunction
   isShort?: boolean
 }
 
 export const BottomSheet = ({
-  handleClickScrim,
+  onClickScrim,
   isShort = false,
   isShowing,
   children,
   mode,
 }: BottomSheetProps) => {
-  const onClickOutsideDefault: MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClickScrim: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target !== e.currentTarget) return
-    if (handleClickScrim) handleClickScrim()
+    if (onClickScrim) onClickScrim()
   }
 
   const heightStyle = isShort ? 'h-[calc(100vh-252px)]' : 'h-[calc(100vh-55px)]'
@@ -27,7 +27,7 @@ export const BottomSheet = ({
     <AnimatePortal isShowing={isShowing} mode={mode}>
       <m.div
         className="fixed inset-0 z-[1000] h-full w-screen overflow-hidden bg-[rgba(15,23,42,0.5)]"
-        onClick={onClickOutsideDefault}
+        onClick={handleClickScrim}
         variants={bottomSheetFadeInVariants}
         initial="initial"
         animate="animate"
