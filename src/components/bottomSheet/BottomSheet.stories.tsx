@@ -1,6 +1,7 @@
-import { useState } from 'react'
 import { type Meta } from '@storybook/react'
 import { domMax, LazyMotion } from 'framer-motion'
+
+import { useToggle } from '@/hooks'
 
 import { BottomSheet } from './BottomSheet'
 
@@ -12,9 +13,7 @@ const meta: Meta<typeof BottomSheet> = {
 export default meta
 
 export function Default() {
-  const [isShowing, setIsShowing] = useState(true)
-
-  const toggleShowing = () => setIsShowing((prev) => !prev)
+  const [isShowing, toggleShowing] = useToggle(true)
 
   return (
     <LazyMotion features={domMax}>
