@@ -22,9 +22,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clean Yarn Cache
-        run: yarn cache clean --all
-
       - name: Install dependencies
         run: yarn install --immutable --check-cache
 

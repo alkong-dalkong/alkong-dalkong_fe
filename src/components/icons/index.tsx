@@ -1,4 +1,5 @@
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from './Arrow'
+import { HandleBar } from './Bar'
 import { CheckNoIcon, CheckYesIcon } from './Check'
 import { CloseIcon } from './Close'
 import {
@@ -40,6 +41,7 @@ export const iconMap = {
   medicine: MedicineIcon,
   clinic: ClinicIcon,
   health: HealthIcon,
+  'handle-bar': HandleBar,
 }
 
 export type IconComponentProps = IconProps & {
