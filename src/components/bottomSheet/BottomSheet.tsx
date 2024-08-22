@@ -1,7 +1,8 @@
-import { type ComponentProps, type MouseEventHandler } from 'react'
+import { type ComponentProps, type MouseEventHandler, useEffect } from 'react'
 import { m, type Variants } from 'framer-motion'
 
 import { zIndex } from '@/constants'
+import { useScrollLock } from '@/hooks'
 
 import { Icon } from '../icons'
 import { AnimatePortal } from '../portal/AnimatePortal'
@@ -18,10 +19,20 @@ export const BottomSheet = ({
   children,
   mode,
 }: BottomSheetProps) => {
+  const { lockScroll, unlockScroll } = useScrollLock()
+
   const handleClickScrim: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target !== e.currentTarget) return
     if (onClickScrim) onClickScrim()
   }
+
+  useEffect(() => {
+    if (isShowing) {
+      lockScroll()
+    } else {
+      unlockScroll()
+    }
+  }, [isShowing, lockScroll, unlockScroll])
 
   const heightStyle = isShort ? 'h-[calc(100vh-252px)]' : 'h-[calc(100vh-55px)]'
 
