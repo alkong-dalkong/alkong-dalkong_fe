@@ -4,6 +4,7 @@ import { ErrorMessage } from './ErrorMessage'
 import { Gender } from './Gender'
 import { Input, TextArea } from './Input'
 import Stepper from './Stepper'
+import { TextWithArrow } from './TextWithArrow'
 
 export const InputGroup = Object.assign(Container, {
   Input,
@@ -13,4 +14,5 @@ export const InputGroup = Object.assign(Container, {
   CheckBoxAll,
   ErrorMessage,
   Stepper,
+  TextWithArrow,
 })
