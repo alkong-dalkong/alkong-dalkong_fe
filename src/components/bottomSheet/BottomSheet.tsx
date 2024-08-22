@@ -1,6 +1,8 @@
 import { type ComponentProps, type MouseEventHandler } from 'react'
 import { m, type Variants } from 'framer-motion'
 
+import { zIndex } from '@/constants'
+
 import { Icon } from '../icons'
 import { AnimatePortal } from '../portal/AnimatePortal'
 
@@ -26,7 +28,7 @@ export const BottomSheet = ({
   return (
     <AnimatePortal isShowing={isShowing} mode={mode}>
       <m.div
-        className="fixed inset-0 z-[1000] h-full w-screen overflow-hidden bg-[rgba(15,23,42,0.5)]"
+        className={`fixed inset-0 ${zIndex.backdrop} h-full w-screen overflow-hidden bg-[rgba(15,23,42,0.5)]`}
         onClick={handleClickScrim}
         variants={bottomSheetFadeInVariants}
         initial="initial"
@@ -34,7 +36,7 @@ export const BottomSheet = ({
         exit="exit"
       >
         <m.div
-          className={`flex-column-align ${heightStyle} absolute left-0 top-full z-[1001] w-full rounded-t-3xl bg-white px-[20px]`}
+          className={`flex-column-align ${heightStyle} absolute left-0 top-full ${zIndex.backdrop} w-full rounded-t-3xl bg-white px-[20px]`}
           variants={bottomSheetVariants}
         >
           <div className="pb-[17px] pt-[8px]">
