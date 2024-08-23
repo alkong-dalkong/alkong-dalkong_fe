@@ -1,6 +1,9 @@
 'use client'
 
+import { useCallback, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+
+import { useDebounceFunc } from '@/hooks/useDebounceFunc'
 
 import 'swiper/css'
 
@@ -9,10 +12,20 @@ type SliderType = {
 }
 
 export const Slider = ({ list }: SliderType) => {
-  const handleSlideChange = ({ realIndex }: { realIndex: number }) => {
-    const currentIndex = (realIndex + 2) % list.length
-    console.log(currentIndex)
-  }
+  const activeIndexRef = useRef(0)
+
+  const debouncedSlideChange = useDebounceFunc(() => {
+    console.log(activeIndexRef.current)
+  }, 300)
+
+  const handleSlideChange = useCallback(
+    ({ realIndex }: { realIndex: number }) => {
+      const currentIndex = (realIndex + 2) % list.length
+      activeIndexRef.current = currentIndex
+      debouncedSlideChange()
+    },
+    [debouncedSlideChange, list.length],
+  )
 
   return (
     <Swiper
