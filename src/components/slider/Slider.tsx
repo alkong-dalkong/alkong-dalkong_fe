@@ -7,7 +7,7 @@ import { useDebounceFunc } from '@/hooks/useDebounceFunc'
 
 import 'swiper/css'
 
-type SliderType = {
+type SliderProps = {
   list: string[]
 }
 
@@ -21,7 +21,7 @@ const MemoizedSwiperSlide = memo(({ content }: MemoizedSwiperSlideProps) => {
 
 MemoizedSwiperSlide.displayName = 'MemoizedSwiperSlide'
 
-export const Slider = ({ list }: SliderType) => {
+export const Slider = ({ list }: SliderProps) => {
   const activeIndexRef = useRef(0)
 
   const debouncedSlideChange = useDebounceFunc(() => {
