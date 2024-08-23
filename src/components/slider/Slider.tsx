@@ -24,7 +24,9 @@ export const Slider = ({ list }: SliderType) => {
       onSlideChange={handleSlideChange}
     >
       {list.map((item) => (
-        <SwiperSlide key={item}>{item}</SwiperSlide>
+        <SwiperSlide key={item} className="leading-[30px]">
+          {item}
+        </SwiperSlide>
       ))}
     </Swiper>
   )
