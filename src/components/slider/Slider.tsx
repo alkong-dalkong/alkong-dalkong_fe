@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useRef } from 'react'
+import { memo, useCallback, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { useDebounceFunc } from '@/hooks/useDebounceFunc'
@@ -10,6 +10,16 @@ import 'swiper/css'
 type SliderType = {
   list: string[]
 }
+
+type MemoizedSwiperSlideProps = {
+  content: string
+}
+
+const MemoizedSwiperSlide = memo(({ content }: MemoizedSwiperSlideProps) => {
+  return <SwiperSlide className="leading-[30px]">{content}</SwiperSlide>
+})
+
+MemoizedSwiperSlide.displayName = 'MemoizedSwiperSlide'
 
 export const Slider = ({ list }: SliderType) => {
   const activeIndexRef = useRef(0)
@@ -37,9 +47,7 @@ export const Slider = ({ list }: SliderType) => {
       onSlideChange={handleSlideChange}
     >
       {list.map((item) => (
-        <SwiperSlide key={item} className="leading-[30px]">
-          {item}
-        </SwiperSlide>
+        <MemoizedSwiperSlide key={item} content={item} />
       ))}
     </Swiper>
   )
