@@ -1,47 +1,35 @@
 'use client'
 
-export type Size = {
-  width?: string
+import type { PropsWithChildren } from 'react'
+
+type ButtonProps = {
   height?: string
-}
-
-export type Props = {
-  label: string
+  fontSize?: 'md' | 'sm'
+  primary?: boolean
   onClick: () => void
-  color?: 'primary' | 'secondary'
+  disabled?: boolean
+  submit?: boolean
 }
 
-const ButtonColors = {
-  primary: 'bg-mint-6 text-white active:bg-mint-7',
-  secondary: 'bg-gray-3 text-gray-7 active:bg-gray-4',
-}
-
-const Button = ({
-  label,
+export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
+  children,
+  height = 'h-[56px]',
+  fontSize = 'md',
   onClick,
-  width = 'w-full',
-  height = 'h-full',
-  color = 'primary',
-}: Props & Size) => {
+  primary = false,
+  disabled = false,
+  submit = false,
+}) => {
+  const color = primary ? 'bg-mint-6 text-white' : 'bg-gray-3 text-gray-7'
+  const font = fontSize === 'md' ? 'subtitle-B' : 'headline-B'
   return (
     <button
-      className={`${width} ${height} flex-center rounded-xl ${ButtonColors[color]} active:scale-95`}
+      type={submit ? 'submit' : 'button'}
+      className={`flex-center rounded-[12px] ${color} ${height} w-full ${font}`}
       onClick={onClick}
+      disabled={disabled}
     >
-      {label}
+      {children}
     </button>
   )
 }
-
-const ButtonLong = (props: Props) => {
-  return <Button {...props} width="w-[335px]" height="h-14" />
-}
-
-const ButtonShort = (props: Props) => {
-  return <Button {...props} width="w-[140px]" height="h-[52px]" />
-}
-
-Button.Long = ButtonLong
-Button.Short = ButtonShort
-
-export default Button

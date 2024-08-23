@@ -1,53 +1,70 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
-import type { Props, Size } from './Button'
-import Button from './Button'
+import { Button } from './Button'
 
 export default {
   title: 'Components/Button',
   component: Button,
   argTypes: {
-    color: {
+    height: {
+      control: 'text',
+      description: 'Button height',
+      defaultValue: 'h-[56px]',
+    },
+    fontSize: {
       control: 'select',
-      options: ['primary', 'secondary'],
+      options: ['md', 'sm'],
+      description: 'Font size',
+      defaultValue: 'md',
+    },
+    primary: {
+      control: 'boolean',
+      description: 'Primary color scheme',
+      defaultValue: false,
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the button',
+      defaultValue: false,
+    },
+    submit: {
+      control: 'boolean',
+      description: 'Set button type as submit',
+      defaultValue: false,
     },
     onClick: { action: 'clicked' },
   },
 } as Meta
 
-const Template: StoryFn<Props & Size> = (args) => <Button {...args} />
+const Template: StoryFn<typeof Button> = (args) => <Button {...args}>다음으로</Button>
 
 export const Primary = Template.bind({})
 Primary.args = {
-  label: 'Primary Button',
-  color: 'primary',
-  width: 'w-[335px]',
-  height: 'h-14',
+  primary: true,
 }
 
 export const Secondary = Template.bind({})
 Secondary.args = {
-  label: 'Cancel Button',
-  color: 'secondary',
-  width: 'w-[335px]',
-  height: 'h-14',
+  primary: false,
 }
 
-export const Custom = Template.bind({})
-Custom.args = {
-  label: 'Custom Button',
-  width: 'w-[335px]',
-  height: 'h-14',
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
 }
 
-const LongTemplate: StoryFn<Props> = (args) => <Button.Long {...args} />
-export const Long = LongTemplate.bind({})
-Long.args = {
-  label: 'Long Button',
+const ShortTemplate: StoryFn<typeof Button> = (args) => {
+  return (
+    <div className="flex-center w-[300px] gap-3">
+      <Button {...args}>취소</Button>
+      <Button primary {...args}>
+        삭제
+      </Button>
+    </div>
+  )
 }
-
-const ShortTemplate: StoryFn<Props> = (args) => <Button.Short {...args} />
 export const Short = ShortTemplate.bind({})
 Short.args = {
-  label: 'Short Button',
+  height: 'h-[52px]',
+  fontSize: 'sm',
 }
