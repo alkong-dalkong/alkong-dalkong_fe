@@ -3,19 +3,19 @@
 import type { PropsWithChildren } from 'react'
 
 type ButtonProps = {
+  onClick: () => void
   height?: string
   fontSize?: 'md' | 'sm'
   primary?: boolean
-  onClick: () => void
   disabled?: boolean
   submit?: boolean
 }
 
 export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
   children,
+  onClick,
   height = 'h-[56px]',
   fontSize = 'md',
-  onClick,
   primary = false,
   disabled = false,
   submit = false,
