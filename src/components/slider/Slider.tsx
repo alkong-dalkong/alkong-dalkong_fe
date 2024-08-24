@@ -43,7 +43,7 @@ export const Slider = ({ list }: SliderProps) => {
       slidesPerView={5}
       direction="vertical"
       loop={true}
-      className="headline-M h-[150px]"
+      className="headline-M h-[150px] w-6 text-center"
       onSlideChange={handleSlideChange}
     >
       {list.map((item) => (
