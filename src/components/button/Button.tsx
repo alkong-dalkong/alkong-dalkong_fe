@@ -11,7 +11,7 @@ type ButtonProps = {
   submit?: boolean
 }
 
-export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
+export const Button = ({
   children,
   onClick,
   height = 'h-[56px]',
@@ -19,7 +19,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
   primary = false,
   disabled = false,
   submit = false,
-}) => {
+}: PropsWithChildren<ButtonProps>) => {
   const color = primary ? 'bg-mint-6 text-white' : 'bg-gray-3 text-gray-7'
   const font = fontSize === 'md' ? 'subtitle-B' : 'headline-B'
   return (
