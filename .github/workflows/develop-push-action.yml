@@ -1,4 +1,4 @@
-name: Push Develop Branch
+name: Push Develop Branch ⭐️
 
 on:
   push:
@@ -7,23 +7,23 @@ on:
 
 permissions:
   pull-requests: write
+  contents: write
+  actions: write
 
 jobs:
   Push-Alkong-Repo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code 🏃‍➡️
-        uses: actions/checkout@v3
-        with:
-          ref: develop
+        uses: actions/checkout@v4
 
-      - name: Push alkong repo 🚀
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.PUSH_TOKEN }}
-        with:
-          source-directory: .
-          destination-github-username: AlkongDalkong
-          target-branch: develop
-          destination-repository-name: alkong-dalkong_fe
-          user-email: alkongd29@gmail.com
+      - name: Set up Git User 🧑‍💻
+        run: |
+          git config --global user.name "AlkongDalkong"
+          git config --global user.email "alkongd29@gmail.com"
+
+      - name: Add remote repository 🌐
+        run: git remote add target https://${{ secrets.PUSH_TOKEN }}@github.com/AlkongDalkong/alkong-dalkong_fe.git
+
+      - name: Push develop to develop 🚀
+        run: git push target develop:develop
