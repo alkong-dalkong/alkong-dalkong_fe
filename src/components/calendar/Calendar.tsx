@@ -1,30 +1,30 @@
-'use client'
+import { useCalendar } from '@/hooks/useCalendar'
 
-import CalendarProvider from './CalendarProvider'
+import { DateList } from './DateList'
+import { MonthNavigator } from './MonthNavigator'
+import { WeekList } from './WeekList'
 
-export interface ICalendarProps {
-  dateState: Date
-  onClick: (date: Date) => void
-  scheduleDates: string[]
+type CalendarProps = {
+  onClick: () => void
+  schedules?: number[]
 }
 
-export default function Calendar(props: ICalendarProps) {
+export const Calendar = ({ onClick, schedules }: CalendarProps) => {
+  useCalendar(schedules)
+
   return (
-    <CalendarProvider {...props}>
-      <div className="flex-column flex w-full justify-between gap-[12px]">
-        <div className="flex shrink gap-3">
-          <CalendarProvider.MonthNavigator />
+    <div className="flex-column flex w-full justify-between gap-[12px]">
+      <div className="flex shrink gap-3">
+        <MonthNavigator />
+      </div>
+      <div className="flex-column flex-1 gap-[8px]">
+        <div className="flex shrink justify-around gap-2">
+          <WeekList />
         </div>
-        <div className="flex-column flex-1 gap-[8px]">
-          <div className="flex shrink justify-around gap-2">
-            <CalendarProvider.WeekList />
-          </div>
-          <div className="grid grid-cols-7 gap-2">
-            <CalendarProvider.EmptyDates />
-            <CalendarProvider.DateList />
-          </div>
+        <div className="grid grid-cols-7 gap-2">
+          <DateList onClick={onClick} />
         </div>
       </div>
-    </CalendarProvider>
+    </div>
   )
 }

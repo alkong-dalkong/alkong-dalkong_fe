@@ -1,21 +1,12 @@
-'use client'
+import React from 'react'
 
-import { useContext } from 'react'
+import { useCalendarStore } from '@/store/useCalendarStore'
 
-import { CalendarActionsContext, CalendarValueContext } from './CalendarProvider'
-
-export default function MonthNavigator() {
-  const actions = useContext(CalendarActionsContext)
-  const value = useContext(CalendarValueContext)
-
-  if (!actions || !value) {
-    throw new Error('CalendarActionsContext or CalendarValueContext is not provided')
-  }
-
-  const { prevMonth, nextMonth } = actions
-  const {
-    focusDate: { year, month },
-  } = value
+export const MonthNavigator = React.memo(() => {
+  const year = useCalendarStore((state) => state.year)
+  const month = useCalendarStore((state) => state.month)
+  const prevMonth = useCalendarStore((state) => state.prevMonth)
+  const nextMonth = useCalendarStore((state) => state.nextMonth)
 
   return (
     <>
@@ -26,4 +17,6 @@ export default function MonthNavigator() {
       <button onClick={nextMonth}>{'>'}</button>
     </>
   )
-}
+})
+
+MonthNavigator.displayName = 'MonthNavigator'

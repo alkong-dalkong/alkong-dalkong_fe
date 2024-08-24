@@ -1,35 +1,32 @@
-import { parseDate2String } from '@/utils/calendar/parseDate2String'
-
-interface IThemeParams {
-  date: Date
-  dateState: Date
-  today: Date
-  scheduleDates: string[]
+type ParamsType = {
+  year: number
+  month: number
+  date: number
+  schedules: number[]
+  idx: number
 }
 
-export default function validateDateBoxTheme({
+export const validateDateBoxColor = ({
+  year,
+  month,
   date,
-  today,
-  dateState,
-  scheduleDates,
-}: IThemeParams): 'active' | 'today' | 'schedule' | 'sunday' | 'saturday' | 'default' {
-  const dateString = parseDate2String(date)
-
-  if (dateString === parseDate2String(dateState)) {
+  schedules,
+  idx,
+}: ParamsType): 'active' | 'schedule' | 'sunday' | 'saturday' | 'default' => {
+  if (idx === date) {
     return 'active'
-  } else {
-    if (dateString === parseDate2String(today)) {
-      return 'today'
-    } else if (scheduleDates.includes(dateString)) {
-      return 'schedule'
-    } else {
-      const day = date.getDay()
-      if (day === 0) {
-        return 'sunday'
-      } else if (day === 6) {
-        return 'saturday'
-      }
-    }
+  }
+
+  if (schedules.includes(idx)) {
+    return 'schedule'
+  }
+
+  const day = new Date(year, month, idx).getDay()
+
+  if (day === 0) {
+    return 'sunday'
+  } else if (day === 6) {
+    return 'saturday'
   }
 
   return 'default'

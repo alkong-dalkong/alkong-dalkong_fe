@@ -1,10 +1,8 @@
-'use client'
-
 import React from 'react'
 
 const week = ['일', '월', '화', '수', '목', '금', '토']
 
-function WeekList() {
+export const WeekList = React.memo(() => {
   return (
     <>
       {week.map((day, idx) => (
@@ -14,6 +12,6 @@ function WeekList() {
       ))}
     </>
   )
-}
+})
 
-export default React.memo(WeekList)
+WeekList.displayName = 'WeekList'
