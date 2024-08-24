@@ -1,5 +1,3 @@
-'use client'
-
 import { memo, useCallback, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -9,6 +7,7 @@ import 'swiper/css'
 
 type SliderProps = {
   list: string[]
+  onChange: (selected: number) => void
 }
 
 type MemoizedSwiperSlideProps = {
@@ -21,11 +20,11 @@ const MemoizedSwiperSlide = memo(({ content }: MemoizedSwiperSlideProps) => {
 
 MemoizedSwiperSlide.displayName = 'MemoizedSwiperSlide'
 
-export const Slider = ({ list }: SliderProps) => {
+export const Slider = ({ list, onChange }: SliderProps) => {
   const activeIndexRef = useRef(0)
 
   const debouncedSlideChange = useDebounceFunc(() => {
-    console.log(activeIndexRef.current)
+    onChange(activeIndexRef.current)
   }, 300)
 
   const handleSlideChange = useCallback(
