@@ -1,12 +1,12 @@
 'use client'
-import { useWeightActions } from '@/store/weightStore'
+import { useSelectedWeightActions } from '@/store/weightStore'
 
 import { Slider } from './Slider'
 
 export const WeightSlider = () => {
   const WEIGHT_NUMBERS = Array.from({ length: 10 }, (_, i) => String(i))
   const { handleDecimalWeightChange, handleOnesWeightChange, handleTensWeightChange } =
-    useWeightActions()
+    useSelectedWeightActions()
 
   return (
     <div className="flex-center relative rounded-xl bg-mint-0 py-[17px]">

@@ -1,3 +1,4 @@
+'use client'
 import { useSelectedTimeActions } from '@/store/timeStore'
 
 import { Slider } from './Slider'
