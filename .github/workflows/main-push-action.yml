@@ -21,7 +21,7 @@ jobs:
           git config --global user.email "alkongd29@gmail.com"
 
       - name: Set destination repo 🌈
-        run: git remote add destination-repo https://github.com/AlkongDalkong/alkong-dalkong_fe.git
+        run: git remote add destination-repo https://${{ secrets.PUSH_TOKEN }}github.com/AlkongDalkong/alkong-dalkong_fe.git
 
       - name: Push main to main 🚀
         run: git push destination-repo main:main
