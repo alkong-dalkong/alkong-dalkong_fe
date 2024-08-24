@@ -20,8 +20,5 @@ jobs:
           git config --global user.name "AlkongDalkong"
           git config --global user.email "alkongd29@gmail.com"
 
-      - name: Set destination repo 🌈
-        run: git remote add destination-repo https:${{ secrets.PUSH_TOKEN }}//github.com/AlkongDalkong/alkong-dalkong_fe.git
-
-      - name: Push develop to develop 🚀
-        run: git push destination-repo develop:develop
+      - name: Push to destination repo 🚀
+        run: git push https://${{ secrets.PUSH_TOKEN }}@github.com/AlkongDalkong/alkong-dalkong_fe.git develop:develop
