@@ -1,4 +1,4 @@
-name: Push Develop Branch 🔨
+name: Push Develop Branch
 
 on:
   push:
@@ -12,13 +12,17 @@ jobs:
   Push-Alkong-Repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code 🏃‍➡️
+      - name: Checkout the code
         uses: actions/checkout@v2
 
-      - name: Set up Git User 🧑‍💻
+      - name: Set up Git User
         run: |
           git config --global user.name "AlkongDalkong"
           git config --global user.email "alkongd29@gmail.com"
 
-      - name: Push to destination repo 🚀
-        run: git push https://${{ secrets.PUSH_TOKEN }}@github.com/AlkongDalkong/alkong-dalkong_fe.git develop:develop
+      - name: Push develop to develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/AlkongDalkong/alkong-dalkong_fe.git
+          git push origin develop:develop
