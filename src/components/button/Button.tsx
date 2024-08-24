@@ -4,8 +4,7 @@ import type { PropsWithChildren } from 'react'
 
 type ButtonProps = {
   onClick: () => void
-  height?: string
-  fontSize?: 'md' | 'sm'
+  size?: 'md' | 'sm'
   primary?: boolean
   disabled?: boolean
   submit?: boolean
@@ -14,18 +13,17 @@ type ButtonProps = {
 export const Button = ({
   children,
   onClick,
-  height = 'h-[56px]',
-  fontSize = 'md',
+  size = 'md',
   primary = false,
   disabled = false,
   submit = false,
 }: PropsWithChildren<ButtonProps>) => {
   const color = primary ? 'bg-mint-6 text-white' : 'bg-gray-3 text-gray-7'
-  const font = fontSize === 'md' ? 'subtitle-B' : 'headline-B'
+  const buttonSize = size === 'md' ? 'subtitle-B h-[56px]' : 'headline-B h-[52px]'
   return (
     <button
       type={submit ? 'submit' : 'button'}
-      className={`flex-center rounded-[12px] ${color} ${height} w-full ${font}`}
+      className={`flex-center rounded-[12px] ${color} w-full ${buttonSize}`}
       onClick={onClick}
       disabled={disabled}
     >

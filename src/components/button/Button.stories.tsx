@@ -65,6 +65,5 @@ const ShortTemplate: StoryFn<typeof Button> = (args) => {
 }
 export const Short = ShortTemplate.bind({})
 Short.args = {
-  height: 'h-[52px]',
-  fontSize: 'sm',
+  size: 'sm',
 }
