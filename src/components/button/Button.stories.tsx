@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { Button } from './Button'
 
 export default {
-  title: 'Components/Button',
+  title: 'Button',
   component: Button,
   argTypes: {
     height: {
