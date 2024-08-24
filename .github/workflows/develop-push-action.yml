@@ -12,17 +12,18 @@ jobs:
   Push-Alkong-Repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
+      - name: Checkout the code 🏃‍➡️
+        uses: actions/checkout@v3
+        with:
+          ref: develop
 
-      - name: Set up Git User
-        run: |
-          git config --global user.name "AlkongDalkong"
-          git config --global user.email "alkongd29@gmail.com"
-
-      - name: Push develop to develop
+      - name: Push alkong repo 🚀
+        uses: cpina/github-action-push-to-another-repository@main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/AlkongDalkong/alkong-dalkong_fe.git
-          git push origin develop:develop
+          API_TOKEN_GITHUB: ${{ secrets.PUSH_TOKEN }}
+        with:
+          source-directory: .
+          destination-github-username: AlkongDalkong
+          target-branch: develop
+          destination-repository-name: alkong-dalkong_fe
+          user-email: alkongd29@gmail.com
