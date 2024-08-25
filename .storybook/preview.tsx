@@ -1,6 +1,8 @@
 import type { Preview } from '@storybook/react'
 
 import '@/app/globals.css'
+import React from 'react'
+import { notoSansKR } from '../public/font'
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +13,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div className={`${notoSansKR.variable} font-notoSansKR font-medium`}>
+        <Story />
+      </div>
+    ),
+  ],
 }
 
 export default preview
