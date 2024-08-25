@@ -14,7 +14,7 @@ export const TimeSlider = () => {
       <div className="absolute top-1/2 h-[30px] w-[192px] -translate-y-1/2 rounded-lg bg-mint-2" />
       <div className="flex gap-8">
         <Slider list={HOURS} onChange={handleHourChange} />
-        <p className="h-[30px] translate-y-[65px]">:</p>
+        <p className="h-[30px] translate-y-[60px] leading-[30px]">:</p>
         <Slider list={MINUTES} onChange={handleMinuteChange} />
       </div>
     </div>
