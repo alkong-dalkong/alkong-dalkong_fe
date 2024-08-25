@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
-import { useCalendarStore } from '@/store/useCalendarStore'
+import { useCalendarActions } from '@/store/useCalendarStore'
 
-export const useCalendar = (schedules: number[] | null | undefined) => {
-  const { setDate, setMonth, setYear, setSchedules } = useCalendarStore()
+export const useCalendar = (schedules: string[] | null | undefined) => {
+  const { setDate, setMonth, setYear, setSchedules } = useCalendarActions()
 
   useEffect(() => {
     const today = new Date()
@@ -13,8 +13,9 @@ export const useCalendar = (schedules: number[] | null | undefined) => {
   }, [setDate, setMonth, setYear])
 
   useEffect(() => {
-    if (schedules) {
-      setSchedules(schedules)
+    if (schedules && schedules.length > 0) {
+      const parseSchedules = schedules.map((ele) => +ele.split(' ')[0].split('-')[2])
+      setSchedules(parseSchedules)
     }
   }, [schedules, setSchedules])
 }

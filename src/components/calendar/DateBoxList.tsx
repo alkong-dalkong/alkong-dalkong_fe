@@ -1,6 +1,11 @@
 import React, { useMemo } from 'react'
 
-import { useCalendarStore } from '@/store/useCalendarStore'
+import {
+  useCalendarDate,
+  useCalendarMonth,
+  useCalendarSchedules,
+  useCalendarYear,
+} from '@/store/useCalendarStore'
 import { validateDateBoxColor } from '@/utils/calendar/validateTheme'
 
 import { DateBox } from './DateBox'
@@ -19,7 +24,10 @@ type DateBoxListProps = {
 }
 
 export const DateBoxList = ({ onClick }: DateBoxListProps) => {
-  const { year, month, date, schedules } = useCalendarStore()
+  const year = useCalendarYear()
+  const month = useCalendarMonth()
+  const date = useCalendarDate()
+  const schedules = useCalendarSchedules()
 
   const daysInMonth = useMemo(() => new Date(year, month + 1, 0).getDate(), [year, month])
 

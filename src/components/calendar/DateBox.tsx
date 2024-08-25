@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-import { useCalendarStore } from '@/store/useCalendarStore'
+import { useCalendarActions } from '@/store/useCalendarStore'
 
 type DateBoxProps = {
   date: number
@@ -9,7 +9,7 @@ type DateBoxProps = {
 }
 
 export const DateBox = React.memo(({ date, onClick, color }: DateBoxProps) => {
-  const setDate = useCalendarStore((state) => state.setDate)
+  const { setDate } = useCalendarActions()
 
   const handleClick = useCallback(() => {
     setDate(date)

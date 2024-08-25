@@ -13,7 +13,7 @@ export default {
 
 type CalendarProps = {
   onClick: () => void
-  schedules?: number[]
+  schedules?: string[]
 }
 
 const Template: StoryFn<CalendarProps> = (args) => {
@@ -26,15 +26,22 @@ const Template: StoryFn<CalendarProps> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  schedules: [1, 5, 10, 15, 20],
+  schedules: [
+    '2024-08-01 09:15:30',
+    '2024-08-15 23:45:00',
+    '2024-08-25 05:55:32',
+    '2024-08-26 14:30:45',
+  ],
 }
 
 export const WithFewSchedules = Template.bind({})
 WithFewSchedules.args = {
-  schedules: [2, 14, 28],
+  schedules: [
+    '2024-08-01 09:15:30',
+    '2024-08-15 23:45:00',
+    '2024-08-25 05:55:32',
+    '2024-08-26 14:30:45',
+  ],
 }
 
 export const WithoutSchedules = Template.bind({})
-WithoutSchedules.args = {
-  schedules: [],
-}

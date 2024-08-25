@@ -4,35 +4,47 @@ import { nextMonth, prevMonth } from '@/utils/calendar/moveMonth'
 
 type CalendarStoreType = {
   month: number
-  setMonth: (month: number) => void
   year: number
-  setYear: (year: number) => void
   schedules: number[]
-  setSchedules: (schedules: number[]) => void
   date: number
-  setDate: (date: number) => void
-  prevMonth: () => void
-  nextMonth: () => void
+  actions: {
+    setYear: (year: number) => void
+    setSchedules: (schedules: number[]) => void
+    setMonth: (month: number) => void
+    setDate: (date: number) => void
+    prevMonth: () => void
+    nextMonth: () => void
+  }
 }
 
-export const useCalendarStore = create<CalendarStoreType>((set, get) => ({
-  // states
-  month: new Date().getMonth(),
-  year: new Date().getFullYear(),
-  schedules: [],
-  date: new Date().getDate(),
+const useCalendarStore = create<CalendarStoreType>((set, get) => {
+  const today = new Date()
 
-  // actions
-  setMonth: (month) => set({ month }),
-  setYear: (year) => set({ year }),
-  setSchedules: (schedules) => set({ schedules }),
-  setDate: (date) => set({ date }),
-  prevMonth: () => {
-    const { year, month } = get()
-    set(prevMonth(year, month))
-  },
-  nextMonth: () => {
-    const { year, month } = get()
-    set(nextMonth(year, month))
-  },
-}))
+  return {
+    month: today.getMonth(),
+    year: today.getFullYear(),
+    schedules: [],
+    date: today.getDate(),
+
+    actions: {
+      setMonth: (month) => set({ month }),
+      setYear: (year) => set({ year }),
+      setSchedules: (schedules) => set({ schedules }),
+      setDate: (date) => set({ date }),
+      prevMonth: () => {
+        const { year, month } = get()
+        set(prevMonth(year, month))
+      },
+      nextMonth: () => {
+        const { year, month } = get()
+        set(nextMonth(year, month))
+      },
+    },
+  }
+})
+
+export const useCalendarMonth = () => useCalendarStore((state) => state.month)
+export const useCalendarYear = () => useCalendarStore((state) => state.year)
+export const useCalendarSchedules = () => useCalendarStore((state) => state.schedules)
+export const useCalendarDate = () => useCalendarStore((state) => state.date)
+export const useCalendarActions = () => useCalendarStore((state) => state.actions)

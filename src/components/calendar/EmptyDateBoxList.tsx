@@ -1,7 +1,8 @@
-import { useCalendarStore } from '@/store/useCalendarStore'
+import { useCalendarMonth, useCalendarYear } from '@/store/useCalendarStore'
 
 export const EmptyDateBoxList = () => {
-  const { year, month } = useCalendarStore()
+  const year = useCalendarYear()
+  const month = useCalendarMonth()
 
   return (
     <>

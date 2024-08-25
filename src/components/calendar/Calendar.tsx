@@ -6,7 +6,7 @@ import { WeekList } from './WeekList'
 
 type CalendarProps = {
   onClick: () => void
-  schedules?: number[]
+  schedules?: string[]
 }
 
 export const Calendar = ({ onClick, schedules }: CalendarProps) => {
@@ -14,7 +14,7 @@ export const Calendar = ({ onClick, schedules }: CalendarProps) => {
 
   return (
     <div className="flex-column flex w-full justify-between gap-[12px]">
-      <div className="flex shrink gap-3">
+      <div className="ml-[12px] flex w-[48%] shrink justify-between gap-3">
         <MonthNavigator />
       </div>
       <div className="flex-column flex-1 gap-[8px]">

@@ -1,12 +1,11 @@
 import React from 'react'
 
-import { useCalendarStore } from '@/store/useCalendarStore'
+import { useCalendarActions, useCalendarMonth, useCalendarYear } from '@/store/useCalendarStore'
 
 export const MonthNavigator = React.memo(() => {
-  const year = useCalendarStore((state) => state.year)
-  const month = useCalendarStore((state) => state.month)
-  const prevMonth = useCalendarStore((state) => state.prevMonth)
-  const nextMonth = useCalendarStore((state) => state.nextMonth)
+  const { prevMonth, nextMonth } = useCalendarActions()
+  const year = useCalendarYear()
+  const month = useCalendarMonth()
 
   return (
     <>
