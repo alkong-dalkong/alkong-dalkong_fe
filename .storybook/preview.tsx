@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/react'
 
 import '@/app/globals.css'
 import React from 'react'
-import { notoSansKR } from '../public/font'
+import { notoSansKR } from '../public/app/font'
 
 const preview: Preview = {
   parameters: {

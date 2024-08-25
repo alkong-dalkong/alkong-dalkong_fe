@@ -2,7 +2,7 @@ import type { PropsWithChildren } from 'react'
 
 import { LazyMotionProvider, QueryProvider } from '@/hooks'
 
-import { notoSansKR } from '../../public/font'
+import { notoSansKR } from '../../public/app/font'
 
 import './globals.css'
 
