@@ -1,9 +1,9 @@
 'use client'
 import { useCallback, useRef } from 'react'
 
-export type UseDebounceFuncType = (callback: () => void, delay: number) => () => void
+export type useDebounceCallbackType = (callback: () => void, delay: number) => () => void
 
-export const useDebounceFunc: UseDebounceFuncType = (callback, delay) => {
+export const useDebounceCallback: useDebounceCallbackType = (callback, delay) => {
   const timerRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const debouncedFunction = useCallback(() => {

@@ -1,7 +1,7 @@
 import { memo, useCallback, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { useDebounceFunc } from '@/hooks/useDebounceFunc'
+import { useDebounceCallback } from '@/hooks'
 
 import 'swiper/css'
 
@@ -23,7 +23,7 @@ MemoizedSwiperSlide.displayName = 'MemoizedSwiperSlide'
 export const Slider = ({ list, onChange }: SliderProps) => {
   const activeIndexRef = useRef(0)
 
-  const debouncedSlideChange = useDebounceFunc(() => {
+  const debouncedSlideChange = useDebounceCallback(() => {
     onChange(activeIndexRef.current)
   }, 300)
 

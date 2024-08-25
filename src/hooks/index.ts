@@ -1,5 +1,6 @@
 export * from './Hydration'
 export * from './LazyMotionProvider'
 export * from './QueryProvider'
+export * from './useDebounceCallback'
 export * from './useScrollLock'
 export * from './useToggle'
