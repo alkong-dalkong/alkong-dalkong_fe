@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 
-interface Actions {
+type Actions = {
   handleTensWeightChange: (newTens: number) => void
   handleOnesWeightChange: (newOnes: number) => void
   handleDecimalWeightChange: (newDecimal: number) => void
 }
 
-interface SelectedWeightStore {
+type SelectedWeightStore = {
   weight: number
   actions: Actions
 }

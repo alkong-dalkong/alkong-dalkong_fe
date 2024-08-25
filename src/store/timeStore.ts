@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 
-interface Actions {
+type Actions = {
   handleHourChange: (newHour: number) => void
   handleMinuteChange: (newMinute: number) => void
 }
 
-interface SelectedTimeStore {
+type SelectedTimeStore = {
   selectedTime: string
   actions: Actions
 }
