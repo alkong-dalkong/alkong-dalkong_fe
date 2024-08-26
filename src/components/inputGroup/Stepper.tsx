@@ -5,10 +5,6 @@ import { useFormContext } from 'react-hook-form'
 
 import { Icon } from '../icons'
 
-/**
- * @todo Icon 컴포넌트 수정사항에 따른 버튼 수정
- */
-
 type StepperProps = {
   section: string
   initialCount?: number

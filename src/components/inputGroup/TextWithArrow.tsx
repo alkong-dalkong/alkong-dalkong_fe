@@ -9,10 +9,6 @@ type TextWithArrowProps = {
   onClick: () => void
 }
 
-/**
- * @todo Icon 컴포넌트 수정사항에 따른 버튼 수정
- */
-
 export const TextWithArrow = ({ isLong = false, section, onClick }: TextWithArrowProps) => {
   const { register } = useFormContext()
   const layoutStyle = isLong ? 'flex-between-align' : 'flex-align gap-1'
