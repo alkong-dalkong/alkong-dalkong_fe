@@ -13,21 +13,35 @@ type Story = StoryObj<typeof Profile>
 
 export const Small: Story = {
   args: {
-    size: 'small',
+    size: 'sm',
     name: '테스트',
   },
 }
 
 export const Medium: Story = {
   args: {
-    size: 'medium',
+    size: 'md',
     name: '테스트',
   },
 }
 
 export const Large: Story = {
   args: {
-    size: 'large',
+    size: 'lg',
+    name: '테스트',
+  },
+}
+
+export const ExtraLarge: Story = {
+  args: {
+    size: 'xl',
+    name: '테스트',
+  },
+}
+
+export const DoubleExtraLarge: Story = {
+  args: {
+    size: '2xl',
     name: '테스트',
   },
 }
