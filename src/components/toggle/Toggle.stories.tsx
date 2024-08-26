@@ -6,7 +6,7 @@ const meta: Meta<typeof Toggle> = {
   title: 'components/toggle/Toggle',
   component: Toggle,
   argTypes: {
-    initial: {
+    initialState: {
       control: 'boolean',
       description: '초기 상태 (기본값: false)',
     },
@@ -23,19 +23,19 @@ type Story = StoryObj<typeof Toggle>
 
 export const DefaultState: Story = {
   args: {
-    initial: false,
+    initialState: false,
   },
 }
 
 export const EnabledState: Story = {
   args: {
-    initial: true,
+    initialState: true,
   },
 }
 
 export const WithAlertOnToggle: Story = {
   args: {
-    initial: false,
+    initialState: false,
     onClick: (prev) => alert(`이전 상태값: ${prev}`),
   },
 }
