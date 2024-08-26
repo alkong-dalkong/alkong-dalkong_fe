@@ -1,12 +1,8 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
+import { useStore } from 'zustand'
 
-import {
-  useCalendarDate,
-  useCalendarMonth,
-  useCalendarSchedules,
-  useCalendarYear,
-} from '@/store/useCalendarStore'
-import { validateDateBoxColor } from '@/utils/calendar/validateTheme'
+import { CalendarContext } from '@/store/calendarStore'
+import { validateDateBoxColor } from '@/utils/validateTheme'
 
 import { DateBox } from './DateBox'
 
@@ -19,27 +15,26 @@ const DateBoxColors = {
   default: '',
 }
 
-type DateBoxListProps = {
-  onClick: () => void
-}
+export const DateBoxList = () => {
+  const store = useContext(CalendarContext)
+  if (!store) throw new Error('Missing CalendarContext.Provider in the tree')
+  const date = useStore(store, (s) => s.date)
+  const schedules = useStore(store, (s) => s.schedules)
 
-export const DateBoxList = ({ onClick }: DateBoxListProps) => {
-  const year = useCalendarYear()
-  const month = useCalendarMonth()
-  const date = useCalendarDate()
-  const schedules = useCalendarSchedules()
-
-  const daysInMonth = useMemo(() => new Date(year, month + 1, 0).getDate(), [year, month])
+  const parseSchedules = useMemo(
+    () => schedules?.map((schedule) => schedule.split(' ')[0]),
+    [schedules],
+  )
 
   return (
     <>
-      {Array.from({ length: daysInMonth }).map((_, idx) => {
-        const dayIndex = idx + 1
-        const color = validateDateBoxColor({ year, month, date, schedules, idx: dayIndex })
-        return (
-          <DateBox key={dayIndex} date={dayIndex} color={DateBoxColors[color]} onClick={onClick} />
-        )
-      })}
+      {Array.from({ length: new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() }).map(
+        (_, idx) => {
+          const dayIndex = idx + 1
+          const color = validateDateBoxColor(date, parseSchedules || [], dayIndex)
+          return <DateBox key={dayIndex} num={dayIndex} color={DateBoxColors[color]} />
+        },
+      )}
     </>
   )
 }

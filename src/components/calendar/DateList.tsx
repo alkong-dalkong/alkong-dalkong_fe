@@ -1,15 +1,11 @@
 import { DateBoxList } from './DateBoxList'
 import { EmptyDateBoxList } from './EmptyDateBoxList'
 
-type DateListProps = {
-  onClick: () => void
-}
-
-export const DateList = ({ onClick }: DateListProps) => {
+export const DateList = () => {
   return (
     <>
       <EmptyDateBoxList />
-      <DateBoxList onClick={onClick} />
+      <DateBoxList />
     </>
   )
 }

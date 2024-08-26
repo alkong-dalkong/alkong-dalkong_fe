@@ -1,47 +1,29 @@
-import React from 'react'
 import type { Meta, StoryFn } from '@storybook/react'
+import type { StoreApi } from 'zustand'
+
+import { useCalendar } from '@/hooks/useCalendar'
+import type { CalendarState } from '@/store/calendarStore'
 
 import { Calendar } from './Calendar'
 
 export default {
   title: 'Calendar',
   component: Calendar,
-  argTypes: {
-    onClick: { action: 'clicked', description: 'Callback for date click' },
-  },
 } as Meta
 
 type CalendarProps = {
-  onClick: () => void
-  schedules?: string[]
+  store: StoreApi<CalendarState>
 }
 
-const Template: StoryFn<CalendarProps> = (args) => {
+const Template: StoryFn<CalendarProps> = () => {
+  const store = useCalendar(['2024-08-14 00:00:00', '2024-08-15 00:00:00', '2024-08-16 00:00:00'])
+
   return (
-    <div className="h-[368px] w-[343px]">
-      <Calendar {...args} />
+    <div className="mx-auto h-[368px] w-[343px]">
+      <Calendar store={store} />
     </div>
   )
 }
 
 export const Default = Template.bind({})
-Default.args = {
-  schedules: [
-    '2024-08-01 09:15:30',
-    '2024-08-15 23:45:00',
-    '2024-08-25 05:55:32',
-    '2024-08-26 14:30:45',
-  ],
-}
-
-export const WithFewSchedules = Template.bind({})
-WithFewSchedules.args = {
-  schedules: [
-    '2024-08-01 09:15:30',
-    '2024-08-15 23:45:00',
-    '2024-08-25 05:55:32',
-    '2024-08-26 14:30:45',
-  ],
-}
-
-export const WithoutSchedules = Template.bind({})
+Default.args = {}

@@ -1,21 +1,16 @@
-import { useEffect } from 'react'
+'use client'
 
-import { useCalendarActions } from '@/store/useCalendarStore'
+import { useEffect, useState } from 'react'
 
-export const useCalendar = (schedules: string[] | null | undefined) => {
-  const { setDate, setMonth, setYear, setSchedules } = useCalendarActions()
+import { createCalendarStore } from '@/store/calendarStore'
 
-  useEffect(() => {
-    const today = new Date()
-    setDate(today.getDate())
-    setMonth(today.getMonth())
-    setYear(today.getFullYear())
-  }, [setDate, setMonth, setYear])
+export const useCalendar = (schedules: string[]) => {
+  const [date, setDate] = useState(new Date())
+  const store = createCalendarStore({ date, setDate, schedules })
 
   useEffect(() => {
-    if (schedules && schedules.length > 0) {
-      const parseSchedules = schedules.map((ele) => +ele.split(' ')[0].split('-')[2])
-      setSchedules(parseSchedules)
-    }
-  }, [schedules, setSchedules])
+    store.setState({ date, schedules })
+  }, [date, schedules, store])
+
+  return store
 }

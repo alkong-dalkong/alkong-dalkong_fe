@@ -1,27 +1,31 @@
-import React, { useCallback } from 'react'
+import React, { useContext } from 'react'
+import { useStore } from 'zustand'
 
-import { useCalendarActions } from '@/store/useCalendarStore'
+import { CalendarContext } from '@/store/calendarStore'
 
 type DateBoxProps = {
-  date: number
-  onClick: () => void
+  num: number
   color?: string
 }
 
-export const DateBox = React.memo(({ date, onClick, color }: DateBoxProps) => {
-  const { setDate } = useCalendarActions()
+export const DateBox = React.memo(({ num, color }: DateBoxProps) => {
+  const store = useContext(CalendarContext)
+  if (!store) throw new Error('Missing CalendarContext.Provider in the tree')
+  const setDate = useStore(store, (s) => s.setDate)
+  const date = useStore(store, (s) => s.date)
 
-  const handleClick = useCallback(() => {
-    setDate(date)
-    onClick()
-  }, [date, onClick, setDate])
+  const handleClick = () => {
+    const newDate = new Date(date)
+    newDate.setDate(num)
+    setDate(newDate)
+  }
 
   return (
     <button
       onClick={handleClick}
       className={`flex-center aspect-square text-subtitle font-medium ${color}`}
     >
-      {date}
+      {num}
     </button>
   )
 })

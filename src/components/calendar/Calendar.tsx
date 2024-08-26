@@ -1,30 +1,32 @@
-import { useCalendar } from '@/hooks/useCalendar'
+import type { StoreApi } from 'zustand'
+
+import type { CalendarState } from '@/store/calendarStore'
+import { CalendarContext } from '@/store/calendarStore'
 
 import { DateList } from './DateList'
 import { MonthNavigator } from './MonthNavigator'
 import { WeekList } from './WeekList'
 
 type CalendarProps = {
-  onClick: () => void
-  schedules?: string[]
+  store: StoreApi<CalendarState>
 }
 
-export const Calendar = ({ onClick, schedules }: CalendarProps) => {
-  useCalendar(schedules)
-
+export const Calendar = ({ store }: CalendarProps) => {
   return (
-    <div className="flex-column flex w-full justify-between gap-[12px]">
-      <div className="ml-[12px] flex w-[48%] shrink justify-between gap-3">
-        <MonthNavigator />
-      </div>
-      <div className="flex-column flex-1 gap-[8px]">
-        <div className="flex shrink justify-around gap-2">
-          <WeekList />
+    <CalendarContext.Provider value={store}>
+      <div className="flex-column flex w-full justify-between gap-[12px]">
+        <div className="ml-[4px] flex w-[174px] justify-between gap-[6px]">
+          <MonthNavigator />
         </div>
-        <div className="grid grid-cols-7 gap-2">
-          <DateList onClick={onClick} />
+        <div className="flex-column flex-1 gap-[8px]">
+          <div className="flex shrink justify-around gap-2">
+            <WeekList />
+          </div>
+          <div className="grid grid-cols-7 gap-2">
+            <DateList />
+          </div>
         </div>
       </div>
-    </div>
+    </CalendarContext.Provider>
   )
 }
