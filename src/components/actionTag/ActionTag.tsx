@@ -1,45 +1,46 @@
 'use client'
 
-import Image from 'next/image'
+import { MinusIcon } from '@/components/icons/Minus'
+import { PlusIcon } from '@/components/icons/Plus'
 
-type PlusMinusProps = {
+export type Props = {
   label: string
   onClick: () => void
-}
-
-export type Props = PlusMinusProps & {
-  color?: 'primary' | 'secondary'
-  src?: string
-}
-
-const ActionTagColors = {
-  primary: 'bg-mint-6 text-white',
-  secondary: 'bg-gray-2 text-gray-7',
+  primary?: boolean
+  icon?: 'plus' | 'minus'
 }
 
 type ActionTagType = React.FC<Props> & {
-  Plus: React.FC<PlusMinusProps>
-  Minus: React.FC<PlusMinusProps>
+  Plus: React.FC<Props>
+  Minus: React.FC<Props>
 }
 
-const ActionTag: ActionTagType = ({ label, onClick, color = 'primary', src }: Props) => {
+const ActionTag: ActionTagType = ({ label, onClick, primary = false, icon = 'plus' }: Props) => {
+  const color = primary ? 'bg-mint-6 text-white' : 'bg-gray-2 text-gray-7'
+  const Icon =
+    icon === 'plus' ? (
+      <PlusIcon color={primary ? '#FFFFFF' : '#676A6B'} size={16} />
+    ) : (
+      <MinusIcon color={primary ? '#FFFFFF' : '#676A6B'} size={16} />
+    )
+
   return (
     <button
-      className={`${ActionTagColors[color]} body-M flex-center gap-[4px] rounded-[99px] px-[11px] py-[5px]`}
+      className={`${color} body-M flex-center gap-[4px] rounded-[99px] pb-[6px] pl-[10px] pr-[12px] pt-[4px]`}
       onClick={onClick}
     >
-      {src && <Image src={src} alt={label} width={16} height={16} />}
+      {Icon}
       <span>{label}</span>
     </button>
   )
 }
 
-const Plus: React.FC<PlusMinusProps> = (props: PlusMinusProps) => {
-  return <ActionTag {...props} color="secondary" />
+const Plus = (props: Props) => {
+  return <ActionTag {...props} icon="plus" />
 }
 
-const Minus: React.FC<PlusMinusProps> = (props: PlusMinusProps) => {
-  return <ActionTag {...props} />
+const Minus = (props: Props) => {
+  return <ActionTag {...props} primary icon="minus" />
 }
 
 ActionTag.Plus = Plus
