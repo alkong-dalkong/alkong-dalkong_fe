@@ -12,7 +12,7 @@ interface QueryProps {
   queryFn: QueryFunction
 }
 
-const Hydration = async ({ queryKey, queryFn, children }: PropsWithChildren<QueryProps>) => {
+export const Hydration = async ({ queryKey, queryFn, children }: PropsWithChildren<QueryProps>) => {
   const getQueryClient = cache(() => new QueryClient())
   const queryClient = getQueryClient()
 
@@ -22,5 +22,3 @@ const Hydration = async ({ queryKey, queryFn, children }: PropsWithChildren<Quer
 
   return <HydrationBoundary state={dehydratedState}>{children}</HydrationBoundary>
 }
-
-export default Hydration

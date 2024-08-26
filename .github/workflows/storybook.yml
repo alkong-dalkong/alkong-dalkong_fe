@@ -10,6 +10,9 @@ on:
     paths:
       - '**.stories.tsx'
 
+permissions:
+  pull-requests: write
+
 jobs:
   chromatic-deployment:
     runs-on: ubuntu-latest
