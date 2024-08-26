@@ -6,7 +6,7 @@ import { useDebounceCallback } from '@/hooks'
 import 'swiper/css'
 
 type SliderProps = {
-  list: string[]
+  list: readonly string[]
   onChange: (selected: number) => void
 }
 

@@ -1,10 +1,10 @@
 'use client'
+import { WEIGHT_NUMBERS } from '@/constants'
 import { useSelectedWeightActions } from '@/store/weightStore'
 
 import { Slider } from './Slider'
 
 export const WeightSlider = () => {
-  const WEIGHT_NUMBERS = Array.from({ length: 10 }, (_, i) => String(i))
   const { handleDecimalWeightChange, handleOnesWeightChange, handleTensWeightChange } =
     useSelectedWeightActions()
 

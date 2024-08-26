@@ -1,12 +1,10 @@
 'use client'
+import { HOURS, MINUTES } from '@/constants'
 import { useSelectedTimeActions } from '@/store/timeStore'
 
 import { Slider } from './Slider'
 
 export const TimeSlider = () => {
-  const HOURS = Array.from({ length: 24 }, (_, i) => String(i).padStart(2, '0'))
-  const MINUTES = Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))
-
   const { handleHourChange, handleMinuteChange } = useSelectedTimeActions()
 
   return (
