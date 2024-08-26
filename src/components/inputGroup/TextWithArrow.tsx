@@ -1,4 +1,3 @@
-'use client'
 import { useFormContext } from 'react-hook-form'
 
 import { Icon } from '../icons'
@@ -16,7 +15,11 @@ export const TextWithArrow = ({ isLong = false, section, onClick }: TextWithArro
 
   return (
     <div className={layoutStyle}>
-      <input className={`max-w-[180px] ${fontStyle}`} {...register(section)} />
+      <input
+        className={`max-w-[180px] ${fontStyle} disabled:bg-transparent`}
+        {...register(section)}
+        disabled
+      />
       <button type="button" onClick={onClick}>
         <Icon size={28} name="arrow-right" />
       </button>
