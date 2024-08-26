@@ -3,11 +3,7 @@ type Props = {
 }
 
 const Title = ({ title }: Props) => {
-  return (
-    <div className="mb-[8px] text-subtitle font-bold leading-subtitle tracking-[-2%] text-black">
-      {title}
-    </div>
-  )
+  return <div className="subtitle-B mb-[8px] text-black">{title}</div>
 }
 
 export default Title

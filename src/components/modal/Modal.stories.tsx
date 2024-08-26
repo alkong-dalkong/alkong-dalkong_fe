@@ -18,7 +18,7 @@ export default {
 } as Meta
 
 const MediumTemplate: StoryFn<Props> = () => {
-  const [modal, handleOpenModal, handleCloseModal] = useModal(false)
+  const [modal, handleOpenModal, handleCloseModal] = useModal(true)
 
   return (
     <>
@@ -52,7 +52,7 @@ const MediumTemplate: StoryFn<Props> = () => {
 export const Medium = MediumTemplate.bind({})
 
 const LargeTemplate: StoryFn<Props> = () => {
-  const [modal, handleOpenModal, handleCloseModal] = useModal(false)
+  const [modal, handleOpenModal, handleCloseModal] = useModal(true)
 
   return (
     <>

@@ -1,4 +1,8 @@
-import { type PropsWithChildren, useRef } from 'react'
+'use client'
+
+import { type PropsWithChildren, useRef, useState } from 'react'
+
+import { useScrollLock } from '@/hooks/useScrollLock'
 
 import { CloseIcon } from '../icons/Close'
 
@@ -17,6 +21,7 @@ type ModalType = React.FC<PropsWithChildren<ModalProps>> & {
 }
 
 const Modal: ModalType = ({ children, isOpen, onClose, size }) => {
+  const { lockScroll } = useScrollLock()
   const modalBackground = useRef<HTMLDivElement | null>(null)
   const modalSize = size === 'md' ? 'h-[214px]' : 'h-[276px]'
   const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -24,6 +29,12 @@ const Modal: ModalType = ({ children, isOpen, onClose, size }) => {
       onClose()
     }
   }
+
+  useState(() => {
+    if (isOpen) {
+      lockScroll()
+    }
+  })
 
   return (
     isOpen && (
