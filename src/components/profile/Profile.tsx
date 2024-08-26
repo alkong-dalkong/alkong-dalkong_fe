@@ -11,11 +11,11 @@ type ProfileProps = ProfileVariantProps & {
 type ProfileVariantProps = {
   bgColor?: string
   textColor?: string
-  size?: 'small' | 'medium' | 'large'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 }
 
 export const Profile = ({ onClickProfile, name, ...styleProps }: ProfileProps) => {
-  const { bgColor, textColor = 'text-gray-6', size = 'medium' } = styleProps
+  const { bgColor, textColor = 'text-gray-6', size = 'md' } = styleProps
 
   const displayName = name.slice(0, 2)
 
@@ -37,13 +37,15 @@ export const Profile = ({ onClickProfile, name, ...styleProps }: ProfileProps) =
 }
 
 const profileVariant = {
-  small: {
+  sm: {
     typo: 'caption-R',
     size: 32,
   },
-  medium: {
+  md: {
     typo: 'body-R',
     size: 53,
   },
-  large: { typo: 'body-M', size: 64 },
+  lg: { typo: 'body-M', size: 64 },
+  xl: { typo: 'title-M', size: 80 },
+  '2xl': { typo: 'title-B', size: 96 },
 }
