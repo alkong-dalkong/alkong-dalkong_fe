@@ -25,7 +25,10 @@ export const Profile = ({ onClickProfile, name, ...styleProps }: ProfileProps) =
   }
 
   return (
-    <button className="relative" onClick={handleClickProfile}>
+    <button
+      className={`relative rounded-[50%] ${profileVariant[size]?.shadow}`}
+      onClick={handleClickProfile}
+    >
       <Icon name="ellipse" color={bgColor} size={profileVariant[size].size} />
       <span
         className={`absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 ${textColor} ${profileVariant[size].typo}`}
@@ -36,7 +39,13 @@ export const Profile = ({ onClickProfile, name, ...styleProps }: ProfileProps) =
   )
 }
 
-const profileVariant = {
+type ProfileVariant = {
+  typo: string
+  size: number
+  shadow?: string
+}
+
+const profileVariant: Record<string, ProfileVariant> = {
   sm: {
     typo: 'caption-R',
     size: 32,
@@ -45,7 +54,7 @@ const profileVariant = {
     typo: 'body-R',
     size: 53,
   },
-  lg: { typo: 'body-M', size: 64 },
+  lg: { typo: 'body-M', size: 64, shadow: 'shadow-underShadow' },
   xl: { typo: 'title-M', size: 80 },
-  '2xl': { typo: 'title-B', size: 96 },
+  '2xl': { typo: 'title-B', size: 96, shadow: 'shadow-underShadow' },
 }
