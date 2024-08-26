@@ -11,7 +11,7 @@ type Props = {
 }
 
 export default {
-  title: 'components/modal/Modal',
+  title: 'Modal',
   component: Modal,
 } as Meta
 
@@ -36,5 +36,4 @@ const MediumTemplate: StoryFn<Props> = () => {
     </>
   )
 }
-
 export const Medium = MediumTemplate.bind({})

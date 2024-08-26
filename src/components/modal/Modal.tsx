@@ -1,18 +1,17 @@
 import { type PropsWithChildren, useRef } from 'react'
-import Image from 'next/image'
 
-import ButtonCloseIcon from '@/assets/Button_Close.svg'
+import { CloseIcon } from '../icons/Close'
 
 import SubTitle from './SubTitle'
 import Title from './Title'
 
-type Props = {
+type ModalProps = {
   isOpen: boolean
   onClose: () => void
   size: 'md' | 'lg'
 }
 
-type ModalType = React.FC<PropsWithChildren<Props>> & {
+type ModalType = React.FC<PropsWithChildren<ModalProps>> & {
   Title: typeof Title
   SubTitle: typeof SubTitle
 }
@@ -35,14 +34,9 @@ const Modal: ModalType = ({ children, isOpen, onClose, size }) => {
         aria-hidden="true"
       >
         <div className={`${modalSize} w-[87.2%] max-w-[390px] rounded-[12px] bg-white`}>
-          <Image
-            src={ButtonCloseIcon}
-            className="mb-[4px] ml-auto mr-[16px] mt-[20px]"
-            alt="close"
-            width={28}
-            height={28}
-            onClick={onClose}
-          />
+          <button onClick={onClose} className="mb-[4px] ml-auto mr-[16px] mt-[20px] block w-[28px]">
+            <CloseIcon />
+          </button>
           <div className="flex h-[calc(100%-76px)] w-full flex-col items-center">{children}</div>
         </div>
       </div>
