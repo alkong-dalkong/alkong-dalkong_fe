@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { Meta } from '@storybook/react'
-import { boolean, z } from 'zod'
+import { z } from 'zod'
 
 import Label from '../label/Label'
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof InputGroup> = {
   title: 'InputGroup',
   component: InputGroup,
   argTypes: {
-    isRow: boolean,
+    direction: { control: 'text' },
   },
 }
 
@@ -93,12 +93,12 @@ export const Form = () => {
             <InputGroup.CheckBoxAll>전체 동의</InputGroup.CheckBoxAll>
           </InputGroup>
 
-          <InputGroup isRow>
+          <InputGroup direction="row">
             <Label>Stepper</Label>
             <InputGroup.Stepper section="stepper" />
           </InputGroup>
 
-          <InputGroup isRow>
+          <InputGroup direction="row">
             <Label>TextWithArrow</Label>
             <InputGroup.TextWithArrow
               section="textWithArrow"
