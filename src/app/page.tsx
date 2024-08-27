@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="px-4">
+    <div>
       <p>HOME</p>
     </div>
   )
