@@ -17,16 +17,15 @@ type ProfileVariantProps = {
 export const Profile = ({ onClickProfile, name, ...styleProps }: ProfileProps) => {
   const { bgColor, textColor = 'text-gray-6', size = 'md' } = styleProps
 
-  const displayName = name.slice(0, 2)
+  const displayName = name.slice(-2)
 
-  const handleClickProfile: MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (e.target !== e.currentTarget) return
+  const handleClickProfile: MouseEventHandler<HTMLButtonElement> = () => {
     if (onClickProfile) onClickProfile()
   }
 
   return (
     <button
-      className={`relative rounded-[50%] ${profileVariant[size]?.shadow}`}
+      className={`relative cursor-pointer rounded-[50%] ${profileVariant[size]?.shadow}`}
       onClick={handleClickProfile}
     >
       <Icon name="ellipse" color={bgColor} size={profileVariant[size].size} />
