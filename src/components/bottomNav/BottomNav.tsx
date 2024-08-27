@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { zIndex } from '@/constants'
@@ -42,14 +43,13 @@ export const BottomNav = () => {
 
           return (
             <>
-              <a
-                key={path}
+              <Link
                 href={path}
                 className={`flex-column-align gap-y-[6px] ${textStyle} cursor-pointer bg-white`}
               >
                 <Icon name={icon} color={bgColorStyle} />
                 {text}
-              </a>
+              </Link>
               {index === MIDDLE_INDEX && (
                 <div className={`relative w-[69px] cursor-pointer ${zIndex.fab}`}>
                   <div
