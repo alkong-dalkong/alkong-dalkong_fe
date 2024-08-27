@@ -11,6 +11,8 @@ export type CalendarState = CalendarProps & {
   actions: {
     prevMonth: () => void
     nextMonth: () => void
+    getEmptyDate: () => number
+    getDatesInMonth: () => number
   }
 }
 
@@ -32,6 +34,14 @@ export const createCalendarStore = (initProps: CalendarProps) => {
         const nextMonth = new Date(date)
         nextMonth.setMonth(nextMonth.getMonth() + 1)
         set({ date: nextMonth })
+      },
+      getEmptyDate: () => {
+        const { date } = get()
+        return new Date(date.getFullYear(), date.getMonth(), 1).getDay()
+      },
+      getDatesInMonth: () => {
+        const { date } = get()
+        return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
       },
     },
   }))

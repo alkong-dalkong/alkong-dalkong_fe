@@ -1,20 +1,13 @@
-import { useContext } from 'react'
-import { useStore } from 'zustand'
+type EmptyDateBoxListProps = {
+  emptyDate: number
+}
 
-import { CalendarContext } from '@/store/calendarStore'
-
-export const EmptyDateBoxList = () => {
-  const store = useContext(CalendarContext)
-  if (!store) throw new Error('Missing CalendarContext.Provider in the tree')
-  const date = useStore(store, (s) => s.date)
-
+export const EmptyDateBoxList = ({ emptyDate }: EmptyDateBoxListProps) => {
   return (
     <>
-      {Array.from({ length: new Date(date.getFullYear(), date.getMonth(), 1).getDay() }).map(
-        (_, idx) => (
-          <div key={idx} />
-        ),
-      )}
+      {Array.from({ length: emptyDate }).map((_, idx) => (
+        <div key={idx} />
+      ))}
     </>
   )
 }
