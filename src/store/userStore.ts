@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 import type { User } from '@/types'
 
@@ -22,9 +23,17 @@ const defaultState = {
   ],
 }
 
-export const useUserStore = create<UserState & UserActions>((set) => ({
-  user: defaultState,
-  setUser: (user: User) => {
-    set({ user })
-  },
-}))
+export const useUserStore = create(
+  persist<UserState & UserActions>(
+    (set) => ({
+      user: defaultState,
+      setUser: (user: User) => {
+        set({ user })
+      },
+    }),
+    {
+      name: 'userStore',
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+)
