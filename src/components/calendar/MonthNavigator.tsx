@@ -4,7 +4,7 @@ import { useStore } from 'zustand'
 import { ArrowLeftIcon, ArrowRightIcon } from '@/components/icons/Arrow'
 import { CalendarContext } from '@/store/calendarStore'
 
-export const MonthNavigator = React.memo(() => {
+export const MonthNavigator = () => {
   const store = useContext(CalendarContext)
   if (!store) throw new Error('Missing CalendarContext.Provider in the tree')
   const date = useStore(store, (s) => s.date)
@@ -23,6 +23,4 @@ export const MonthNavigator = React.memo(() => {
       </button>
     </>
   )
-})
-
-MonthNavigator.displayName = 'MonthNavigator'
+}

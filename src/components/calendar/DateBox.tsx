@@ -8,7 +8,7 @@ type DateBoxProps = {
   color?: string
 }
 
-export const DateBox = React.memo(({ num, color }: DateBoxProps) => {
+export const DateBox = ({ num, color }: DateBoxProps) => {
   const store = useContext(CalendarContext)
   if (!store) throw new Error('Missing CalendarContext.Provider in the tree')
   const setDate = useStore(store, (s) => s.setDate)
@@ -28,6 +28,4 @@ export const DateBox = React.memo(({ num, color }: DateBoxProps) => {
       {num}
     </button>
   )
-})
-
-DateBox.displayName = 'DateBox'
+}
