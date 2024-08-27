@@ -1,6 +1,6 @@
-import type { StoreApi } from 'zustand'
+import { useEffect } from 'react'
 
-import type { CalendarState } from '@/store/calendarStore'
+import { createCalendarStore } from '@/store/calendarStore'
 import { CalendarContext } from '@/store/calendarStore'
 
 import { DateList } from './DateList'
@@ -8,10 +8,18 @@ import { MonthNavigator } from './MonthNavigator'
 import { WeekList } from './WeekList'
 
 type CalendarProps = {
-  store: StoreApi<CalendarState>
+  date: Date
+  setDate: (date: Date) => void
+  schedules: string[]
 }
 
-export const Calendar = ({ store }: CalendarProps) => {
+export const Calendar = ({ date, setDate, schedules }: CalendarProps) => {
+  const store = createCalendarStore({ date, setDate, schedules })
+
+  useEffect(() => {
+    store.setState({ date, schedules })
+  }, [date, schedules, store])
+
   return (
     <CalendarContext.Provider value={store}>
       <div className="flex-column flex w-full justify-between gap-[12px]">
