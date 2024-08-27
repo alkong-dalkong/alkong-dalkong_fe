@@ -1,4 +1,6 @@
 'use client'
+import Link from 'next/link'
+
 import { useUserStore } from '@/store'
 
 import { Portal } from '../portal/Portal'
@@ -6,7 +8,7 @@ import { Portal } from '../portal/Portal'
 import { Profile } from './Profile'
 
 export const ProfileModal = () => {
-  const { user } = useUserStore()
+  const { user, setUser } = useUserStore()
 
   return (
     <Portal>
@@ -15,14 +17,16 @@ export const ProfileModal = () => {
       >
         <div className="grid grid-cols-3 gap-[40px]">
           {user.family?.map(({ userId, username }) => {
-            const path = `/${userId}`
+            const handleClickProfile = () => {
+              setUser({ ...user, userId: userId, username: username })
+            }
 
             return (
               <div className="Headline-B flex-column-align gap-y-[6px] text-white" key={userId}>
                 {username}
-                <a key={path} href={path}>
-                  <Profile name={username} size="lg" />
-                </a>
+                <Link href={`/${userId}`}>
+                  <Profile name={username} size="lg" onClickProfile={handleClickProfile} />
+                </Link>
               </div>
             )
           })}
