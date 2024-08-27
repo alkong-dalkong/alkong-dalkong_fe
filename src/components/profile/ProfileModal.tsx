@@ -7,7 +7,11 @@ import { Portal } from '../portal/Portal'
 
 import { Profile } from './Profile'
 
-export const ProfileModal = () => {
+type ProfileModalProps = {
+  onClickProfileModal?: VoidFunction
+}
+
+export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
   const { user, setUser } = useUserStore()
 
   return (
@@ -19,12 +23,13 @@ export const ProfileModal = () => {
           {user.family?.map(({ userId, username }) => {
             const handleClickProfile = () => {
               setUser({ ...user, userId: userId, username: username })
+              if (onClickProfileModal) onClickProfileModal()
             }
 
             return (
               <div className="Headline-B flex-column-align gap-y-[6px] text-white" key={userId}>
                 {username}
-                <Link href={`/${userId}`}>
+                <Link href={`/home/${userId}`}>
                   <Profile name={username} size="lg" onClickProfile={handleClickProfile} />
                 </Link>
               </div>
