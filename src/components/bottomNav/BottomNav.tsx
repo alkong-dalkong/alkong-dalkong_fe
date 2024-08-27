@@ -22,10 +22,10 @@ export const BottomNav = () => {
   const { user } = useUserStore()
 
   const navItems: NavItem = [
-    { text: '홈', icon: 'home', path: `/${user.userId}` },
-    { text: '진료', icon: 'clinic', path: `/${user.userId}/clinic` },
-    { text: '건강', icon: 'health', path: `/${user.userId}/health` },
-    { text: '약', icon: 'medicine', path: `/${user.userId}/medicine` },
+    { text: '홈', icon: 'home', path: `/home/${user.userId}` },
+    { text: '진료', icon: 'clinic', path: `/clinic/${user.userId}` },
+    { text: '건강', icon: 'health', path: `/health/${user.userId}` },
+    { text: '약', icon: 'medicine', path: `/medicine/${user.userId}` },
   ]
 
   const [isShowing, toggleShowing] = useToggle(false)
@@ -63,7 +63,7 @@ export const BottomNav = () => {
                         bgColor={isShowing ? '#949698' : '#F5F6F8'}
                         textColor={isShowing ? 'text-gray-1' : 'text-gray-6'}
                       />
-                      {isShowing && <ProfileModal />}
+                      {isShowing && <ProfileModal onClickProfileModal={toggleShowing} />}
                     </div>
                     {user.username}
                   </div>
