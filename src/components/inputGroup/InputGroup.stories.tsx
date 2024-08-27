@@ -65,7 +65,7 @@ export const Form = () => {
     alert(JSON.stringify(formData, null, 2))
 
   return (
-    <div className="w-[450px]">
+    <div className="max-w-[450px]">
       <FormProvider {...formMethod}>
         <form onSubmit={handleSubmit(handleSubmitForm)} className="flex-column gap-8">
           <InputGroup>
