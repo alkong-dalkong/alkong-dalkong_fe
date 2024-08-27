@@ -24,10 +24,11 @@ export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
   return (
     <Portal>
       <button
+        type="button"
         onClick={handleClickScrim}
         className={`fixed inset-0 flex h-[calc(100vh-75px)] w-screen items-end overflow-hidden bg-[rgba(15,23,42,0.5)] px-[52px] pb-[62px]`}
       >
-        <button onClick={handleClickScrim} className="grid grid-cols-3 gap-[40px]">
+        <button type="button" onClick={handleClickScrim} className="grid grid-cols-3 gap-[40px]">
           {user.family?.map(({ userId, username }) => {
             const handleClickProfile = () => {
               setUser({ ...user, userId: userId, username: username })
