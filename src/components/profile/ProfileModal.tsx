@@ -1,4 +1,6 @@
 'use client'
+
+import type { MouseEventHandler } from 'react'
 import Link from 'next/link'
 
 import { useUserStore } from '@/store'
@@ -14,12 +16,18 @@ type ProfileModalProps = {
 export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
   const { user, setUser } = useUserStore()
 
+  const handleClickScrim: MouseEventHandler<HTMLButtonElement> = (e) => {
+    if (e.target !== e.currentTarget) return
+    if (onClickProfileModal) onClickProfileModal()
+  }
+
   return (
     <Portal>
-      <div
+      <button
+        onClick={handleClickScrim}
         className={`fixed inset-0 flex h-[calc(100vh-75px)] w-screen items-end overflow-hidden bg-[rgba(15,23,42,0.5)] px-[52px] pb-[62px]`}
       >
-        <div className="grid grid-cols-3 gap-[40px]">
+        <button onClick={handleClickScrim} className="grid grid-cols-3 gap-[40px]">
           {user.family?.map(({ userId, username }) => {
             const handleClickProfile = () => {
               setUser({ ...user, userId: userId, username: username })
@@ -35,8 +43,8 @@ export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
               </div>
             )
           })}
-        </div>
-      </div>
+        </button>
+      </button>
     </Portal>
   )
 }
