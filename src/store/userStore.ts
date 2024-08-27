@@ -12,7 +12,7 @@ type UserActions = {
 
 // mockData. 로그인 개발 이후 수정 필요
 const defaultState = {
-  userId: 'test',
+  userId: '1',
   username: '가나다라',
   family: [
     { userId: '1', username: '가나다라' },
