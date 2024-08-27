@@ -23,9 +23,9 @@ export const BottomNav = () => {
 
   const navItems: NavItem = [
     { text: '홈', icon: 'home', path: `/${user.userId}` },
-    { text: '진료', icon: 'clinic', path: '/clinic' },
-    { text: '건강', icon: 'health', path: '/health' },
-    { text: '약', icon: 'medicine', path: '/medicine' },
+    { text: '진료', icon: 'clinic', path: `/${user.userId}/clinic` },
+    { text: '건강', icon: 'health', path: `/${user.userId}/health` },
+    { text: '약', icon: 'medicine', path: `/${user.userId}/medicine` },
   ]
 
   const [isShowing, toggleShowing] = useToggle(false)
