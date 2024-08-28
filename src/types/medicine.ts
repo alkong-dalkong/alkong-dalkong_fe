@@ -7,5 +7,5 @@ export type MedicineFormType = {
   medicineDosage: number
   medicineTakenType: 'DOSE' | 'TABLET'
   medicineMemo: string
-  medicineAlarm: number
+  medicineAlarm: string
 }

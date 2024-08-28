@@ -13,7 +13,7 @@ const schema = z.object({
   medicineDosage: z.number().min(1, { message: '복용량은 1 이상이어야 합니다.' }),
   medicineTakenType: z.enum(['DOSE', 'TABLET'], { message: '복용 유형을 선택해주세요.' }),
   medicineMemo: z.string(),
-  medicineAlarm: z.number(),
+  medicineAlarm: z.string(),
 })
 
 export const useMedicineForm = (initialValues?: MedicineFormType) => {
@@ -26,7 +26,7 @@ export const useMedicineForm = (initialValues?: MedicineFormType) => {
     medicineDosage: 0,
     medicineTakenType: 'DOSE' as 'DOSE' | 'TABLET',
     medicineMemo: '',
-    medicineAlarm: 0,
+    medicineAlarm: '',
   }
 
   const defaultValues = initialValues ? initialValues : defaultValue
