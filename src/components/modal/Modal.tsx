@@ -42,9 +42,7 @@ const Modal: ModalType = ({ children, isOpen, onClose }) => {
         onClick={handleBackgroundClick}
         aria-hidden="true"
       >
-        <div
-          className={`flex-column relative w-[87.2%]  max-w-[390px] rounded-[12px] bg-white pb-[24px] pt-[52px]`}
-        >
+        <div className="flex-column relative w-[87.2%]  max-w-[390px] rounded-[12px] bg-white pb-[24px] pt-[52px]">
           <button onClick={onClose} type="button" className="absolute right-[16px] top-[20px]">
             <Icon name="close" />
           </button>
