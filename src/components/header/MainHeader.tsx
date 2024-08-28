@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 
 import { Icon } from '../icons'
-import { Profile, Profile } from '../profile/Profile'
+import { Profile } from '../profile/Profile'
 
 import type { HeaderProps } from './SubHeader'
 
