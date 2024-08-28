@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
-import { useModal } from '@/hooks/useModal'
+import { useBoolean } from '@/hooks/useBoolean'
 
 import { Button } from '../button/Button'
 
@@ -9,7 +9,6 @@ import Modal from './Modal'
 type Props = {
   isOpen: boolean
   onClose: () => void
-  size: 'md' | 'lg'
 }
 
 export default {
@@ -18,12 +17,12 @@ export default {
 } as Meta
 
 const MediumTemplate: StoryFn<Props> = () => {
-  const [modal, handleOpenModal, handleCloseModal] = useModal(true)
+  const [modal, handleOpenModal, handleCloseModal] = useBoolean(true)
 
   return (
     <>
       <button onClick={handleOpenModal}>모달 열기</button>
-      <Modal isOpen={modal} onClose={handleCloseModal} size="md">
+      <Modal isOpen={modal} onClose={handleCloseModal}>
         <Modal.Title title="삭제하시겠습니까?" />
         <Modal.SubTitle title="삭제하실 경우 복원이 불가능합니다." />
         <div className="mt-[24px] flex w-full gap-[15px] px-[16px]">
@@ -52,12 +51,12 @@ const MediumTemplate: StoryFn<Props> = () => {
 export const Medium = MediumTemplate.bind({})
 
 const LargeTemplate: StoryFn<Props> = () => {
-  const [modal, handleOpenModal, handleCloseModal] = useModal(true)
+  const [modal, handleOpenModal, handleCloseModal] = useBoolean(true)
 
   return (
     <>
       <button onClick={handleOpenModal}>모달 열기</button>
-      <Modal isOpen={modal} onClose={handleCloseModal} size="lg">
+      <Modal isOpen={modal} onClose={handleCloseModal}>
         <Modal.Title title="우리 가족 그룹의 초대 코드?" />
         <Modal.SubTitle title="우리 가족으로 초대하고 싶은" />
         <Modal.SubTitle title="사람에게 가족 코드를 공유해 보세요!" />
@@ -66,7 +65,7 @@ const LargeTemplate: StoryFn<Props> = () => {
             1234 4321
           </div>
         </div>
-        <div className="mt-[16px] flex w-3/5 justify-between">
+        <div className="mt-[16px] flex justify-between gap-[6px]">
           <p className="body-M text-mint-7">코드 복사하기</p>
           <p className="body-M text-mint-7">|</p>
           <p className="body-M text-mint-7">코드 공유하기</p>
