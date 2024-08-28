@@ -23,5 +23,9 @@ export const useAccountEditForm = () => {
     resolver: zodResolver(schema),
   })
 
-  return formMethod
+  const handleSubmitAccountEditForm = (formData: AccountEditFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
+
+  return { formMethod, handleSubmitAccountEditForm }
 }

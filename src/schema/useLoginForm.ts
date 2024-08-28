@@ -16,5 +16,9 @@ export const useLoginForm = () => {
     resolver: zodResolver(schema),
   })
 
-  return formMethod
+  const handleSubmitLoginForm = (formData: LoginFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
+
+  return { formMethod, handleSubmitLoginForm }
 }

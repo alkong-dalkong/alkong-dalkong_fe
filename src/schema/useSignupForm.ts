@@ -47,5 +47,9 @@ export const useSignupForm = () => {
     resolver: zodResolver(schema),
   })
 
-  return formMethod
+  const handleSubmitSignupForm = (formData: SignupFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
+
+  return { formMethod, handleSubmitSignupForm }
 }
