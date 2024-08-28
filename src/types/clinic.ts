@@ -3,5 +3,5 @@ export type ClinicFormType = {
   hospitalDate: string
   medicalPart: string[]
   medicalMemo: string
-  medicalAlarm: number
+  medicalAlarm: string
 }
