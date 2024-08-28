@@ -4,3 +4,9 @@ export type AccountEditFormType = {
   birth: string
   gender: 'MAN' | 'WOMAN'
 }
+
+export type PasswordEditFormType = {
+  password: string
+  confirm: string
+  newPassword: string
+}
