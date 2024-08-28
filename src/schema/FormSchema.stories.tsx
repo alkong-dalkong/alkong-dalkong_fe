@@ -8,7 +8,6 @@ import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 
-import { useAccountEditForm } from './useAccountEditForm'
 import { useClinicForm } from './useClinicForm'
 import { useLoginForm } from './useLoginForm'
 import { useSignupForm } from './useSignupForm'
@@ -184,48 +183,6 @@ export const ClinicForm: StoryFn = () => {
                 className="headline-M text-right text-gray-7 focus:outline-none"
               />
             </div>
-          </InputGroup>
-
-          <Button primary type="submit" onClick={() => {}}>
-            완료
-          </Button>
-        </form>
-      </FormProvider>
-      <DevTool control={control}></DevTool>
-    </Container>
-  )
-}
-
-export const AccountEditForm: StoryFn = () => {
-  const { formMethod, handleSubmitAccountEditForm } = useAccountEditForm()
-  const { handleSubmit, control } = formMethod
-
-  return (
-    <Container>
-      <FormProvider {...formMethod}>
-        <form onSubmit={handleSubmit(handleSubmitAccountEditForm)}>
-          <InputGroup>
-            <Label>이름</Label>
-            <InputGroup.Input section="name" placeholder="성명을 입력해주세요." />
-            <InputGroup.ErrorMessage section="name" />
-          </InputGroup>
-
-          <InputGroup>
-            <Label>휴대전화번호</Label>
-            <InputGroup.Input section="phoneNumber" placeholder="숫자만 입력해주세요." />
-            <InputGroup.ErrorMessage section="phoneNumber" />
-          </InputGroup>
-
-          <InputGroup>
-            <Label>생년월일</Label>
-            <InputGroup.Input section="birth" placeholder="생년월일 8자리를 입력해주세요." />
-            <InputGroup.ErrorMessage section="birth" />
-          </InputGroup>
-
-          <InputGroup>
-            <Label>성별</Label>
-            <InputGroup.Gender />
-            <InputGroup.ErrorMessage section="gender" />
           </InputGroup>
 
           <Button primary type="submit" onClick={() => {}}>
