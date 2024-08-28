@@ -2,6 +2,7 @@ import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from './Arr
 import { HandleBar } from './Bar'
 import { CheckNoIcon, CheckYesIcon } from './Check'
 import { CloseIcon } from './Close'
+import { EllipseIcon } from './Ellipse'
 import {
   CalendarLabelIcon,
   CheckLabelIcon,
@@ -42,6 +43,7 @@ export const iconMap = {
   clinic: ClinicIcon,
   health: HealthIcon,
   'handle-bar': HandleBar,
+  ellipse: EllipseIcon,
 }
 
 export type IconComponentProps = IconProps & {
