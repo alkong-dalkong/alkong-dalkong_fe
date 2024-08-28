@@ -9,7 +9,6 @@ import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 
 import { useClinicForm } from './useClinicForm'
-import { useLoginForm } from './useLoginForm'
 import { useSignupForm } from './useSignupForm'
 
 const Container = ({ children }: PropsWithChildren) => {
@@ -40,32 +39,6 @@ export default {
   title: 'FormSchema',
   component: Container,
 } as Meta
-
-export const LoginForm: StoryFn = () => {
-  const { formMethod, handleSubmitLoginForm } = useLoginForm()
-  const { handleSubmit, control } = formMethod
-
-  return (
-    <Container>
-      <FormProvider {...formMethod}>
-        <form onSubmit={handleSubmit(handleSubmitLoginForm)}>
-          <InputGroup>
-            <InputGroup.Input section="id" placeholder="아이디" />
-          </InputGroup>
-
-          <InputGroup>
-            <InputGroup.Input section="password" placeholder="비밀번호" type="password" />
-          </InputGroup>
-
-          <Button primary type="submit" onClick={() => {}}>
-            로그인
-          </Button>
-        </form>
-      </FormProvider>
-      <DevTool control={control}></DevTool>
-    </Container>
-  )
-}
 
 export const SignupForm: StoryFn = () => {
   const { formMethod, handleSubmitSignupForm } = useSignupForm()
