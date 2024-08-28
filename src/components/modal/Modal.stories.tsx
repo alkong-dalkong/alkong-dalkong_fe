@@ -23,8 +23,8 @@ const MediumTemplate: StoryFn<Props> = () => {
     <>
       <button onClick={handleOpenModal}>모달 열기</button>
       <Modal isOpen={modal} onClose={handleCloseModal}>
-        <Modal.Title title="삭제하시겠습니까?" />
-        <Modal.SubTitle title="삭제하실 경우 복원이 불가능합니다." />
+        <div className="subtitle-B mb-[8px] text-black">삭제하시겠습니까?</div>
+        <div className="headline-M">삭제하실 경우 복원이 불가능합니다.</div>
         <div className="mt-[24px] flex w-full gap-[15px] px-[16px]">
           <Button
             size="sm"
@@ -57,9 +57,9 @@ const LargeTemplate: StoryFn<Props> = () => {
     <>
       <button onClick={handleOpenModal}>모달 열기</button>
       <Modal isOpen={modal} onClose={handleCloseModal}>
-        <Modal.Title title="우리 가족 그룹의 초대 코드?" />
-        <Modal.SubTitle title="우리 가족으로 초대하고 싶은" />
-        <Modal.SubTitle title="사람에게 가족 코드를 공유해 보세요!" />
+        <div className="subtitle-B mb-[8px] text-black">우리 가족 그룹의 초대 코드?</div>
+        <div className="headline-M">우리 가족으로 초대하고 싶은</div>
+        <div className="headline-M">사람에게 가족 코드를 공유해 보세요!</div>
         <div className="w-full px-[20px]">
           <div className="flex-center mt-[24px] h-[48px] w-full rounded-[12px] bg-mint-1">
             1234 4321

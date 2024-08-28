@@ -6,20 +6,12 @@ import { useScrollLock } from '@/hooks/useScrollLock'
 
 import { Icon } from '../icons'
 
-import SubTitle from './SubTitle'
-import Title from './Title'
-
 type ModalProps = {
   isOpen: boolean
   onClose: () => void
 }
 
-type ModalType = React.FC<PropsWithChildren<ModalProps>> & {
-  Title: typeof Title
-  SubTitle: typeof SubTitle
-}
-
-const Modal: ModalType = ({ children, isOpen, onClose }) => {
+const Modal = ({ children, isOpen, onClose }: PropsWithChildren<ModalProps>) => {
   const { lockScroll } = useScrollLock()
   const modalBackground = useRef<HTMLDivElement | null>(null)
   const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -54,6 +46,3 @@ const Modal: ModalType = ({ children, isOpen, onClose }) => {
 }
 
 export default Modal
-
-Modal.SubTitle = SubTitle
-Modal.Title = Title
