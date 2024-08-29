@@ -4,7 +4,7 @@ import type { Props } from './ActionTag'
 import ActionTag from './ActionTag'
 
 export default {
-  title: 'Components/ActionTag',
+  title: 'ActionTag',
   component: ActionTag,
   argTypes: {
     label: { control: 'text' },
