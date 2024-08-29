@@ -2,14 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import Label from './Label'
 
-import testImage from '/public/next.svg'
-
 const meta: Meta<typeof Label> = {
   title: 'Label',
   component: Label,
   argTypes: {
     children: { control: 'text' },
-    src: { control: 'text' },
+    icon: { control: 'text' },
   },
 }
 
@@ -26,6 +24,6 @@ export const Default: Story = {
 export const WithIcon: Story = {
   args: {
     children: 'Label with Icon',
-    src: testImage,
+    icon: 'check-label',
   },
 }

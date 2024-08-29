@@ -1,14 +1,16 @@
 import type { PropsWithChildren } from 'react'
-import Image from 'next/image'
+
+import type { iconMap } from '../icons'
+import { Icon } from '../icons'
 
 type LabelProps = {
-  src?: string
+  icon?: keyof typeof iconMap
 }
 
-const Label = ({ children, src }: PropsWithChildren<LabelProps>) => {
+const Label = ({ children, icon }: PropsWithChildren<LabelProps>) => {
   return (
-    <div className="flex-align gap-2">
-      {src && <Image src={src} width={28} height={28} alt="label-icon" />}
+    <div className="flex-align subtitle-B gap-2">
+      {icon && <Icon name={icon} />}
       <p className="subtitle-B">{children}</p>
     </div>
   )
