@@ -23,7 +23,7 @@ const ActionTag: ActionTagType = ({ label, onClick, primary = false, icon = 'plu
       onClick={onClick}
       type="button"
     >
-      <Icon name={`${icon}`} color={`${primary ? '#FFFFFF' : '#676A6B'}`} size={16} />
+      <Icon name={icon} color={`${primary ? '#FFFFFF' : '#676A6B'}`} size={16} />
       <span>{label}</span>
     </button>
   )
