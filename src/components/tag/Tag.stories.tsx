@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import Tag from './Tag'
 
 export default {
-  title: 'Components/Tag',
+  title: 'Tag',
   component: Tag,
   argTypes: {
     label: { control: 'text' },
