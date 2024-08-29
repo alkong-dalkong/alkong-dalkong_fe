@@ -12,8 +12,8 @@ export const MinusIcon = (props: IconProps) => {
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M2.75 9.5C2.75 9.08579 3.08579 8.75 3.5 8.75H13.5C13.9142 8.75 14.25 9.08579 14.25 9.5C14.25 9.91421 13.9142 10.25 13.5 10.25H3.5C3.08579 10.25 2.75 9.91421 2.75 9.5Z"
         fill={color}
       />

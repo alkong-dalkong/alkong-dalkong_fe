@@ -11,7 +11,7 @@ export const CheckNoIcon = (props: IconProps) => {
       viewBox="0 0 36 36"
       fill="none"
     >
-      <circle cx="18" cy="18" r="13.5" stroke={color} stroke-dasharray="2 2" />
+      <circle cx="18" cy="18" r="13.5" stroke={color} strokeDasharray="2 2" />
     </svg>
   )
 }
@@ -31,9 +31,9 @@ export const CheckYesIcon = (props: IconProps) => {
       <path
         d="M26 14L16.9565 25L10 18.4"
         stroke="white"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
