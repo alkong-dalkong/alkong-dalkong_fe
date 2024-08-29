@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { iconMap } from '../icons'
+
 import Label from './Label'
 
 const meta: Meta<typeof Label> = {
@@ -7,7 +9,10 @@ const meta: Meta<typeof Label> = {
   component: Label,
   argTypes: {
     children: { control: 'text' },
-    icon: { control: 'text' },
+    icon: {
+      options: [...Object.keys(iconMap).filter((icon) => icon.includes('label'))],
+      control: { type: 'radio' },
+    },
   },
 }
 
