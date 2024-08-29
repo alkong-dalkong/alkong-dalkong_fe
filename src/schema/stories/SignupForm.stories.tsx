@@ -80,6 +80,7 @@ export const SignupForm: StoryFn = () => {
             <InputGroup.CheckBox section="personal">개인정보 이용 동의 (필수)</InputGroup.CheckBox>
             <InputGroup.CheckBox section="notification">알림 수신 동의 (선택)</InputGroup.CheckBox>
             <InputGroup.CheckBoxAll>전체 동의</InputGroup.CheckBoxAll>
+            <InputGroup.ErrorMessage section="personal" />
           </InputGroup>
 
           <Button primary type="submit" onClick={() => {}}>

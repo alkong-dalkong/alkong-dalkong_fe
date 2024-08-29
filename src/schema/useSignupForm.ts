@@ -31,7 +31,7 @@ const schema = z
     }),
 
     gender: z.enum(['MAN', 'WOMAN'], { message: '성별을 선택해주세요.' }),
-    personal: z.boolean(),
+    personal: z.literal(true, { errorMap: () => ({ message: '개인정보 동의는 필수입니다.' }) }),
     notification: z.boolean(),
   })
   .partial()
@@ -45,6 +45,10 @@ export const useSignupForm = () => {
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     resolver: zodResolver(schema),
+    defaultValues: {
+      personal: false,
+      notification: false,
+    },
   })
 
   const handleSubmitSignupForm = (formData: SignupFormType) => {
