@@ -7,25 +7,23 @@ import type { CheckBoxSectionType } from '@/types/common'
 
 import { Icon } from '../icons'
 
-/**
- * @todo Icon 컴포넌트 수정사항에 따른 버튼 수정
- * <Icon name="arrow-right" />에 onClick 넘겨줘야할듯
- */
-
 type CheckBoxProps = {
   section: CheckBoxSectionType
+  onClickArrow: () => void
 }
 
 type CheckBoxViewProps = {
   section: CheckBoxSectionType | 'all'
   isChecked: boolean
   onChange: () => void
+  onClickArrow?: () => void
 }
 
 const CheckBoxView = ({
   section,
   isChecked,
   onChange,
+  onClickArrow,
   children,
 }: PropsWithChildren<CheckBoxViewProps>) => {
   return (
@@ -44,14 +42,18 @@ const CheckBoxView = ({
         <div className="flex-align gap-2">
           {isChecked ? <Icon name="check-yes" /> : <Icon name="check-no" />}
           <p className="headline-B mr-auto text-gray-8">{children}</p>
-          <Icon name="arrow-right" />
+          {section !== 'all' && (
+            <button type="button" onClick={onClickArrow}>
+              <Icon name="arrow-right" />
+            </button>
+          )}
         </div>
       </label>
     </div>
   )
 }
 
-export const CheckBox = ({ children, section }: PropsWithChildren<CheckBoxProps>) => {
+export const CheckBox = ({ children, section, onClickArrow }: PropsWithChildren<CheckBoxProps>) => {
   const checkList = useCheckBoxList()
   const isChecked = checkList[section]
   const { setValue } = useFormContext()
@@ -63,7 +65,12 @@ export const CheckBox = ({ children, section }: PropsWithChildren<CheckBoxProps>
   }
 
   return (
-    <CheckBoxView section={section} isChecked={isChecked} onChange={handleCheck}>
+    <CheckBoxView
+      section={section}
+      isChecked={isChecked}
+      onChange={handleCheck}
+      onClickArrow={onClickArrow}
+    >
       {children}
     </CheckBoxView>
   )

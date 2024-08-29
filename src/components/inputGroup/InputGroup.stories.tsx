@@ -88,8 +88,12 @@ export const Form = () => {
 
           <InputGroup>
             <Label>CheckBox</Label>
-            <InputGroup.CheckBox section="personal">개인정보</InputGroup.CheckBox>
-            <InputGroup.CheckBox section="notification">알람</InputGroup.CheckBox>
+            <InputGroup.CheckBox section="personal" onClickArrow={() => alert('BottomSheet')}>
+              개인정보
+            </InputGroup.CheckBox>
+            <InputGroup.CheckBox section="notification" onClickArrow={() => alert('BottomSheet')}>
+              알람
+            </InputGroup.CheckBox>
             <InputGroup.CheckBoxAll>전체 동의</InputGroup.CheckBoxAll>
           </InputGroup>
 
