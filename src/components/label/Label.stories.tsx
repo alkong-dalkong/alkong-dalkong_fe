@@ -1,15 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Label from './Label'
+import { iconMap } from '../icons'
 
-import testImage from '/public/next.svg'
+import Label from './Label'
 
 const meta: Meta<typeof Label> = {
   title: 'Label',
   component: Label,
   argTypes: {
     children: { control: 'text' },
-    src: { control: 'text' },
+    icon: {
+      options: [...Object.keys(iconMap).filter((icon) => icon.includes('label'))],
+      control: { type: 'radio' },
+    },
   },
 }
 
@@ -26,6 +29,6 @@ export const Default: Story = {
 export const WithIcon: Story = {
   args: {
     children: 'Label with Icon',
-    src: testImage,
+    icon: 'check-label',
   },
 }
