@@ -33,7 +33,7 @@ export const BottomNav = () => {
   const profileTextStyle = isShowing ? 'caption-M text-mint-9' : 'caption-R text-gray-7'
 
   return (
-    <nav className={`absolute bottom-0 w-screen ${zIndex.bottomNav}`}>
+    <nav className={`absolute bottom-0 w-full ${zIndex.bottomNav}`}>
       <div className="flex-between items-end bg-white px-[26px] pb-[11px] pt-[4px] shadow-topShadow">
         {navItems.map(({ text, icon, path }, index) => {
           const selected = path === pathname && !isShowing
@@ -43,15 +43,12 @@ export const BottomNav = () => {
 
           return (
             <>
-              <Link
-                href={path}
-                className={`flex-column-align gap-y-[6px] ${textStyle} cursor-pointer bg-white`}
-              >
+              <Link href={path} className={`flex-column-align gap-y-[6px] ${textStyle} bg-white`}>
                 <Icon name={icon} color={bgColorStyle} />
                 {text}
               </Link>
               {index === MIDDLE_INDEX && (
-                <div className={`relative w-[69px] cursor-pointer ${zIndex.fab}`}>
+                <div className={`relative w-[69px] ${zIndex.fab}`}>
                   <div
                     className={`${profileTextStyle} flex-column-align absolute bottom-0 gap-y-[6px]`}
                   >
