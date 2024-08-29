@@ -9,7 +9,7 @@ const schema = z.object({
   hospitalDate: z.string().min(1, { message: '날짜를 선택해 주세요.' }),
   medicalPart: z.array(z.string()).min(1, { message: '진료 과목을 1개 이상 선택해 주세요.' }),
   medicalMemo: z.string(),
-  medicalAlarm: z.string(),
+  medicalAlarm: z.string().min(1, { message: '알람 시간을 선택해 주세요.' }),
 })
 
 export const useClinicForm = (initialValues?: ClinicFormType) => {
@@ -18,7 +18,7 @@ export const useClinicForm = (initialValues?: ClinicFormType) => {
     hospitalDate: '',
     medicalPart: [],
     medicalMemo: '',
-    medicalAlarm: '1주 전',
+    medicalAlarm: '',
   }
 
   const defaultValues = initialValues ? initialValues : defaultValue
