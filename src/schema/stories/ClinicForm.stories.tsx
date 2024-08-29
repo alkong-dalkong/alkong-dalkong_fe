@@ -10,7 +10,7 @@ import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 import { useToggle } from '@/hooks'
 
-import { useClinicForm } from './useClinicForm'
+import { useClinicForm } from '../useClinicForm'
 
 const Container = ({ children }: PropsWithChildren) => {
   return <div className="max-w-[450px]">{children}</div>

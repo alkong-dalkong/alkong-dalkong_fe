@@ -6,7 +6,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 
-import { useLoginForm } from './useLoginForm'
+import { useLoginForm } from '../useLoginForm'
 
 const Container = ({ children }: PropsWithChildren) => {
   return <div className="max-w-[450px]">{children}</div>

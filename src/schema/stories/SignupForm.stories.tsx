@@ -7,7 +7,7 @@ import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 
-import { useSignupForm } from './useSignupForm'
+import { useSignupForm } from '../useSignupForm'
 
 const Container = ({ children }: PropsWithChildren) => {
   return <div className="max-w-[450px]">{children}</div>
