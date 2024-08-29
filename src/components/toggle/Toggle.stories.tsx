@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Toggle from './Toggle'
 
 const meta: Meta<typeof Toggle> = {
-  title: 'components/toggle/Toggle',
+  title: 'Toggle',
   component: Toggle,
   argTypes: {
     initialState: {
@@ -21,19 +21,7 @@ export default meta
 
 type Story = StoryObj<typeof Toggle>
 
-export const DefaultState: Story = {
-  args: {
-    initialState: false,
-  },
-}
-
-export const EnabledState: Story = {
-  args: {
-    initialState: true,
-  },
-}
-
-export const WithAlertOnToggle: Story = {
+export const Default: Story = {
   args: {
     initialState: false,
     onClick: (prev) => alert(`이전 상태값: ${prev}`),
