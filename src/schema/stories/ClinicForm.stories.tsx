@@ -9,6 +9,7 @@ import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 import { useToggle } from '@/hooks'
+import type { ClinicFormType } from '@/types'
 
 import { useClinicForm } from '../useClinicForm'
 
@@ -42,10 +43,14 @@ export default {
 } as Meta
 
 export const ClinicForm: StoryFn = () => {
-  const { formMethod, handleSubmitClinicForm } = useClinicForm()
+  const formMethod = useClinicForm()
   const { handleSubmit, setValue, control } = formMethod
   const [dateBottomSheet, toggleDateBottomSheet] = useToggle(false)
   const [alarmBottomSheet, toggleAlarmBottomSheet] = useToggle(false)
+
+  const handleSubmitClinicForm = (formData: ClinicFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
 
   return (
     <LazyMotion features={domMax}>

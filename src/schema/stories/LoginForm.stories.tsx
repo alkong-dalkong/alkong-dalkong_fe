@@ -5,6 +5,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 
 import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
+import type { LoginFormType } from '@/types'
 
 import { useLoginForm } from '../useLoginForm'
 
@@ -18,8 +19,12 @@ export default {
 } as Meta
 
 export const LoginForm: StoryFn = () => {
-  const { formMethod, handleSubmitLoginForm } = useLoginForm()
+  const formMethod = useLoginForm()
   const { handleSubmit, control } = formMethod
+
+  const handleSubmitLoginForm = (formData: LoginFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
 
   return (
     <Container>

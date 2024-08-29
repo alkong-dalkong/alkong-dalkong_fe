@@ -6,6 +6,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
+import type { PasswordEditFormType } from '@/types'
 
 import { usePasswordEditForm } from '../usePasswordEditForm'
 
@@ -18,8 +19,12 @@ export default {
 } as Meta
 
 export const PasswordEditForm: StoryFn = () => {
-  const { formMethod, handleSubmitPasswordEditForm } = usePasswordEditForm()
+  const formMethod = usePasswordEditForm()
   const { handleSubmit, control } = formMethod
+
+  const handleSubmitPasswordEditForm = (formData: PasswordEditFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
 
   return (
     <Container>

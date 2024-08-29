@@ -9,6 +9,7 @@ import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 import { useToggle } from '@/hooks'
+import type { MedicineFormType } from '@/types'
 
 import { useMedicineForm } from '../useMedicineForm'
 
@@ -46,12 +47,16 @@ const Divider = () => {
 }
 
 export const MedicineForm: StoryFn = () => {
-  const { formMethod, handleSubmitMedicineForm } = useMedicineForm()
+  const formMethod = useMedicineForm()
   const { handleSubmit, control, setValue } = formMethod
   const [weekBottomSheet, toggleWeekBottomSheet] = useToggle(false)
   const [takenTimeBottomSheet, toggleTakenTimeBottomSheet] = useToggle(false)
   const [endDateBottomSheet, toggleEndDateBottomSheet] = useToggle(false)
   const [alarmBottomSheet, toggleAlarmBottomSheet] = useToggle(false)
+
+  const handleSubmitMedicineForm = (formData: MedicineFormType) => {
+    alert(JSON.stringify(formData, null, 2))
+  }
 
   return (
     <LazyMotion features={domMax}>

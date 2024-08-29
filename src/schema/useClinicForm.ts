@@ -30,9 +30,5 @@ export const useClinicForm = (initialValues?: ClinicFormType) => {
     defaultValues,
   })
 
-  const handleSubmitClinicForm = (formData: ClinicFormType) => {
-    alert(JSON.stringify(formData, null, 2))
-  }
-
-  return { formMethod, handleSubmitClinicForm }
+  return formMethod
 }

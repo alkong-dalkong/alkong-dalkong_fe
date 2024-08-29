@@ -38,9 +38,5 @@ export const useMedicineForm = (initialValues?: MedicineFormType) => {
     defaultValues,
   })
 
-  const handleSubmitMedicineForm = (formData: MedicineFormType) => {
-    alert(JSON.stringify(formData, null, 2))
-  }
-
-  return { formMethod, handleSubmitMedicineForm }
+  return formMethod
 }

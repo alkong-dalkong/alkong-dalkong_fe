@@ -29,9 +29,5 @@ export const usePasswordEditForm = () => {
     resolver: zodResolver(schema),
   })
 
-  const handleSubmitPasswordEditForm = (formData: PasswordEditFormType) => {
-    alert(JSON.stringify(formData, null, 2))
-  }
-
-  return { formMethod, handleSubmitPasswordEditForm }
+  return formMethod
 }

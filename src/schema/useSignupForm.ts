@@ -50,10 +50,5 @@ export const useSignupForm = () => {
       notification: false,
     },
   })
-
-  const handleSubmitSignupForm = (formData: SignupFormType) => {
-    alert(JSON.stringify(formData, null, 2))
-  }
-
-  return { formMethod, handleSubmitSignupForm }
+  return formMethod
 }
