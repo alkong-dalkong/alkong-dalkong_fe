@@ -1,3 +1,4 @@
+'use client'
 import { type ComponentProps, type MouseEventHandler, useEffect } from 'react'
 import { m, type Variants } from 'framer-motion'
 
@@ -39,7 +40,7 @@ export const BottomSheet = ({
   return (
     <AnimatePortal isShowing={isShowing} mode={mode}>
       <m.div
-        className={`fixed inset-0 ${zIndex.backdrop} h-full w-screen overflow-hidden bg-[rgba(15,23,42,0.5)]`}
+        className={`absolute inset-0 ${zIndex.bottomNav} size-full overflow-hidden bg-[rgba(15,23,42,0.5)]`}
         onClick={handleClickScrim}
         variants={bottomSheetFadeInVariants}
         initial="initial"
