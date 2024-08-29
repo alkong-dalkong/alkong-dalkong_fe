@@ -53,7 +53,7 @@ export const BottomNav = () => {
                     className={`${profileTextStyle} flex-column-align absolute bottom-0 gap-y-[6px]`}
                   >
                     {/* profile floating action button */}
-                    <div className="flex rounded-t-[50%] bg-white p-[8px] pb-0">
+                    <div className={`flex rounded-t-[50%] bg-white p-[8px] pb-0 ${zIndex.fab}`}>
                       <Profile
                         name={user.username}
                         onClickProfile={toggleShowing}
