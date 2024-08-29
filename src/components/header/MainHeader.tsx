@@ -7,25 +7,29 @@ import type { HeaderProps } from './SubHeader'
 
 const username = '가나다라' // 추후 useUserStore 로 변경 필요
 
-export const Setting = ({ title, onClose }: HeaderProps) => {
+export const Setting = ({ title, onSet }: Pick<HeaderProps, 'title' | 'onSet'>) => {
   return (
     <header className="flex-column-between h-[182px] bg-mint-3 px-[20px] pb-[24px] pt-[20px]">
       <div className="flex-align w-full justify-end">
-        <Profile name={username} size="sm" bgColor="#C5FDEC" onClickProfile={onClose?.[0]} />
+        <Profile name={username} size="sm" bgColor="#C5FDEC" onClickProfile={onSet} />
       </div>
       <h1 className="title-B whitespace-pre text-black">{title}</h1>
     </header>
   )
 }
 
-export const Confirm = ({ title, onClose }: HeaderProps) => {
+export const Confirm = ({
+  title,
+  onCancel,
+  onConfirm,
+}: Pick<HeaderProps, 'title' | 'onCancel' | 'onConfirm'>) => {
   return (
     <header className="flex-column-between h-[182px] bg-mint-3 px-[20px] pb-[24px] pt-[20px]">
       <div className="flex-between-align w-full">
-        <button className="body-B text-mint-7" onClick={onClose?.[0]}>
+        <button className="body-B text-mint-7" onClick={onCancel}>
           취소
         </button>
-        <button className="body-B text-mint-9" onClick={onClose?.[1]}>
+        <button className="body-B text-mint-9" onClick={onConfirm}>
           완료
         </button>
       </div>
@@ -34,7 +38,11 @@ export const Confirm = ({ title, onClose }: HeaderProps) => {
   )
 }
 
-export const BackAll = ({ title, onClose }: HeaderProps) => {
+export const Modify = ({
+  title,
+  onDelete,
+  onModify,
+}: Pick<HeaderProps, 'title' | 'onDelete' | 'onModify'>) => {
   const router = useRouter()
   const handleBack = () => {
     router.back()
@@ -47,11 +55,11 @@ export const BackAll = ({ title, onClose }: HeaderProps) => {
           <Icon name="arrow-left" />
         </button>
         <div className="flex-align gap-[16px]">
-          <button type="button" onClick={onClose?.[0]} className="body-B text-mint-7">
+          <button type="button" onClick={onDelete} className="body-B text-mint-7">
             삭제
           </button>
-          <button type="button" onClick={onClose?.[1]} className="body-B text-mint-9">
-            완료
+          <button type="button" onClick={onModify} className="body-B text-mint-9">
+            수정
           </button>
         </div>
       </div>
@@ -60,4 +68,4 @@ export const BackAll = ({ title, onClose }: HeaderProps) => {
   )
 }
 
-export const MainHeader = { Setting, Confirm, BackAll }
+export const MainHeader = { Setting, Confirm, Modify }
