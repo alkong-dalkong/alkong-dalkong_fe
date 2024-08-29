@@ -4,10 +4,15 @@ import { Icon } from '../icons'
 
 export type HeaderProps = {
   title: string
-  onClose?: VoidFunction[]
+  onClose: VoidFunction
+  onCancel: VoidFunction
+  onConfirm: VoidFunction
+  onSet: VoidFunction
+  onDelete: VoidFunction
+  onModify: VoidFunction
 }
 
-export const Back = ({ title }: HeaderProps) => {
+export const Back = ({ title }: Pick<HeaderProps, 'title'>) => {
   const router = useRouter()
   const handleBack = () => {
     router.back()
@@ -23,26 +28,30 @@ export const Back = ({ title }: HeaderProps) => {
   )
 }
 
-export const Confirm = ({ title, onClose }: HeaderProps) => {
+export const Close = ({ title, onClose }: Pick<HeaderProps, 'title' | 'onClose'>) => {
   return (
-    <header className="flex-between-align relative">
-      <button className="body-B text-gray-6" onClick={onClose?.[0]}>
-        취소
-      </button>
+    <header className="flex-align relative justify-end">
       <h1 className="subtitle-B absolute left-1/2 -translate-x-1/2 text-black">{title}</h1>
-      <button className="body-B text-black" onClick={onClose?.[1]}>
-        완료
+      <button onClick={onClose}>
+        <Icon name="close" />
       </button>
     </header>
   )
 }
 
-export const Close = ({ title, onClose }: HeaderProps) => {
+export const Confirm = ({
+  title,
+  onCancel,
+  onConfirm,
+}: Pick<HeaderProps, 'title' | 'onCancel' | 'onConfirm'>) => {
   return (
-    <header className="flex-align relative justify-end">
+    <header className="flex-between-align relative">
+      <button className="body-B text-gray-6" onClick={onCancel}>
+        취소
+      </button>
       <h1 className="subtitle-B absolute left-1/2 -translate-x-1/2 text-black">{title}</h1>
-      <button onClick={onClose?.[0]}>
-        <Icon name="close" />
+      <button className="body-B text-black" onClick={onConfirm}>
+        완료
       </button>
     </header>
   )
