@@ -6,7 +6,7 @@ export const Portal = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (document) {
-      setContainer(document.body)
+      setContainer(document.getElementById('layout'))
     }
   }, [])
 

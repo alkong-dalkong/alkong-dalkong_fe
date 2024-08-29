@@ -25,7 +25,8 @@ export const Profile = ({ onClickProfile, name, ...styleProps }: ProfileProps) =
 
   return (
     <button
-      className={`relative cursor-pointer rounded-[50%] ${profileVariant[size]?.shadow}`}
+      type="button"
+      className={`relative rounded-[50%] ${profileVariant[size]?.shadow}`}
       onClick={handleClickProfile}
     >
       <Icon name="ellipse" color={bgColor} size={profileVariant[size].size} />

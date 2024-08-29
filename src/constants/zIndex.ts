@@ -1,5 +1,6 @@
 export const zIndex = {
   fab: 'z-[999]',
-  backdrop: 'z-[1000]',
-  modal: 'z-[1001]',
+  bottomNav: 'z-[1000]',
+  backdrop: 'z-[1001]',
+  modal: 'z-[1002]',
 }
