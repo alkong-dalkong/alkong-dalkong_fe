@@ -1,9 +1,16 @@
+import { BottomNav } from '@/components'
+
 export type HomeRouteParams = {
   params: { userId: string }
 }
 
 const Home = ({ params: { userId } }: HomeRouteParams) => {
-  return <h2>{userId}</h2>
+  return (
+    <div>
+      <h2>{userId}</h2>
+      <BottomNav />
+    </div>
+  )
 }
 
 export default Home
