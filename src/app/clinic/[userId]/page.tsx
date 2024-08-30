@@ -1,9 +1,16 @@
+import { BottomNav } from '@/components'
+
 export type ClinicRouteParams = {
   params: { userId: string }
 }
 
 const Clinic = ({ params: { userId } }: ClinicRouteParams) => {
-  return <h2>{userId}</h2>
+  return (
+    <div>
+      <h2>{userId}</h2>
+      <BottomNav />
+    </div>
+  )
 }
 
 export default Clinic
