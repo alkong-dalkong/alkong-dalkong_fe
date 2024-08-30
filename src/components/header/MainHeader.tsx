@@ -1,17 +1,19 @@
 import { useRouter } from 'next/navigation'
 
+import { useUserStore } from '@/store'
+
 import { Icon } from '../icons'
 import { Profile } from '../profile/Profile'
 
 import type { HeaderProps } from './SubHeader'
 
-const username = '가나다라' // 추후 useUserStore 로 변경 필요
-
 export const Setting = ({ title, onSet }: Pick<HeaderProps, 'title' | 'onSet'>) => {
+  const { user } = useUserStore()
+
   return (
     <header className="flex-column-between h-[182px] bg-mint-3 px-[20px] pb-[24px] pt-[20px]">
       <div className="flex-align w-full justify-end">
-        <Profile name={username} size="sm" bgColor="#C5FDEC" onClickProfile={onSet} />
+        <Profile name={user.username} size="sm" bgColor="#C5FDEC" onClickProfile={onSet} />
       </div>
       <h1 className="title-B whitespace-pre text-black">{title}</h1>
     </header>
