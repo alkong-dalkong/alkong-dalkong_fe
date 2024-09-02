@@ -1,50 +1,51 @@
-import { createContext } from 'react'
-import { createStore } from 'zustand'
+import dayjs from 'dayjs'
+import { create } from 'zustand'
 
-type CalendarProps = {
-  date: Date
-  setDate: (date: Date) => void
-  schedules?: string[]
+type CalendarActions = {
+  goToPreviousMonth: () => void
+  goToNextMonth: () => void
+  setSelectedDate: (day: number) => void
+  updateScheduledDates: (dates: string[]) => void
+  resetCalendar: () => void
 }
 
-export type CalendarState = CalendarProps & {
+type CalendarState = {
+  currentDate: string
+  scheduledDays: string[]
+  actions: CalendarActions
+}
+
+const initialDate = dayjs().format('YYYY-MM-DD')
+
+export const useCalendarStore = create<CalendarState>((set, get) => ({
+  currentDate: initialDate,
+  scheduledDays: [],
   actions: {
-    prevMonth: () => void
-    nextMonth: () => void
-    getEmptyDate: () => number
-    getDatesInMonth: () => number
-  }
-}
-
-type CalendarStore = ReturnType<typeof createCalendarStore>
-
-export const createCalendarStore = (initProps: CalendarProps) => {
-  return createStore<CalendarState>()((set, get) => ({
-    ...initProps,
-    schedules: initProps.schedules || [],
-    actions: {
-      prevMonth: () => {
-        const { date } = get()
-        const prevMonth = new Date(date)
-        prevMonth.setMonth(prevMonth.getMonth() - 1)
-        set({ date: prevMonth })
-      },
-      nextMonth: () => {
-        const { date } = get()
-        const nextMonth = new Date(date)
-        nextMonth.setMonth(nextMonth.getMonth() + 1)
-        set({ date: nextMonth })
-      },
-      getEmptyDate: () => {
-        const { date } = get()
-        return new Date(date.getFullYear(), date.getMonth(), 1).getDay()
-      },
-      getDatesInMonth: () => {
-        const { date } = get()
-        return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-      },
+    goToPreviousMonth: () => {
+      const { currentDate } = get()
+      const previousMonthDate = dayjs(currentDate).subtract(1, 'month').format('YYYY-MM-DD')
+      set({ currentDate: previousMonthDate, scheduledDays: [] })
     },
-  }))
-}
+    goToNextMonth: () => {
+      const { currentDate } = get()
+      const nextMonthDate = dayjs(currentDate).add(1, 'month').format('YYYY-MM-DD')
+      set({ currentDate: nextMonthDate, scheduledDays: [] })
+    },
+    setSelectedDate: (day: number) => {
+      const { currentDate } = get()
+      const updatedDate = dayjs(currentDate).date(day).format('YYYY-MM-DD')
+      set({ currentDate: updatedDate })
+    },
+    updateScheduledDates: (dates: string[]) => {
+      const uniqueDays = Array.from(new Set(dates.map((date) => dayjs(date).format('YYYY-MM-DD'))))
+      set({ scheduledDays: uniqueDays })
+    },
+    resetCalendar: () => {
+      set({ currentDate: initialDate, scheduledDays: [] })
+    },
+  },
+}))
 
-export const CalendarContext = createContext<CalendarStore | null>(null)
+export const useCurrentDate = () => useCalendarStore((state) => state.currentDate)
+export const useScheduledDays = () => useCalendarStore((state) => state.scheduledDays)
+export const useCalendarActions = () => useCalendarStore((state) => state.actions)
