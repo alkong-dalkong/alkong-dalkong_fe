@@ -1,31 +1,24 @@
-export const validateDateBoxColor = (
-  dateParam: Date,
-  schedules: string[],
-  idx: number,
-): 'active' | 'schedule' | 'sunday' | 'saturday' | 'default' => {
-  const [year, month, currentDay] = [
-    dateParam.getFullYear(),
-    dateParam.getMonth() + 1,
-    dateParam.getDate(),
-  ]
+import dayjs from 'dayjs'
 
-  if (idx === currentDay) {
-    return 'active'
-  }
+const DateBoxColors = {
+  active: 'bg-mint-6 text-white rounded-full',
+  today: 'bg-mint-0 text-mint-6 rounded-full',
+  schedule: 'bg-mint-3 rounded-full',
+  sunday: 'text-mint-6',
+  saturday: 'text-gray-6',
+  default: '',
+}
 
-  if (
-    schedules.includes(`${year}-${String(month).padStart(2, '0')}-${String(idx).padStart(2, '0')}`)
-  ) {
-    return 'schedule'
-  }
+type validateDateBoxColorType = (date: string, indexOfDate: number, schedules: string[]) => string
 
-  const dayOfWeek = new Date(year, month - 1, idx).getDay()
+export const validateDateBoxColor: validateDateBoxColorType = (date, indexOfDate, schedules) => {
+  const currentMonthYear = dayjs(date).format('YYYY-MM')
+  const currentDate = dayjs(`${currentMonthYear}-${indexOfDate}`)
 
-  if (dayOfWeek === 0) {
-    return 'sunday'
-  } else if (dayOfWeek === 6) {
-    return 'saturday'
-  }
+  if (dayjs(date).date() === indexOfDate) return DateBoxColors['active']
+  if (schedules.includes(currentDate.format('YYYY-MM-DD'))) return DateBoxColors['schedule']
+  if (currentDate.day() === 0) return DateBoxColors['sunday']
+  if (currentDate.day() === 6) return DateBoxColors['saturday']
 
-  return 'default'
+  return DateBoxColors['default']
 }
