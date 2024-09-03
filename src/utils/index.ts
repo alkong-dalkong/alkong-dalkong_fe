@@ -1,1 +1,1 @@
-export * from './validateTheme'
+export * from './checkCalendarDateStyle'

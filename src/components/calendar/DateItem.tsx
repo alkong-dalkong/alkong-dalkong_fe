@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { useCalendarActions, useCurrentDate, useScheduledDays } from '@/store/calendarStore'
-import { validateDateBoxColor } from '@/utils/validateTheme'
+import { checkCalendarDateStyle } from '@/utils'
 
-type DateBoxProps = {
+type DateItemProps = {
   indexOfDate: number
 }
 
-export const DateItem = ({ indexOfDate }: DateBoxProps) => {
+export const DateItem = ({ indexOfDate }: DateItemProps) => {
   const date = useCurrentDate()
   const schedules = useScheduledDays()
   const { setSelectedDate } = useCalendarActions()
@@ -19,7 +19,7 @@ export const DateItem = ({ indexOfDate }: DateBoxProps) => {
   return (
     <button
       onClick={handleClickDate}
-      className={`flex-center aspect-square text-subtitle font-medium ${validateDateBoxColor(date, indexOfDate, schedules)}`}
+      className={`flex-center aspect-square text-subtitle font-medium ${checkCalendarDateStyle(date, indexOfDate, schedules)}`}
     >
       {indexOfDate}
     </button>
