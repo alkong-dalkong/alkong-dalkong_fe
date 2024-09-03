@@ -1,27 +1,27 @@
-import { useContext, useMemo } from 'react'
-import { useStore } from 'zustand'
+'use client'
+import dayjs from 'dayjs'
 
-import { CalendarContext } from '@/store/calendarStore'
+import { useCurrentDate } from '@/store/calendarStore'
 
-import { DateBoxList } from './DateBoxList'
-import { EmptyDateBoxList } from './EmptyDateBoxList'
+import { DateItem } from './DateItem'
 
 export const DateList = () => {
-  const store = useContext(CalendarContext)
-  if (!store) throw new Error('Missing CalendarContext.Provider in the tree')
-  const { getDatesInMonth, getEmptyDate } = useStore(store, (s) => s.actions)
-  const date = useStore(store, (s) => s.date)
-  const schedules = useStore(store, (s) => s.schedules)
+  const date = useCurrentDate()
 
-  const parseSchedules = useMemo(
-    () => schedules?.map((schedule) => schedule.split(' ')[0]),
-    [schedules],
-  )
+  const emptyDatesCount = dayjs(date).startOf('month').day()
+  const totalDates = dayjs(date).daysInMonth()
 
   return (
-    <>
-      <EmptyDateBoxList emptyDate={getEmptyDate()} />
-      <DateBoxList date={date} schedules={parseSchedules || []} datesInMonth={getDatesInMonth()} />
-    </>
+    <div className="flex-column flex-1 gap-2">
+      <div className="grid grid-cols-7 gap-2">
+        {Array.from({ length: emptyDatesCount }).map((_, idx) => (
+          <div key={idx} />
+        ))}
+
+        {Array.from({ length: totalDates }).map((_, idx) => (
+          <DateItem key={idx} indexOfDate={idx + 1} />
+        ))}
+      </div>
+    </div>
   )
 }

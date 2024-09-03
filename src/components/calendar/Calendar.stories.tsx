@@ -1,8 +1,7 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import type { Meta, StoryFn } from '@storybook/react'
-import type { StoreApi } from 'zustand'
 
-import type { CalendarState } from '@/store/calendarStore'
+import { useCalendarActions } from '@/store'
 
 import { Calendar } from './Calendar'
 
@@ -11,20 +10,32 @@ export default {
   component: Calendar,
 } as Meta
 
-type CalendarProps = {
-  store: StoreApi<CalendarState>
-}
+export const Default: StoryFn = () => {
+  const { resetCalendar } = useCalendarActions()
 
-const Template: StoryFn<CalendarProps> = () => {
-  const [date, setDate] = useState<Date>(new Date())
-  const schedules = ['2024-08-27 12:00:00', '2024-08-28 13:00:00', '2024-08-29 14:00:00']
+  useEffect(() => {
+    resetCalendar()
+  }, [])
 
   return (
     <div className="mx-auto h-[368px] w-[343px]">
-      <Calendar date={date} setDate={setDate} schedules={schedules} />
+      <Calendar />
     </div>
   )
 }
 
-export const Default = Template.bind({})
-Default.args = {}
+const schedules = ['2024-08-27 12:00:00', '2024-09-18 13:00:00', '2024-09-29 14:00:00']
+
+export const WithSchedules: StoryFn = () => {
+  const { resetCalendar, updateScheduledDates } = useCalendarActions()
+
+  useEffect(() => {
+    resetCalendar()
+    updateScheduledDates(schedules)
+  }, [resetCalendar, updateScheduledDates])
+  return (
+    <div className="mx-auto h-[368px] w-[343px]">
+      <Calendar />
+    </div>
+  )
+}
