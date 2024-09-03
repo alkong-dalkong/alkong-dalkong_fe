@@ -1,3 +1,4 @@
+'use client'
 import { DateList } from './DateList'
 import { Navigator } from './Navigator'
 
