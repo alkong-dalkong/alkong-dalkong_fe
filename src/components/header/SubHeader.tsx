@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 
 import { Icon } from '../icons'
@@ -7,7 +9,6 @@ export type HeaderProps = {
   onClose: VoidFunction
   onCancel: VoidFunction
   onConfirm: VoidFunction
-  onSet: VoidFunction
   onDelete: VoidFunction
   onModify: VoidFunction
 }

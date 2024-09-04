@@ -15,18 +15,17 @@ type ProfileModalProps = {
 export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
   const { user, setUser } = useUserStore()
 
-  const handleClickScrim: MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (e.target !== e.currentTarget) return
+  const handleClickScrim: MouseEventHandler<HTMLDivElement> = () => {
     if (onClickProfileModal) onClickProfileModal()
   }
 
   return (
-    <button
-      type="button"
+    <div
       onClick={handleClickScrim}
       className={`absolute inset-0 flex h-[calc(100vh-75px)] w-full items-end justify-center overflow-hidden bg-[rgba(15,23,42,0.5)] px-[52px] pb-[62px] ${zIndex.fab}`}
+      aria-hidden="true"
     >
-      <button type="button" onClick={handleClickScrim} className="grid grid-cols-3 gap-[40px]">
+      <div className="grid grid-cols-3 gap-[40px]">
         {user.family?.map(({ userId, username }) => {
           const handleClickProfile = () => {
             setUser({ ...user, userId: userId, username: username })
@@ -42,7 +41,7 @@ export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
             </div>
           )
         })}
-      </button>
-    </button>
+      </div>
+    </div>
   )
 }

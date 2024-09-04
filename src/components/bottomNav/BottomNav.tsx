@@ -1,4 +1,5 @@
 'use client'
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -44,7 +45,7 @@ export const BottomNav = () => {
             const bgColorStyle = selected ? '#13A076' : '#676A6B'
 
             return (
-              <>
+              <Fragment key={index}>
                 <Link href={path} className={`flex-column-align gap-y-[6px] ${textStyle} bg-white`}>
                   <Icon name={icon} color={bgColorStyle} />
                   {text}
@@ -67,7 +68,7 @@ export const BottomNav = () => {
                     </div>
                   </div>
                 )}
-              </>
+              </Fragment>
             )
           })}
         </div>

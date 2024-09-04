@@ -18,7 +18,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={`${notoSansKR.variable} font-notoSansKR font-medium`}>
+      <div id="layout" className={`${notoSansKR.variable} font-notoSansKR font-medium`}>
         <Story />
       </div>
     ),
