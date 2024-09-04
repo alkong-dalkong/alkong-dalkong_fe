@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 
 import { useUserStore } from '@/store'
@@ -7,15 +9,25 @@ import { Profile } from '../profile/Profile'
 
 import type { HeaderProps } from './SubHeader'
 
-export const Setting = ({ title, onSet }: Pick<HeaderProps, 'title' | 'onSet'>) => {
+export const Setting = ({ title }: Pick<HeaderProps, 'title'>) => {
   const { user } = useUserStore()
+
+  const router = useRouter()
+  const handleGoSetting = () => {
+    router.push(`/setting/${user.userId}`)
+  }
 
   return (
     <header className="flex-column-between h-[182px] bg-mint-3 px-[20px] pb-[24px] pt-[20px]">
       <div className="flex-align w-full justify-end">
-        <Profile name={user.username} size="sm" bgColor="#C5FDEC" onClickProfile={onSet} />
+        <Profile
+          name={user.username}
+          size="sm"
+          bgColor="#C5FDEC"
+          onClickProfile={handleGoSetting}
+        />
       </div>
-      <h1 className="title-B whitespace-pre text-black">{title}</h1>
+      <h1 className="title-B whitespace-pre text-black">{`${user.username}${title}`}</h1>
     </header>
   )
 }
