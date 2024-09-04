@@ -9,7 +9,6 @@ export type HeaderProps = {
   onClose: VoidFunction
   onCancel: VoidFunction
   onConfirm: VoidFunction
-  onSet: VoidFunction
   onDelete: VoidFunction
   onModify: VoidFunction
 }
