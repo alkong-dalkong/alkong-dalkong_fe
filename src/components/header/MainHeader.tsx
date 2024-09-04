@@ -17,7 +17,7 @@ export const Setting = ({ title, onSet }: Pick<HeaderProps, 'title' | 'onSet'>) 
       <div className="flex-align w-full justify-end">
         <Profile name={user.username} size="sm" bgColor="#C5FDEC" onClickProfile={onSet} />
       </div>
-      <h1 className="title-B whitespace-pre text-black">{title}</h1>
+      <h1 className="title-B whitespace-pre text-black">{`${user.username}${title}`}</h1>
     </header>
   )
 }
