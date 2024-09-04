@@ -17,7 +17,7 @@ export const ScheduleSection = ({ list }: ClinicListProps) => {
   const todaySchedules = list.filter((item) => item.hospitalDate.startsWith(date))
 
   const handleClickPlusButton = () => {
-    router.push('clinic/write')
+    router.push('/clinic/write')
   }
 
   return (
