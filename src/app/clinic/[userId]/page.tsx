@@ -1,15 +1,19 @@
-import { BottomNav } from '@/components'
+import { BottomNav, Calendar } from '@/components'
+import { FloatingProfile, ScheduleSection } from '@/features/clinic'
 
-export type ClinicRouteParams = {
-  params: { userId: string }
-}
-
-const Clinic = ({ params: { userId } }: ClinicRouteParams) => {
+const Clinic = () => {
   return (
-    <div>
-      <h2>{userId}</h2>
+    <main className="mx-4 mb-[10px] mt-[38px]">
+      <FloatingProfile />
+
+      <section>
+        <Calendar />
+      </section>
+
+      <ScheduleSection />
+
       <BottomNav />
-    </div>
+    </main>
   )
 }
 
