@@ -2,10 +2,9 @@
 
 import { useEffect } from 'react'
 
-import { BottomNav, Calendar } from '@/components'
-import { useCalendarActions } from '@/store'
+import { BottomNav, Calendar, Profile } from '@/components'
+import { useCalendarActions, useUserStore } from '@/store'
 
-import { FloatingProfile } from './FloatingProfile'
 import { ScheduleSection } from './ScheduleSection'
 
 const LIST = [
@@ -46,11 +45,12 @@ type ClinicClientPageProps = {
 }
 
 export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
-  const schedules = LIST.map((item) => item.hospitalDate)
+  const { user } = useUserStore()
   const { resetCalendar, updateScheduledDates } = useCalendarActions()
 
+  const schedules = LIST.map((schedule) => schedule.hospitalDate)
+
   useEffect(() => {
-    console.log('render')
     resetCalendar()
     updateScheduledDates(schedules)
   }, [resetCalendar, schedules, updateScheduledDates])
@@ -58,7 +58,9 @@ export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
   return (
     <>
       <main className="mx-4 mb-[130px] mt-[38px] overflow-y-scroll scrollbar-hide">
-        <FloatingProfile />
+        <div className="absolute right-5 top-[22px]">
+          <Profile name={user.username} size="sm" bgColor="#C5FDEC" />
+        </div>
 
         <section>
           <Calendar />

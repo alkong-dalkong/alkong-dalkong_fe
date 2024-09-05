@@ -1,5 +1,4 @@
 export * from './ClinicClientPage'
-export * from './FloatingProfile'
 export * from './info/ClinicInfoClientPage'
 export * from './info/ClinicInfoModal'
 export * from './ScheduleItem'
