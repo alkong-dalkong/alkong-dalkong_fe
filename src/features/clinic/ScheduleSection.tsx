@@ -31,6 +31,7 @@ export const ScheduleSection = ({ userId, list }: ClinicListProps) => {
         {todaySchedules.map((item) => (
           <ScheduleItem
             key={item.medicalId}
+            userId={userId}
             medicalId={item.medicalId}
             hospitalName={item.hospitalName}
             hospitalDate={item.hospitalDate}

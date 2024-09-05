@@ -11,17 +11,18 @@ import 'dayjs/locale/ko'
 dayjs.locale('ko')
 
 export const ScheduleItem = ({
+  userId,
   medicalId,
   hospitalName,
   hospitalDate,
   medicalPart,
-}: ScheduleType) => {
+}: ScheduleType & { userId: string }) => {
   const router = useRouter()
   const time = dayjs(hospitalDate).format('HH:mm')
   const date = dayjs(hospitalDate).format('M월 D일(dd) A HH:mm')
 
   const handleClickItem = () => {
-    router.push(`/clinic/info/${medicalId}`)
+    router.push(`/clinic/${userId}/info/${medicalId}`)
   }
 
   return (

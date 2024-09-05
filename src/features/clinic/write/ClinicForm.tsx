@@ -48,7 +48,7 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
 
       <InputGroup>
         <Label icon="calendar-label">방문 날짜</Label>
-        <button type="button" onClick={toggleDateBottomSheet}>
+        <button type="button" onClick={handleToggleDateBottomSheet}>
           <InputGroup.Input
             section="hospitalDate"
             readOnly
@@ -86,7 +86,7 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
         <Label icon="time-label">알람</Label>
         <div className="flex-between-align w-full rounded-xl border border-mint-3 py-4 pl-5 pr-4">
           <Label>알람</Label>
-          <InputGroup.TextWithArrow section="medicalAlarm" onClick={toggleAlarmBottomSheet} />
+          <InputGroup.TextWithArrow section="medicalAlarm" onClick={handleToggleAlarmBottomSheet} />
         </div>
         <InputGroup.ErrorMessage section="medicalAlarm" />
         <AlarmBottomSheet
