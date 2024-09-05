@@ -1,0 +1,35 @@
+'use client'
+import type { PropsWithChildren } from 'react'
+import type { SubmitHandler } from 'react-hook-form'
+import { FormProvider } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+
+import { DevTool } from '@/components'
+import { useSignupForm } from '@/schema'
+import type { SignupFormType } from '@/types'
+
+export const SignUpFormProvider = ({ children }: PropsWithChildren) => {
+  const formMethod = useSignupForm()
+  const { handleSubmit, control } = formMethod
+
+  const router = useRouter()
+
+  const signUpHandler: SubmitHandler<SignupFormType> = (formData) => {
+    const signUpData = {
+      ...formData,
+      birth: formData.birth.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3'),
+      agree: formData.personal, // 추후 API 명세 변경 시 수정 필요
+    }
+  }
+
+  return (
+    <>
+      <FormProvider {...formMethod}>
+        <form onSubmit={handleSubmit(signUpHandler)} className="flex-column size-full">
+          {children}
+        </form>
+      </FormProvider>
+      <DevTool control={control} />
+    </>
+  )
+}
