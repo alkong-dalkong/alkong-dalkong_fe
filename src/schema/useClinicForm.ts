@@ -18,7 +18,7 @@ export const useClinicForm = (initialValues?: ClinicFormType) => {
     hospitalDate: '',
     medicalPart: [],
     medicalMemo: '',
-    medicalAlarm: '',
+    medicalAlarm: '없음',
   }
 
   const defaultValues = initialValues ? initialValues : defaultValue
