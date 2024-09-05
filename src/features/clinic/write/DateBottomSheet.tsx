@@ -8,9 +8,8 @@ import { useCalendarActions, useCurrentDate } from '@/store/calendarStore'
 import { useSelectedTime } from '@/store/timeStore'
 import type { ClinicBottomSheetType } from '@/types'
 
-export const DateBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
+const Header = ({ section, onClickScrim }: Omit<ClinicBottomSheetType, 'isShowing'>) => {
   const { setValue } = useFormContext()
-  const { resetCalendar } = useCalendarActions()
   const selectedDate = useCurrentDate()
   const selectedTime = useSelectedTime()
 
@@ -21,34 +20,48 @@ export const DateBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBott
     onClickScrim()
   }
 
+  return (
+    <div className="-mx-2 w-full pb-5">
+      <SubHeader.Confirm
+        title="방문 날짜"
+        onCancel={onClickScrim}
+        onConfirm={handleClickComplete}
+      />
+    </div>
+  )
+}
+
+const DateOfVisit = () => {
+  const selectedDate = useCurrentDate()
+
+  return (
+    <div className="flex-between-align mx-1 mt-[6px]">
+      <p className="headline-B">방문 예정 날짜</p>
+      <div className="body-M rounded-md bg-mint-2 px-3 py-[6px]">
+        {dayjs(selectedDate).format('YYYY/MM/DD')}
+      </div>
+    </div>
+  )
+}
+
+export const DateBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
+  const { resetCalendar } = useCalendarActions()
+
   useEffect(() => {
     resetCalendar()
-  }, [])
+  }, [resetCalendar])
 
   return (
     <BottomSheet isShowing={isShowing} onClickScrim={onClickScrim}>
-      <div className="w-full pb-5">
-        <SubHeader.Confirm
-          title="방문 날짜"
-          onCancel={onClickScrim}
-          onConfirm={handleClickComplete}
-        />
-      </div>
+      <Header section={section} onClickScrim={onClickScrim} />
 
       <div className="size-full overflow-y-scroll pb-12 pt-5 scrollbar-hide">
         <section>
           <Label icon="calendar-label">방문 날짜를 선택해 주세요.</Label>
 
-          <div className="mt-4">
-            <div className="mx-2">
-              <Calendar />
-            </div>
-            <div className="flex-between-align mx-1 mt-[6px]">
-              <p className="headline-B">방문 예정 날짜</p>
-              <div className="body-M rounded-md bg-mint-2 px-3 py-[6px]">
-                {dayjs(selectedDate).format('YYYY/MM/DD')}
-              </div>
-            </div>
+          <div className="mx-2 mt-4">
+            <Calendar />
+            <DateOfVisit />
           </div>
         </section>
 

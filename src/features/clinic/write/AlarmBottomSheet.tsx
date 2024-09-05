@@ -10,7 +10,7 @@ const ALARM_TIME = ['1주 전', '24시간 전', '12시간 전', '1시간 전', '
 
 export const AlarmBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
   const { setValue } = useFormContext()
-  const [selectedTime, setSelectedTime] = useState<string>('없음')
+  const [selectedTime, setSelectedTime] = useState<string>(ALARM_TIME[5])
 
   const handleClickComplete = () => {
     setValue(section, selectedTime)
@@ -29,18 +29,18 @@ export const AlarmBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBot
 
       <div className="size-full overflow-y-scroll pb-12 pt-5 scrollbar-hide">
         <Label icon="time-label">알람 주기를 선택해주세요.</Label>
-      </div>
 
-      <div className="flex-column mt-3 w-full rounded-xl bg-gray-2 px-6 py-[2px]">
-        {ALARM_TIME.map((time) => (
-          <button
-            key={time}
-            className="headline-M border border-b-gray-4 py-[14px] text-left last:border-none"
-            onClick={() => handleClickTime(time)}
-          >
-            {time}
-          </button>
-        ))}
+        <div className="flex-column mt-3 w-full rounded-xl bg-gray-2 px-6 py-[2px]">
+          {ALARM_TIME.map((time) => (
+            <button
+              key={time}
+              className="headline-M border border-b-gray-4 py-[14px] text-left last:border-none"
+              onClick={() => handleClickTime(time)}
+            >
+              {time}
+            </button>
+          ))}
+        </div>
       </div>
     </BottomSheet>
   )

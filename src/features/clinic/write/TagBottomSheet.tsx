@@ -1,16 +1,11 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { BottomSheet, Label, SubHeader } from '@/components'
 import ActionTag from '@/components/actionTag/ActionTag'
 import type { ClinicBottomSheetType } from '@/types'
-
-type ToggledTagListProps = {
-  selectedTags: string[]
-  onClick: (tag: string) => void
-}
 
 const CLINIC_TAGS = [
   '건강검진',
@@ -24,24 +19,29 @@ const CLINIC_TAGS = [
   '어지러움',
 ]
 
-const ToggledTagList = ({ selectedTags, onClick }: ToggledTagListProps) => {
+type ToggledTagListProps = {
+  selectedTags: string[]
+  onTagToggle: (tag: string) => void
+}
+
+const ToggledTagList = ({ selectedTags, onTagToggle }: ToggledTagListProps) => {
   return (
-    <>
+    <div className="mt-4 flex flex-wrap gap-2">
       {CLINIC_TAGS.map((tag) => {
         const isSelected = selectedTags.includes(tag)
         const TagComponent = isSelected ? ActionTag.Minus : ActionTag.Plus
 
-        return <TagComponent key={tag} label={tag} onClick={() => onClick(tag)} />
+        return <TagComponent key={tag} label={tag} onClick={() => onTagToggle(tag)} />
       })}
-    </>
+    </div>
   )
 }
 
 export const TagBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
   const { getValues, setValue } = useFormContext()
-  const [selectedTags, setSelectedTags] = useState<string[]>(getValues(section) || [])
+  const [selectedTags, setSelectedTags] = useState<string[]>(() => getValues(section) || [])
 
-  const handleClickTag = (tag: string) => {
+  const handleTagToggle = (tag: string) => {
     setSelectedTags((prevSelectedTags) =>
       prevSelectedTags.includes(tag)
         ? prevSelectedTags.filter((selectedTag) => selectedTag !== tag)
@@ -54,10 +54,6 @@ export const TagBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBotto
     onClickScrim()
   }
 
-  useEffect(() => {
-    setSelectedTags(getValues(section))
-  }, [getValues, isShowing, section])
-
   return (
     <BottomSheet isShowing={isShowing} onClickScrim={onClickScrim}>
       <div className="w-full pb-5">
@@ -68,12 +64,9 @@ export const TagBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBotto
         />
       </div>
 
-      <div className="size-full overflow-y-scroll pb-12 pt-5 scrollbar-hide">
+      <div className="mt-5">
         <Label icon="check-label">진료 과목을 선택해주세요.</Label>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          <ToggledTagList selectedTags={selectedTags} onClick={handleClickTag} />
-        </div>
+        <ToggledTagList selectedTags={selectedTags} onTagToggle={handleTagToggle} />
       </div>
     </BottomSheet>
   )
