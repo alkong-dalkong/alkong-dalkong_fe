@@ -1,15 +1,11 @@
 import { Icon } from '@/components'
 import Label from '@/components/label/Label'
 
-export type HealthRouteParams = {
-  params: { userId: string }
-}
-
-const GraphSection = ({ params: { userId } }: HealthRouteParams) => {
+const GraphSection = () => {
   return (
     <section className="mb-10 w-full">
       <div className="flex w-full items-center gap-4">
-        <Label icon="check-label">체중 그래프 {userId}</Label>
+        <Label icon="check-label">체중 그래프</Label>
         <div>주간</div>
       </div>
 
@@ -24,7 +20,7 @@ const GraphSection = ({ params: { userId } }: HealthRouteParams) => {
         </div>
       </div>
 
-      <div className="mx-auto h-[243px] w-[316px] bg-gray-100"></div>
+      <div className="mx-auto h-[243px] w-[316px]"></div>
     </section>
   )
 }
