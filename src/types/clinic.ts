@@ -16,3 +16,9 @@ export type ScheduleType = {
 export type ClinicResponse = {
   list: ScheduleType[]
 }
+
+export type ClinicBottomSheetType = {
+  section: string
+  isShowing: boolean
+  onClickScrim: VoidFunction
+}

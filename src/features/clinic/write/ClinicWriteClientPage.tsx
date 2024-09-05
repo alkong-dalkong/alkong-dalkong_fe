@@ -12,16 +12,18 @@ export const ClinicWriteClientPage = () => {
   const { handleSubmit } = formMethod
 
   return (
-    <>
-      <MainHeader.Confirm
-        title={`의사에게 전달할\n특이사항을 기입해주세요.`}
-        onCancel={() => {}}
-        onConfirm={handleSubmit(() => {})}
-      />
+    <div className="flex-column h-full overflow-hidden">
+      <div>
+        <MainHeader.Confirm
+          title={`의사에게 전달할\n특이사항을 기입해주세요.`}
+          onCancel={() => {}}
+          onConfirm={handleSubmit(() => {})}
+        />
+      </div>
 
       <FormProvider {...formMethod}>
         <ClinicForm />
       </FormProvider>
-    </>
+    </div>
   )
 }
