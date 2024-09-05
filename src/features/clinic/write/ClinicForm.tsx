@@ -52,7 +52,7 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
           <InputGroup.Input
             section="hospitalDate"
             readOnly
-            placeholder="클릭하여 방문 날짜를 선택해주세요."
+            placeholder="방문 날짜를 선택해주세요."
           />
         </button>
         <InputGroup.ErrorMessage section="hospitalDate" />
