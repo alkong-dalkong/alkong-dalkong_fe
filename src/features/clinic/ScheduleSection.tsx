@@ -27,18 +27,15 @@ export const ScheduleSection = ({ userId, list }: ClinicListProps) => {
         <ActionTag.Plus label="추가" primary onClick={handleClickPlusButton} />
       </div>
 
-      <div className="flex-column gap-3">
-        {todaySchedules.map((item) => (
-          <ScheduleItem
-            key={item.medicalId}
-            userId={userId}
-            medicalId={item.medicalId}
-            hospitalName={item.hospitalName}
-            hospitalDate={item.hospitalDate}
-            medicalPart={item.medicalPart}
-          />
-        ))}
-      </div>
+      {todaySchedules.length ? (
+        <div className="flex-column gap-3">
+          {todaySchedules.map((item) => (
+            <ScheduleItem key={item.medicalId} userId={userId} item={item} />
+          ))}
+        </div>
+      ) : (
+        <p className="subtitle-M mt-[82px] text-center text-gray-6">예정된 일정이 없어요!</p>
+      )}
     </section>
   )
 }

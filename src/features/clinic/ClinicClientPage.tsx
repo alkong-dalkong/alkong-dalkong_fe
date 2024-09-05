@@ -57,7 +57,7 @@ export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
 
   return (
     <>
-      <main className="mx-4 mt-[38px] overflow-y-scroll scrollbar-hide">
+      <main className="mx-4 mb-[130px] mt-[38px] overflow-y-scroll scrollbar-hide">
         <FloatingProfile />
 
         <section>

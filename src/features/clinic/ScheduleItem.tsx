@@ -10,14 +10,15 @@ import 'dayjs/locale/ko'
 
 dayjs.locale('ko')
 
-export const ScheduleItem = ({
-  userId,
-  medicalId,
-  hospitalName,
-  hospitalDate,
-  medicalPart,
-}: ScheduleType & { userId: string }) => {
+type ScheduleItemProps = {
+  userId: string
+  item: ScheduleType
+}
+
+export const ScheduleItem = ({ userId, item }: ScheduleItemProps) => {
   const router = useRouter()
+  const { medicalId, hospitalDate, hospitalName, medicalPart } = item
+
   const time = dayjs(hospitalDate).format('HH:mm')
   const date = dayjs(hospitalDate).format('M월 D일(dd) A HH:mm')
 
