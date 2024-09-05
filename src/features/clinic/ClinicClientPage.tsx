@@ -41,7 +41,11 @@ const LIST = [
   },
 ]
 
-export const ClinicClientPage = () => {
+type ClinicClientPageProps = {
+  userId: string
+}
+
+export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
   const schedules = LIST.map((item) => item.hospitalDate)
   const { resetCalendar, updateScheduledDates } = useCalendarActions()
 
@@ -60,7 +64,7 @@ export const ClinicClientPage = () => {
           <Calendar />
         </section>
 
-        <ScheduleSection list={LIST} />
+        <ScheduleSection userId={userId} list={LIST} />
       </main>
       <BottomNav />
     </>

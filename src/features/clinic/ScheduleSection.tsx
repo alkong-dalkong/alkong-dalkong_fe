@@ -9,15 +9,15 @@ import type { ClinicResponse } from '@/types'
 
 import { ScheduleItem } from './ScheduleItem'
 
-type ClinicListProps = ClinicResponse
+type ClinicListProps = ClinicResponse & { userId: string }
 
-export const ScheduleSection = ({ list }: ClinicListProps) => {
+export const ScheduleSection = ({ userId, list }: ClinicListProps) => {
   const router = useRouter()
   const date = useCurrentDate()
   const todaySchedules = list.filter((item) => item.hospitalDate.startsWith(date))
 
   const handleClickPlusButton = () => {
-    router.push('/clinic/write')
+    router.push(`/clinic/${userId}/write`)
   }
 
   return (
