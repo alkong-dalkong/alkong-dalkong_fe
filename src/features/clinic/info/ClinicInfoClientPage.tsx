@@ -28,7 +28,7 @@ type HeaderProps = {
 
 const Header = ({ isEdit, toggleIsEdit, handleClickConfirm, openModal }: HeaderProps) => {
   return (
-    <>
+    <div>
       {isEdit ? (
         <MainHeader.Confirm
           title={`의사에게 전달할\n특이사항을 기입해주세요.`}
@@ -42,7 +42,7 @@ const Header = ({ isEdit, toggleIsEdit, handleClickConfirm, openModal }: HeaderP
           onModify={toggleIsEdit}
         />
       )}
-    </>
+    </div>
   )
 }
 
@@ -57,7 +57,7 @@ export const ClinicInfoClientPage = () => {
   }
 
   return (
-    <>
+    <div className="flex-column h-full overflow-hidden">
       <Header
         isEdit={isEdit}
         toggleIsEdit={toggleIsEdit}
@@ -70,6 +70,6 @@ export const ClinicInfoClientPage = () => {
       </FormProvider>
 
       <ClinicInfoModal modalState={modalState} closeModal={closeModal} />
-    </>
+    </div>
   )
 }
