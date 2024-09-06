@@ -39,4 +39,8 @@ export const useSignOut = (options?: UseMutationOptions) =>
   useMutation({
     mutationFn: signOut,
     ...options,
+    onSuccess: async (data, ...rest) => {
+      localStorage.clear()
+      options?.onSuccess?.(data, ...rest)
+    },
   })
