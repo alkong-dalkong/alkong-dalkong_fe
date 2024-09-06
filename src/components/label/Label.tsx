@@ -9,9 +9,9 @@ type LabelProps = {
 
 const Label = ({ children, icon }: PropsWithChildren<LabelProps>) => {
   return (
-    <div className="flex-align subtitle-B gap-2">
+    <div className="flex-align subtitle-B">
       {icon && <Icon name={icon} />}
-      <p className="subtitle-B">{children}</p>
+      <p className="subtitle-B ml-2">{children}</p>
     </div>
   )
 }
