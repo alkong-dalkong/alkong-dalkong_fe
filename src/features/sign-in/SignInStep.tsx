@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 
 import Logo from '@/assets/logo.png'
 import { Button, DevTool, InputGroup } from '@/components'
+import { useSignIn } from '@/hooks'
 import { useLoginForm } from '@/schema'
 import { useUserStore } from '@/store'
 import type { LoginFormType } from '@/types'
@@ -16,12 +17,24 @@ export const SignInStep = () => {
 
   const { user, setUser } = useUserStore()
 
+  const { mutate: signIn } = useSignIn({
+    onSuccess: (userInfo) => {
+      setUser({ ...userInfo })
+      router.replace(`/home/${user.userId}`)
+    },
+    onError: (error) => {
+      console.log(error.message)
+    },
+  })
+
   const router = useRouter()
   const handleSignUp = () => {
     router.push('sign-up/account')
   }
 
-  const signInHandler: SubmitHandler<LoginFormType> = (formData) => {}
+  const signInHandler: SubmitHandler<LoginFormType> = (formData) => {
+    signIn(formData)
+  }
 
   return (
     <>
