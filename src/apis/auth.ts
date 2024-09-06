@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 import type { SignInResponse, SignUpRequest } from '@/types'
 
@@ -11,12 +12,13 @@ const signInConfig = {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
   },
+  withCredentials: true,
 }
 
 export const signIn = async (request: SignUpRequest) => {
   const res = await axios.post<SignInResponse>(`/user/login`, request, signInConfig)
 
-  const refreshToken = document.cookie
+  const refreshToken = Cookies.get('refresh')
   const accessToken: string = res.headers['authorization']
 
   return { ...res.data, accessToken, refreshToken }
