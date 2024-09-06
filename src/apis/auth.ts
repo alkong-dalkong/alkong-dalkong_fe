@@ -1,17 +1,19 @@
 import axios from 'axios'
 
-import type { SignInRequest, SignInResponse, SignUpRequest } from '@/types'
+import type { SignInResponse, SignUpRequest } from '@/types'
 
 import { api } from '.'
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+
 const signInConfig = {
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
   },
 }
 
-export const signIn = async (request: SignInRequest) => {
+export const signIn = async (request: SignUpRequest) => {
   const res = await axios.post<SignInResponse>(`/user/login`, request, signInConfig)
 
   const refreshToken = document.cookie
@@ -21,11 +23,11 @@ export const signIn = async (request: SignInRequest) => {
 }
 
 export const checkDuplicateId = async (request: { id: string }) => {
-  return await api.post('/user/validate-id', request)
+  return await axios.post(`${BASE_URL}/user/validate-id`, request)
 }
 
 export const signUp = async (request: SignUpRequest) => {
-  return await api.post('/user/signup', request)
+  return await axios.post(`${BASE_URL}/user/signup`, request)
 }
 
 export const signOut = async () => {
