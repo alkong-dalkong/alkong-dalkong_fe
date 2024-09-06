@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import { Button, InputGroup } from '@/components'
 import Label from '@/components/label/Label'
+import { useCheckDuplicateId } from '@/hooks'
 
 export const AccountStep = () => {
   const { watch, getValues, getFieldState, setError, clearErrors } = useFormContext()
@@ -16,7 +17,20 @@ export const AccountStep = () => {
 
   const [invalidId, setInvalidId] = useState(true)
 
-  const handleCheckDuplicateId = () => {}
+  const { mutate: checkDuplicateId } = useCheckDuplicateId({
+    onSuccess: () => {
+      setInvalidId(false)
+      clearErrors('id')
+    },
+    onError: (error) => {
+      setError('id', { type: 'custom', message: '이미 존재하는 아이디입니다.' })
+      console.log(error.message)
+    },
+  })
+
+  const handleCheckDuplicateId = () => {
+    checkDuplicateId({ id: getValues('id') })
+  }
 
   const router = useRouter()
   const handleGoNext = () => {
