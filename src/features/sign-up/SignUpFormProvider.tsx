@@ -5,6 +5,7 @@ import { FormProvider } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
 import { DevTool } from '@/components'
+import { useSignUp } from '@/hooks'
 import { useSignupForm } from '@/schema'
 import type { SignupFormType } from '@/types'
 
@@ -14,12 +15,22 @@ export const SignUpFormProvider = ({ children }: PropsWithChildren) => {
 
   const router = useRouter()
 
+  const { mutate: signUp } = useSignUp({
+    onSuccess: () => {
+      router.replace(`/sign-up/complete`)
+    },
+    onError: (error) => {
+      console.log(error.message)
+    },
+  })
+
   const signUpHandler: SubmitHandler<SignupFormType> = (formData) => {
     const signUpData = {
       ...formData,
       birth: formData.birth.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3'),
       agree: formData.personal, // 추후 API 명세 변경 시 수정 필요
     }
+    signUp({ ...signUpData })
   }
 
   return (
