@@ -1,6 +1,8 @@
 import { Icon } from '@/components'
 import Label from '@/components/label/Label'
 
+import { WeightChart } from './WeightChart'
+
 const GraphSection = () => {
   return (
     <section className="mb-10 w-full">
@@ -15,12 +17,14 @@ const GraphSection = () => {
           <div className="subtitle-B text-gray-7">이전</div>
         </div>
         <div className="flex cursor-pointer items-center gap-2">
-          <div className="subtitle-B text-gray-7">이후</div>
+          <div className="subtitle-B text-gray-7">다음</div>
           <Icon name="arrow-right" color="#0E8763" />
         </div>
       </div>
 
-      <div className="mx-auto h-[243px] w-[316px]"></div>
+      <div className="h-[243px] w-full">
+        <WeightChart />
+      </div>
     </section>
   )
 }
