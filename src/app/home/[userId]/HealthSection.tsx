@@ -1,6 +1,8 @@
+'use client'
+
 import Label from '@/components/label/Label'
 
-import { InfoBox } from '../InfoBox'
+import { InfoBox } from './InfoBox'
 
 const HealthSection = () => {
   return (
