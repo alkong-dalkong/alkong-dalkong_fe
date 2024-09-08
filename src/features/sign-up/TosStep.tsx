@@ -26,7 +26,7 @@ export const TosStep = () => {
   const tosContent = isPersonal ? tos.personal : tos.notification
 
   return (
-    <div className="flex-column-between mx-[20px] h-full gap-[32px] bg-white pb-[55px]">
+    <div className="flex-column-between mx-[20px] min-h-screen gap-[32px] bg-white pb-[55px]">
       <div>
         <div className="flex-column-align mb-[40px] mt-[18px] gap-[12px]">
           <h1 className="subtitle-B">회원가입</h1>

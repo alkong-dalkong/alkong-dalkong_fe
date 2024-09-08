@@ -36,9 +36,7 @@ export const SignUpFormProvider = ({ children }: PropsWithChildren) => {
   return (
     <>
       <FormProvider {...formMethod}>
-        <form onSubmit={handleSubmit(signUpHandler)} className="flex-column size-full">
-          {children}
-        </form>
+        <form onSubmit={handleSubmit(signUpHandler)}>{children}</form>
       </FormProvider>
       <DevTool control={control} />
     </>
