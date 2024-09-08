@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { BottomSheet, Button, Icon, InputGroup } from '@/components'
@@ -6,9 +7,18 @@ import { tos } from '@/constants'
 import { useBoolean, useToggle } from '@/hooks'
 
 export const TosStep = () => {
-  const { watch, getFieldState } = useFormContext()
-  const isEmpty = !watch('personal')
-  const invalid = getFieldState('personal').invalid
+  const { watch } = useFormContext()
+  const [isDisable, setDisable] = useState(true)
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      const isNotEmpty = !!value['personal']
+
+      isNotEmpty ? setDisable(false) : setDisable(true)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [watch])
 
   const [isShowing, toggleShowing] = useToggle(false)
   const [isPersonal, setPersonal, setNotification] = useBoolean(true)
@@ -48,7 +58,7 @@ export const TosStep = () => {
           <InputGroup.ErrorMessage section="personal" />
         </div>
       </div>
-      <Button type="submit" disabled={isEmpty || invalid}>
+      <Button type="submit" disabled={isDisable}>
         시작하기
       </Button>
       <BottomSheet onClickScrim={toggleShowing} isShowing={isShowing} bgStyle="bg-gray-2">
