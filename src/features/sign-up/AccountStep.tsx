@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
@@ -8,18 +8,29 @@ import Label from '@/components/label/Label'
 import { useCheckDuplicateId } from '@/hooks'
 
 export const AccountStep = () => {
-  const { watch, getValues, getFieldState, setError, clearErrors } = useFormContext()
-  const isEmpty = !watch('id') || !watch('password') || !watch('confirm')
-  const invalid =
-    getFieldState('id').invalid ||
-    getFieldState('password').invalid ||
-    getFieldState('confirm').invalid
+  const { watch, getValues, setError, clearErrors, trigger } = useFormContext()
+  const [isDisable, setDisable] = useState(true)
 
-  const [invalidId, setInvalidId] = useState(true)
+  useEffect(() => {
+    const subscription = watch((value) => {
+      const isNotEmpty = !!(value['id'] && value['password'] && value['confirm'])
 
+      isNotEmpty ? setDisable(false) : setDisable(true)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [watch])
+
+  const [currentId, setCurrentId] = useState({
+    isValid: false,
+    value: getValues('id'),
+  })
   const { mutate: checkDuplicateId } = useCheckDuplicateId({
     onSuccess: () => {
-      setInvalidId(false)
+      setCurrentId({
+        isValid: true,
+        value: getValues('id'),
+      })
       clearErrors('id')
     },
     onError: (error) => {
@@ -33,12 +44,17 @@ export const AccountStep = () => {
   }
 
   const router = useRouter()
-  const handleGoNext = () => {
-    if (invalidId) {
+  const handleGoNext = async () => {
+    const isValid = await trigger(['id', 'password', 'confirm'])
+    if (!isValid) return
+    if (!currentId.isValid || currentId.value !== getValues('id')) {
       setError('id', { type: 'custom', message: '중복확인하지 않은 아이디입니다.' })
       return
     }
-    setInvalidId(false)
+    setCurrentId({
+      isValid: true,
+      value: getValues('id'),
+    })
     router.push('/sign-up/user-info')
   }
 
@@ -89,7 +105,7 @@ export const AccountStep = () => {
           </InputGroup>
         </div>
       </div>
-      <Button type="button" disabled={isEmpty || invalid} onClick={handleGoNext}>
+      <Button type="button" disabled={isDisable} onClick={handleGoNext}>
         다음으로
       </Button>
     </div>
