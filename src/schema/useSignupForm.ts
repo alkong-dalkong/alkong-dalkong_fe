@@ -19,10 +19,6 @@ const accountSchema = z
     message: '비밀번호가 일치하지 않습니다.',
     path: ['confirm'],
   })
-  .refine((formData) => formData.password === formData.confirm, {
-    message: '비밀번호가 일치하지 않습니다.',
-    path: ['password'],
-  })
 
 const restSchema = z.object({
   id: z
