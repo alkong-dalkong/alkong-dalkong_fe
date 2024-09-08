@@ -50,8 +50,8 @@ export const schema = z.intersection(accountSchema, restSchema)
 
 export const useSignupForm = () => {
   const formMethod = useForm<SignupFormType>({
-    mode: 'onChange',
-    reValidateMode: 'onChange',
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit',
     resolver: zodResolver(schema),
     defaultValues: {
       personal: false,
