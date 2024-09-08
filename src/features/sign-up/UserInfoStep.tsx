@@ -1,18 +1,31 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { Button, InputGroup } from '@/components'
 import Label from '@/components/label/Label'
 
 export const UserInfoStep = () => {
-  const { watch, getFieldState } = useFormContext()
-  const isEmpty = !watch('name') || !watch('phoneNumber') || !watch('birth') || !watch('gender')
-  const invalid =
-    getFieldState('name').invalid ||
-    getFieldState('phoneNumber').invalid ||
-    getFieldState('birth').invalid ||
-    getFieldState('gender').invalid
+  const { watch, trigger } = useFormContext()
+  const [isDisable, setDisable] = useState(true)
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      const isNotEmpty =
+        !!(value['name'] && value['phoneNumber'] && value['birth']) && value['gender']
+
+      isNotEmpty ? setDisable(false) : setDisable(true)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [watch])
+
+  const router = useRouter()
+  const handleGoNext = async () => {
+    const isValid = await trigger(['name', 'phoneNumber', 'birth', 'gender'])
+    if (isValid) router.push('/sign-up/tos')
+  }
 
   return (
     <div className="flex-column-between mx-[20px] min-h-screen gap-[32px] bg-white pb-[55px]">
@@ -49,11 +62,9 @@ export const UserInfoStep = () => {
           </InputGroup>
         </div>
       </div>
-      <Link href="/sign-up/tos">
-        <Button type="button" disabled={isEmpty || invalid}>
-          다음으로
-        </Button>
-      </Link>
+      <Button type="button" disabled={isDisable} onClick={handleGoNext}>
+        다음으로
+      </Button>
     </div>
   )
 }
