@@ -1,8 +1,9 @@
 'use client'
-import type { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { createStore, StateMachineProvider } from 'little-state-machine'
 
 import { DevTool } from '@/components'
 import { useSignUp } from '@/hooks'
@@ -33,12 +34,16 @@ export const SignUpFormProvider = ({ children }: PropsWithChildren) => {
     signUp({ ...signUpData })
   }
 
+  createStore({
+    signUp: {},
+  })
+
   return (
-    <>
+    <StateMachineProvider>
       <FormProvider {...formMethod}>
         <form onSubmit={handleSubmit(signUpHandler)}>{children}</form>
       </FormProvider>
       <DevTool control={control} />
-    </>
+    </StateMachineProvider>
   )
 }
