@@ -2,12 +2,14 @@
 import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { useStateMachine } from 'little-state-machine'
 
 import { Button, InputGroup } from '@/components'
 import Label from '@/components/label/Label'
+import { persistSignUpForm } from '@/utils'
 
 export const UserInfoStep = () => {
-  const { watch, trigger } = useFormContext()
+  const { watch, trigger, getValues, reset } = useFormContext()
   const [isDisable, setDisable] = useState(true)
 
   useEffect(() => {
@@ -21,10 +23,22 @@ export const UserInfoStep = () => {
     return () => subscription.unsubscribe()
   }, [watch])
 
+  const {
+    state: { signUp },
+    actions,
+  } = useStateMachine({ persistSignUpForm })
+
+  useEffect(() => {
+    reset(signUp)
+  }, [])
+
   const router = useRouter()
   const handleGoNext = async () => {
     const isValid = await trigger(['name', 'phoneNumber', 'birth', 'gender'])
-    if (isValid) router.push('/sign-up/tos')
+    if (isValid) {
+      actions.persistSignUpForm({ ...getValues() })
+      router.push('/sign-up/tos')
+    }
   }
 
   return (

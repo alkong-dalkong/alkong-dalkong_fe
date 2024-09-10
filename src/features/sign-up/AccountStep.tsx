@@ -2,13 +2,15 @@
 import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { useStateMachine } from 'little-state-machine'
 
 import { Button, InputGroup } from '@/components'
 import Label from '@/components/label/Label'
 import { useCheckDuplicateId } from '@/hooks'
+import { persistSignUpForm } from '@/utils'
 
 export const AccountStep = () => {
-  const { watch, getValues, setError, clearErrors, trigger } = useFormContext()
+  const { watch, getValues, setError, clearErrors, trigger, reset } = useFormContext()
   const [isDisable, setDisable] = useState(true)
 
   useEffect(() => {
@@ -43,6 +45,15 @@ export const AccountStep = () => {
     checkDuplicateId({ id: getValues('id') })
   }
 
+  const {
+    state: { signUp },
+    actions,
+  } = useStateMachine({ persistSignUpForm })
+
+  useEffect(() => {
+    reset(signUp)
+  }, [])
+
   const router = useRouter()
   const handleGoNext = async () => {
     const isValid = await trigger(['id', 'password', 'confirm'])
@@ -55,6 +66,7 @@ export const AccountStep = () => {
       isValid: true,
       value: getValues('id'),
     })
+    actions.persistSignUpForm({ ...getValues() })
     router.push('/sign-up/user-info')
   }
 
