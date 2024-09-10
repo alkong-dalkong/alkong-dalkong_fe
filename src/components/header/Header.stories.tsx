@@ -22,7 +22,7 @@ export const Default: Story = {
 export const All = () => {
   return (
     <div className="flex-column gap-[20px]">
-      <MainHeader.Setting title={`메인 헤더\n프로필 아이콘`} onSet={() => alert('마이페이지')} />
+      <MainHeader.Setting title={`메인 헤더\n프로필 아이콘`} />
       <MainHeader.Confirm
         title={`메인 헤더\n취소 + 완료`}
         onCancel={() => alert('취소')}

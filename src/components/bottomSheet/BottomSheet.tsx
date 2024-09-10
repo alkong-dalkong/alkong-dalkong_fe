@@ -11,11 +11,13 @@ import { AnimatePortal } from '../portal/AnimatePortal'
 type BottomSheetProps = ComponentProps<typeof AnimatePortal> & {
   onClickScrim?: VoidFunction
   isShort?: boolean
+  bgStyle?: string
 }
 
 export const BottomSheet = ({
   onClickScrim,
   isShort = false,
+  bgStyle = 'bg-white',
   isShowing,
   children,
   mode,
@@ -48,7 +50,7 @@ export const BottomSheet = ({
         exit="exit"
       >
         <m.div
-          className={`flex-column-align ${heightStyle} absolute left-0 top-full ${zIndex.modal} w-full rounded-t-3xl bg-white px-[20px]`}
+          className={`flex-column-align ${heightStyle} absolute left-0 top-full ${zIndex.modal} w-full rounded-t-3xl ${bgStyle} px-[20px]`}
           variants={bottomSheetVariants}
         >
           <div className="pb-[17px] pt-[8px]">
