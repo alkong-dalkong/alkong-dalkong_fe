@@ -59,7 +59,7 @@ export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
     <>
       <main className="mx-4 mb-[130px] mt-[38px] overflow-y-scroll scrollbar-hide">
         <div className="absolute right-5 top-[22px]">
-          <Profile name={user.username} size="sm" bgColor="#C5FDEC" />
+          <Profile name={user.name} size="sm" bgColor="#C5FDEC" />
         </div>
 
         <section>

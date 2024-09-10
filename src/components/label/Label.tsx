@@ -7,7 +7,7 @@ type LabelProps = {
   icon?: keyof typeof iconMap
 }
 
-export const Label = ({ children, icon }: PropsWithChildren<LabelProps>) => {
+const Label = ({ children, icon }: PropsWithChildren<LabelProps>) => {
   return (
     <div className="flex-align subtitle-B">
       {icon && <Icon name={icon} />}
@@ -15,3 +15,5 @@ export const Label = ({ children, icon }: PropsWithChildren<LabelProps>) => {
     </div>
   )
 }
+
+export default Label
