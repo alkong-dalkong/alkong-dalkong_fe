@@ -65,6 +65,7 @@ const RAW_RUNTIME_STATE =
           ["husky", "npm:8.0.3"],\
           ["js-cookie", "npm:3.0.5"],\
           ["lint-staged", "npm:15.2.8"],\
+          ["little-state-machine", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:4.8.0"],\
           ["next", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:14.2.4"],\
           ["next-pwa", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:5.6.0"],\
           ["postcss", "npm:8.4.41"],\
@@ -3340,7 +3341,7 @@ const RAW_RUNTIME_STATE =
           ["@types/lodash", "npm:4.17.7"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
-          ["little-state-machine", "virtual:c311f03c823f339ed9b537c9d080820ed30432208fed0a1402395d5dabde9e27604cc6d8b7b44bf0def71cff10acc07b3f23054664e00992b1f00fe6589c0afd#npm:4.8.0"],\
+          ["little-state-machine", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:4.8.0"],\
           ["lodash", "npm:4.17.21"],\
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:18.3.1"],\
@@ -12420,10 +12421,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:c311f03c823f339ed9b537c9d080820ed30432208fed0a1402395d5dabde9e27604cc6d8b7b44bf0def71cff10acc07b3f23054664e00992b1f00fe6589c0afd#npm:4.8.0", {\
-        "packageLocation": "./.yarn/__virtual__/little-state-machine-virtual-b84a142aeb/0/cache/little-state-machine-npm-4.8.0-1811185e74-12fe73b584.zip/node_modules/little-state-machine/",\
+      ["virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:4.8.0", {\
+        "packageLocation": "./.yarn/__virtual__/little-state-machine-virtual-afc8e537cf/0/cache/little-state-machine-npm-4.8.0-1811185e74-12fe73b584.zip/node_modules/little-state-machine/",\
         "packageDependencies": [\
-          ["little-state-machine", "virtual:c311f03c823f339ed9b537c9d080820ed30432208fed0a1402395d5dabde9e27604cc6d8b7b44bf0def71cff10acc07b3f23054664e00992b1f00fe6589c0afd#npm:4.8.0"],\
+          ["little-state-machine", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:4.8.0"],\
           ["@types/react", "npm:18.3.3"],\
           ["react", "npm:18.3.1"]\
         ],\
@@ -13101,6 +13102,7 @@ const RAW_RUNTIME_STATE =
           ["husky", "npm:8.0.3"],\
           ["js-cookie", "npm:3.0.5"],\
           ["lint-staged", "npm:15.2.8"],\
+          ["little-state-machine", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:4.8.0"],\
           ["next", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:14.2.4"],\
           ["next-pwa", "virtual:ddccc941eb8b35cd4b898a64351d8bba4ecc85eb47e8f1b36dce7852d6c3635665e0fc5464861f723d175edb2248ce0fa54dfefb9b5e4d2fdaef4b2353c4aa82#npm:5.6.0"],\
           ["postcss", "npm:8.4.41"],\
