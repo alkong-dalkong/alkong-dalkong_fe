@@ -26,17 +26,17 @@ export const ProfileModal = ({ onClickProfileModal }: ProfileModalProps) => {
       aria-hidden="true"
     >
       <div className="grid grid-cols-3 gap-[40px]">
-        {user.family?.map(({ userId, username }) => {
+        {user.family?.map(({ userId, name }) => {
           const handleClickProfile = () => {
-            setUser({ ...user, userId: userId, username: username })
+            setUser({ ...user, userId: userId, name: name })
             if (onClickProfileModal) onClickProfileModal()
           }
 
           return (
             <div className="headline-B flex-column-align gap-y-[6px] text-white" key={userId}>
-              {username}
+              {name}
               <Link href={`/home/${userId}`}>
-                <Profile name={username} size="lg" onClickProfile={handleClickProfile} />
+                <Profile name={name} size="lg" onClickProfile={handleClickProfile} />
               </Link>
             </div>
           )
