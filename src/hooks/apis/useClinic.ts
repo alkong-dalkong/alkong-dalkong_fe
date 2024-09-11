@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
   createMedicalInfo,
@@ -34,10 +34,14 @@ export const useCreateMedicalInfo = () => {
   })
 }
 
-export const useEditMedicalInfo = () =>
-  useMutation({
+export const useEditMedicalInfo = (medicalId: number) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
     mutationFn: editMedicalInfo,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.detail(medicalId) }),
   })
+}
 
 export const useDeleteMedicalInfo = () => {
   return useMutation({
