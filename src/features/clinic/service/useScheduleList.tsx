@@ -8,7 +8,7 @@ import type { ScheduleType } from '@/types'
 export const useScheduleList = (userId: string) => {
   const localDate = dayjs().format('YYYY-MM')
   const [scheduleList, setScheduleList] = useState<ScheduleType[]>([])
-  const { data: calendarData } = useMedicalCalendar({ userId, localDate })
+  const { data: calendarData, refetch } = useMedicalCalendar({ userId, localDate })
   const { resetCalendar, updateScheduledDates } = useCalendarActions()
 
   useEffect(() => {
@@ -20,6 +20,10 @@ export const useScheduleList = (userId: string) => {
       updateScheduledDates(dateList)
     }
   }, [resetCalendar, calendarData, updateScheduledDates])
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   return scheduleList
 }
