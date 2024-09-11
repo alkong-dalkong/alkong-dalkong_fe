@@ -22,3 +22,13 @@ export type ClinicBottomSheetType = {
   isShowing: boolean
   onClickScrim: VoidFunction
 }
+
+export type CreateClinicInfoRequest = Omit<ClinicFormType, 'medicalAlarm'> & {
+  userId: number
+  medicalAlarm: number
+}
+
+export type CreateClinicInfoResponse = {
+  code: number
+  medicalId: number
+}

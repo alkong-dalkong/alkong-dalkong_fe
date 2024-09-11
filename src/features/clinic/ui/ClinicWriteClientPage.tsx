@@ -1,25 +1,18 @@
 'use client'
 
 import { FormProvider } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
 
 import { MainHeader } from '@/components/header/MainHeader'
 import { useClinicForm } from '@/schema'
+
+import { useClinicWriteForm } from '../service/useClinicWirteForm'
 
 import { ClinicForm } from './ClinicForm'
 
 export const ClinicWriteClientPage = () => {
   const formMethod = useClinicForm()
-  const router = useRouter()
   const { handleSubmit } = formMethod
-
-  const handleClickCancle = () => {
-    router.back()
-  }
-
-  const handleClickConfirm = () => {
-    // 폼 제출 시 실행할 로직
-  }
+  const { handleClickCancle, handleClickConfirm } = useClinicWriteForm()
 
   return (
     <div className="flex-column h-full overflow-hidden">

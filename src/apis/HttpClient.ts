@@ -44,7 +44,7 @@ export class HttpClient {
     const accessToken = localStorage.getItem(ACCESS_TOKEN)
 
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`
+      config.headers.Authorization = `${accessToken}`
     }
 
     return config

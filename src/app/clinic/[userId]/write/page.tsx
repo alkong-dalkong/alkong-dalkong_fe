@@ -1,4 +1,4 @@
-import { ClinicWriteClientPage } from '@/features/clinic'
+import { ClinicWriteClientPage } from '@/features'
 
 const ClinicWrite = () => {
   return (

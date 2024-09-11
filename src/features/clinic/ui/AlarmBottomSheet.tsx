@@ -4,9 +4,8 @@ import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { BottomSheet, Label, SubHeader } from '@/components'
+import { ALARM_TIME } from '@/constants'
 import type { ClinicBottomSheetType } from '@/types'
-
-const ALARM_TIME = ['1주 전', '24시간 전', '12시간 전', '1시간 전', '30분 전', '없음']
 
 export const AlarmBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
   const { setValue } = useFormContext()
