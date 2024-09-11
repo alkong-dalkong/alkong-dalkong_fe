@@ -2,22 +2,15 @@
 import { Button } from '@/components'
 import Modal from '@/components/modal/Modal'
 
-import { useDeleteInfoModal } from '../service/useDeleteInfoModal'
+import { useDeleteInfoModalMethod } from '../service/useDeleteInfoModalMethod'
 
 type ClinicInfoModalProps = {
-  userId: string
-  medicalId: string
   modalState: boolean
   closeModal: VoidFunction
 }
 
-export const ClinicInfoModal = ({
-  userId,
-  medicalId,
-  modalState,
-  closeModal,
-}: ClinicInfoModalProps) => {
-  const handleClickDelete = useDeleteInfoModal(userId, medicalId)
+export const ClinicInfoModal = ({ modalState, closeModal }: ClinicInfoModalProps) => {
+  const handleClickDelete = useDeleteInfoModalMethod()
 
   return (
     <Modal isOpen={modalState} onClose={closeModal}>
