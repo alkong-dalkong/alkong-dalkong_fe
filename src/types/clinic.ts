@@ -32,3 +32,8 @@ export type CreateClinicInfoResponse = {
   code: number
   medicalId: number
 }
+
+export type DetailInfoResponse = {
+  code: number
+  data: ClinicFormType & { medicalId: number }
+}

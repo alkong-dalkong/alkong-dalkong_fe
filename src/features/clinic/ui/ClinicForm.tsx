@@ -33,9 +33,7 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
       <InputGroup>
         <Label icon="check-label">진료 과목</Label>
         <div className="flex flex-wrap gap-2">
-          {getValues('medicalPart').map((part: string) => (
-            <Tag key={part} label={part} />
-          ))}
+          {getValues('medicalPart')?.map((part: string) => <Tag key={part} label={part} />)}
           {!isReadOnly && <ActionTag.Plus label="추가" onClick={toggleTagBottomSheet} />}
         </div>
         <InputGroup.ErrorMessage section="medicalPart" />
@@ -77,7 +75,7 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
         <Label icon="emergency-label">증상 및 특이사항</Label>
         <InputGroup.TextArea
           section="medicalMemo"
-          placeholder="증상을 입력해주세요."
+          placeholder={isReadOnly ? '특이사항이 없습니다.' : '증상을 입력해주세요.'}
           readOnly={isReadOnly}
         />
       </InputGroup>

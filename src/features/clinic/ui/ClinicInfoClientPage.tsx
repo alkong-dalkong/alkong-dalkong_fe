@@ -4,25 +4,21 @@ import { FormProvider } from 'react-hook-form'
 
 import { MainHeader } from '@/components/header/MainHeader'
 import { useBoolean, useToggle } from '@/hooks'
-import { useClinicForm } from '@/schema'
+
+import { useInsertedClinicForm } from '../service/useInsertedClinicForm'
 
 import { ClinicForm } from './ClinicForm'
 import { ClinicInfoModal } from './ClinicInfoModal'
-
-const data = {
-  medicalId: 2,
-  hospitalName: '서울대학교병원',
-  hospitalDate: '2024-09-28 13:00:00',
-  medicalPart: ['멍', '속쓰림'],
-  medicalMemo: '메모',
-  medicalAlarm: '없음',
-}
 
 type HeaderProps = {
   isEdit: boolean
   toggleIsEdit: VoidFunction
   handleClickConfirm: VoidFunction
   openModal: VoidFunction
+}
+
+type ClinicInfoClientPageProps = {
+  medicalId: string
 }
 
 const Header = ({ isEdit, toggleIsEdit, handleClickConfirm, openModal }: HeaderProps) => {
@@ -45,8 +41,8 @@ const Header = ({ isEdit, toggleIsEdit, handleClickConfirm, openModal }: HeaderP
   )
 }
 
-export const ClinicInfoClientPage = () => {
-  const formMethod = useClinicForm(data)
+export const ClinicInfoClientPage = ({ medicalId }: ClinicInfoClientPageProps) => {
+  const formMethod = useInsertedClinicForm(medicalId)
   const [isEdit, toggleIsEdit] = useToggle(false)
   const [modalState, openModal, closeModal] = useBoolean(false)
 

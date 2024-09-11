@@ -1,9 +1,13 @@
-import { ClinicInfoClientPage } from '@/features/clinic'
+import { ClinicInfoClientPage } from '@/features'
 
-const ClinicInfo = () => {
+export type ClinicInfoRouteParams = {
+  params: { medicalId: string }
+}
+
+const ClinicInfo = ({ params: { medicalId } }: ClinicInfoRouteParams) => {
   return (
     <>
-      <ClinicInfoClientPage />
+      <ClinicInfoClientPage medicalId={medicalId} />
     </>
   )
 }

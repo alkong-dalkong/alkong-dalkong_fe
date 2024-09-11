@@ -1,6 +1,10 @@
-import type { CreateClinicInfoRequest, CreateClinicInfoResponse } from '@/types'
+import type { CreateClinicInfoRequest, CreateClinicInfoResponse, DetailInfoResponse } from '@/types'
 
 import { api } from '.'
+
+export const detailInfo = async (medicalId: number): Promise<DetailInfoResponse> => {
+  return await api.get(`/medical/${medicalId}`)
+}
 
 export const createMedicalInfo = async (
   request: CreateClinicInfoRequest,
