@@ -36,3 +36,7 @@ export const editMedicalInfo = async ({
 }): Promise<EditMedicalInfoResponse> => {
   return await api.put(`/medical/${medicalId}`, request)
 }
+
+export const deleteMedicalInfo = async (medicalId: string) => {
+  return await api.delete(`/medical/${medicalId}`)
+}

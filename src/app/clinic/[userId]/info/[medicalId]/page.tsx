@@ -1,13 +1,13 @@
 import { ClinicInfoClientPage } from '@/features'
 
 export type ClinicInfoRouteParams = {
-  params: { medicalId: string }
+  params: { userId: string; medicalId: string }
 }
 
-const ClinicInfo = ({ params: { medicalId } }: ClinicInfoRouteParams) => {
+const ClinicInfo = ({ params: { userId, medicalId } }: ClinicInfoRouteParams) => {
   return (
     <>
-      <ClinicInfoClientPage medicalId={medicalId} />
+      <ClinicInfoClientPage userId={userId} medicalId={medicalId} />
     </>
   )
 }

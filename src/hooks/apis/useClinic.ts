@@ -1,6 +1,12 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { createMedicalInfo, detailInfo, editMedicalInfo, medicalCalendar } from '@/apis'
+import {
+  createMedicalInfo,
+  deleteMedicalInfo,
+  detailInfo,
+  editMedicalInfo,
+  medicalCalendar,
+} from '@/apis'
 import type { MedicalCalendarRequest } from '@/types'
 
 const queryKeys = {
@@ -31,3 +37,14 @@ export const useEditMedicalInfo = () =>
   useMutation({
     mutationFn: editMedicalInfo,
   })
+
+export const useDeleteMedicalInfo = (userId: string, localDate: string) => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: deleteMedicalInfo,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.calendar(userId, localDate) })
+    },
+  })
+}

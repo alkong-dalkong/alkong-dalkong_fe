@@ -8,10 +8,11 @@ import { useBoolean, useToggle } from '@/hooks'
 import { useInsertedClinicForm } from '../service/useInsertedClinicForm'
 
 type ClinicInfoClientPageProps = {
+  userId: string
   medicalId: string
 }
 
-export const ClinicInfoClientPage = ({ medicalId }: ClinicInfoClientPageProps) => {
+export const ClinicInfoClientPage = ({ userId, medicalId }: ClinicInfoClientPageProps) => {
   const formMethod = useInsertedClinicForm(medicalId)
   const [isEdit, toggleIsEdit] = useToggle(false)
   const [modalState, openModal, closeModal] = useBoolean(false)
@@ -29,7 +30,12 @@ export const ClinicInfoClientPage = ({ medicalId }: ClinicInfoClientPageProps) =
         <ClinicForm isReadOnly={!isEdit} />
       </FormProvider>
 
-      <ClinicInfoModal modalState={modalState} closeModal={closeModal} />
+      <ClinicInfoModal
+        userId={userId}
+        medicalId={medicalId}
+        modalState={modalState}
+        closeModal={closeModal}
+      />
     </div>
   )
 }
