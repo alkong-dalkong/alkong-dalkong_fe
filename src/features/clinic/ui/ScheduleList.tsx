@@ -1,5 +1,8 @@
 'use client'
 
+import { useParams, useRouter } from 'next/navigation'
+
+import { ActionTag, Label } from '@/components'
 import { useCurrentDate } from '@/store'
 import type { ScheduleType } from '@/types'
 
@@ -9,12 +12,30 @@ type ClinicListProps = {
   scheduleList: ScheduleType[]
 }
 
+const ScheduleListHeader = () => {
+  const { userId } = useParams<{ userId: string }>()
+  const router = useRouter()
+
+  const handleClickPlusButton = () => {
+    router.push(`/clinic/${userId}/write`)
+  }
+
+  return (
+    <div className="flex-between mb-3">
+      <Label icon="clinic-label">병원 내원 일정</Label>
+      <ActionTag.Plus label="추가" primary onClick={handleClickPlusButton} />
+    </div>
+  )
+}
+
 export const ScheduleList = ({ scheduleList }: ClinicListProps) => {
-  const date = useCurrentDate()
-  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(date))
+  const currentDate = useCurrentDate()
+  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(currentDate))
 
   return (
     <>
+      <ScheduleListHeader />
+
       {todaySchedules.length ? (
         <div className="flex-column gap-3">
           {todaySchedules.map((item) => (
