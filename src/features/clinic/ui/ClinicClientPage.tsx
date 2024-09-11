@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 import { BottomNav, Calendar, Label, Profile } from '@/components'
 import ActionTag from '@/components/actionTag/ActionTag'
@@ -9,14 +9,11 @@ import { useUserStore } from '@/store'
 
 import { useScheduleList } from '../service/useScheduleList'
 
-type ClinicClientPageProps = {
-  userId: string
-}
-
-export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
+export const ClinicClientPage = () => {
   const { user } = useUserStore()
+  const { userId } = useParams<{ userId: string }>()
   const router = useRouter()
-  const scheduleList = useScheduleList(userId)
+  const scheduleList = useScheduleList()
 
   const handleClickPlusButton = () => {
     router.push(`/clinic/${userId}/write`)
@@ -38,7 +35,7 @@ export const ClinicClientPage = ({ userId }: ClinicClientPageProps) => {
             <Label icon="clinic-label">병원 내원 일정</Label>
             <ActionTag.Plus label="추가" primary onClick={handleClickPlusButton} />
           </div>
-          <ScheduleList userId={userId} scheduleList={scheduleList} />
+          <ScheduleList scheduleList={scheduleList} />
         </section>
       </main>
       <BottomNav />

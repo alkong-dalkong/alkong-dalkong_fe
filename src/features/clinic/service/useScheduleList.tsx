@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import { useMedicalCalendar } from '@/hooks'
 import { useCalendarActions } from '@/store'
 import type { ScheduleType } from '@/types'
 
-export const useScheduleList = (userId: string) => {
+export const useScheduleList = () => {
   const localDate = dayjs().format('YYYY-MM')
+  const { userId } = useParams<{ userId: string }>()
   const [scheduleList, setScheduleList] = useState<ScheduleType[]>([])
+
   const { data: calendarData, refetch } = useMedicalCalendar({ userId, localDate })
   const { resetCalendar, updateScheduledDates } = useCalendarActions()
 

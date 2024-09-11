@@ -6,11 +6,10 @@ import type { ScheduleType } from '@/types'
 import { ScheduleItem } from './ScheduleItem'
 
 type ClinicListProps = {
-  userId: string
   scheduleList: ScheduleType[]
 }
 
-export const ScheduleList = ({ userId, scheduleList }: ClinicListProps) => {
+export const ScheduleList = ({ scheduleList }: ClinicListProps) => {
   const date = useCurrentDate()
   const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(date))
 
@@ -19,7 +18,7 @@ export const ScheduleList = ({ userId, scheduleList }: ClinicListProps) => {
       {todaySchedules.length ? (
         <div className="flex-column gap-3">
           {todaySchedules.map((item) => (
-            <ScheduleItem key={item.medicalId} userId={userId} item={item} />
+            <ScheduleItem key={item.medicalId} item={item} />
           ))}
         </div>
       ) : (

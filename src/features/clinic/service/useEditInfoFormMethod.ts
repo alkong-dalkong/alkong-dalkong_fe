@@ -1,10 +1,12 @@
+import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import { ALARM_TIME } from '@/constants'
 import { useEditMedicalInfo } from '@/hooks'
 import type { ClinicFormType } from '@/types'
 
-export const useEditInfoFormMethod = (toggleIsEdit: VoidFunction, medicalId: string) => {
+export const useEditInfoFormMethod = (toggleIsEdit: VoidFunction) => {
+  const { medicalId } = useParams<{ medicalId: string }>()
   const { mutate: editMedicalInfo } = useEditMedicalInfo()
 
   const handleClickConfirm = (formData: ClinicFormType) => {
@@ -28,7 +30,5 @@ export const useEditInfoFormMethod = (toggleIsEdit: VoidFunction, medicalId: str
     )
   }
 
-  return {
-    handleClickConfirm,
-  }
+  return handleClickConfirm
 }

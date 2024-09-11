@@ -1,13 +1,9 @@
 import { ClinicClientPage } from '@/features'
 
-export type HomeRouteParams = {
-  params: { userId: string }
-}
-
-const Clinic = ({ params: { userId } }: HomeRouteParams) => {
+const Clinic = () => {
   return (
     <>
-      <ClinicClientPage userId={userId} />
+      <ClinicClientPage />
     </>
   )
 }

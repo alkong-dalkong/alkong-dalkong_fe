@@ -9,12 +9,11 @@ type HeaderProps = {
   isEdit: boolean
   toggleIsEdit: VoidFunction
   openModal: VoidFunction
-  medicalId: string
 }
 
-export const ClinicInfoHeader = ({ isEdit, toggleIsEdit, openModal, medicalId }: HeaderProps) => {
+export const ClinicInfoHeader = ({ isEdit, toggleIsEdit, openModal }: HeaderProps) => {
   const { handleSubmit } = useFormContext<ClinicFormType>()
-  const { handleClickConfirm } = useEditInfoFormMethod(toggleIsEdit, medicalId)
+  const handleClickConfirm = useEditInfoFormMethod(toggleIsEdit)
 
   return (
     <div>

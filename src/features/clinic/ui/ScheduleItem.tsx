@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import { Icon, Tag } from '@/components'
@@ -11,12 +11,12 @@ import 'dayjs/locale/ko'
 dayjs.locale('ko')
 
 type ScheduleItemProps = {
-  userId: string
   item: ScheduleType
 }
 
-export const ScheduleItem = ({ userId, item }: ScheduleItemProps) => {
+export const ScheduleItem = ({ item }: ScheduleItemProps) => {
   const router = useRouter()
+  const { userId } = useParams<{ userId: string }>()
   const { medicalId, hospitalDate, hospitalName, medicalPart } = item
 
   const time = dayjs(hospitalDate).format('HH:mm')
