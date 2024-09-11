@@ -37,3 +37,6 @@ export type DetailInfoResponse = {
   code: number
   data: ClinicFormType & { medicalId: number }
 }
+
+export type EditMedicalInfoRequest = Omit<CreateClinicInfoRequest, 'userId'>
+export type EditMedicalInfoResponse = { code: number }

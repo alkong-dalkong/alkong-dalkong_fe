@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 
-import { createMedicalInfo, detailInfo } from '@/apis'
+import { createMedicalInfo, detailInfo, editMedicalInfo } from '@/apis'
 
 const queryKeys = {
   all: ['clinic'] as const,
@@ -16,4 +16,9 @@ export const useDetailInfo = (medicalId: number) =>
 export const useCreateMedicalInfo = () =>
   useMutation({
     mutationFn: createMedicalInfo,
+  })
+
+export const useEditMedicalInfo = () =>
+  useMutation({
+    mutationFn: editMedicalInfo,
   })
