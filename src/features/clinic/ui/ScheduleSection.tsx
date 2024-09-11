@@ -5,16 +5,19 @@ import { useRouter } from 'next/navigation'
 import { Label } from '@/components'
 import ActionTag from '@/components/actionTag/ActionTag'
 import { useCurrentDate } from '@/store'
-import type { ClinicResponse } from '@/types'
+import type { ScheduleType } from '@/types'
 
 import { ScheduleItem } from './ScheduleItem'
 
-type ClinicListProps = ClinicResponse & { userId: string }
+type ClinicListProps = {
+  userId: string
+  scheduleList: ScheduleType[]
+}
 
-export const ScheduleSection = ({ userId, list }: ClinicListProps) => {
+export const ScheduleSection = ({ userId, scheduleList }: ClinicListProps) => {
   const router = useRouter()
   const date = useCurrentDate()
-  const todaySchedules = list.filter((item) => item.hospitalDate.startsWith(date))
+  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(date))
 
   const handleClickPlusButton = () => {
     router.push(`/clinic/${userId}/write`)

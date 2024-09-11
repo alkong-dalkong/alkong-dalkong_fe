@@ -4,12 +4,21 @@ import type {
   DetailInfoResponse,
   EditMedicalInfoRequest,
   EditMedicalInfoResponse,
+  MedicalCalendarRequest,
+  MedicalCalendarResponse,
 } from '@/types'
 
 import { api } from '.'
 
 export const detailInfo = async (medicalId: number): Promise<DetailInfoResponse> => {
   return await api.get(`/medical/${medicalId}`)
+}
+
+export const medicalCalendar = async ({
+  userId,
+  localDate,
+}: MedicalCalendarRequest): Promise<MedicalCalendarResponse> => {
+  return await api.get(`/medical/calendar/${userId}/${localDate}`)
 }
 
 export const createMedicalInfo = async (

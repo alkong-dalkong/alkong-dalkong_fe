@@ -13,10 +13,6 @@ export type ScheduleType = {
   medicalPart: string[]
 }
 
-export type ClinicResponse = {
-  list: ScheduleType[]
-}
-
 export type ClinicBottomSheetType = {
   section: string
   isShowing: boolean
@@ -40,3 +36,13 @@ export type DetailInfoResponse = {
 
 export type EditMedicalInfoRequest = Omit<CreateClinicInfoRequest, 'userId'>
 export type EditMedicalInfoResponse = { code: number }
+
+export type MedicalCalendarRequest = {
+  userId: string
+  localDate: string
+}
+
+export type MedicalCalendarResponse = {
+  code: number
+  data: ScheduleType[]
+}
