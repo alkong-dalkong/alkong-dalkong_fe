@@ -9,7 +9,7 @@ import type { ClinicFormType } from '@/types'
 
 dayjs.extend(customParseFormat)
 
-export const useClinicWriteForm = () => {
+export const useClinicWriteFormMethod = () => {
   const router = useRouter()
   const { user } = useUserStore()
   const { mutate: createMedicalInfoMutation } = useCreateMedicalInfo()

@@ -5,14 +5,14 @@ import { FormProvider } from 'react-hook-form'
 import { MainHeader } from '@/components/header/MainHeader'
 import { useClinicForm } from '@/schema'
 
-import { useClinicWriteForm } from '../service/useClinicWirteForm'
+import { useClinicWriteFormMethod } from '../service/useClinicWriteFormMethod'
 
 import { ClinicForm } from './ClinicForm'
 
 export const ClinicWriteClientPage = () => {
   const formMethod = useClinicForm()
   const { handleSubmit } = formMethod
-  const { handleClickCancle, handleClickConfirm } = useClinicWriteForm()
+  const { handleClickCancle, handleClickConfirm } = useClinicWriteFormMethod()
 
   return (
     <div className="flex-column h-full overflow-hidden">
