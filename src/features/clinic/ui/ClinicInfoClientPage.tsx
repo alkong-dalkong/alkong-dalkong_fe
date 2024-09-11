@@ -6,8 +6,7 @@ import { MainHeader } from '@/components/header/MainHeader'
 import { useBoolean, useToggle } from '@/hooks'
 import { useClinicForm } from '@/schema'
 
-import { ClinicForm } from '../write/ClinicForm'
-
+import { ClinicForm } from './ClinicForm'
 import { ClinicInfoModal } from './ClinicInfoModal'
 
 const data = {

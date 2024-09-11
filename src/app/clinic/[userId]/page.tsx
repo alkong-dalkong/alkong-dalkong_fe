@@ -1,4 +1,4 @@
-import { ClinicClientPage } from '@/features/clinic'
+import { ClinicClientPage } from '@/features'
 
 export type HomeRouteParams = {
   params: { userId: string }
