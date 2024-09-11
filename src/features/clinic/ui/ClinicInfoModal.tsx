@@ -2,7 +2,7 @@
 import { Button } from '@/components'
 import Modal from '@/components/modal/Modal'
 
-import { useDeleteInfoModalMethod } from '../service/useDeleteInfoModalMethod'
+import { useClinicDeleteModal } from '../service/useClinicDeleteModal'
 
 type ClinicInfoModalProps = {
   modalState: boolean
@@ -10,12 +10,13 @@ type ClinicInfoModalProps = {
 }
 
 export const ClinicInfoModal = ({ modalState, closeModal }: ClinicInfoModalProps) => {
-  const handleClickDelete = useDeleteInfoModalMethod()
+  const handleClickDelete = useClinicDeleteModal()
 
   return (
     <Modal isOpen={modalState} onClose={closeModal}>
       <h4 className="subtitle-B">삭제하시겠습니까?</h4>
       <p className="headline-M mt-2">삭제하실 경우 복원이 불가능합니다.</p>
+
       <div className="mt-6 flex w-full gap-[15px] px-4">
         <Button primary={false} onClick={closeModal}>
           취소

@@ -6,29 +6,40 @@ import { ALARM_TIME } from '@/constants'
 import { useDetailInfo } from '@/hooks'
 import { useClinicForm } from '@/schema'
 
+/**
+ * @description
+ * 진료 상세 정보를 가져와 폼에 삽입한다.
+ *
+ * 1. `medicalId`를 사용해 진료 상세 정보를 서버에서 가져온다.
+ * 2. 진료 알람(`medicalAlarm`)과 날짜(`hospitalDate`) 데이터를 포맷한다.
+ * 3. `formMethod.reset`을 호출해 가져온 데이터를 폼에 초기화한다.
+ *
+ * @returns {object} 진료 폼을 관리하는 `formMethod`를 반환한다.
+ */
+
 export const useInsertedClinicForm = () => {
   const formMethod = useClinicForm()
   const { medicalId } = useParams<{ medicalId: string }>()
-
-  const { data: detailInfo } = useDetailInfo(parseInt(medicalId))
+  const { data: detailInfoData } = useDetailInfo(parseInt(medicalId))
 
   useEffect(() => {
-    if (detailInfo) {
-      const { medicalAlarm, hospitalDate } = detailInfo.data
+    if (detailInfoData) {
+      const parsedDetailInfoData = detailInfoData.data
+      const { medicalAlarm, hospitalDate } = parsedDetailInfoData
 
-      const alarmTime = ALARM_TIME[parseInt(medicalAlarm)]
-      const parsedDate = dayjs(hospitalDate, 'YYYY-MM-DD HH:mm:ss')
-      const formattedDate = parsedDate.format('YYYY년 M월 D일 dddd A hh:mm')
+      const formattedDate = dayjs(hospitalDate, 'YYYY-MM-DD HH:mm:ss').format(
+        'YYYY년 M월 D일 dddd A hh:mm',
+      )
 
-      const formData = {
-        ...detailInfo.data,
-        medicalAlarm: alarmTime,
+      const insertingFormData = {
+        ...parsedDetailInfoData,
+        medicalAlarm: ALARM_TIME[medicalAlarm],
         hospitalDate: formattedDate,
       }
 
-      formMethod.reset(formData)
+      formMethod.reset(insertingFormData)
     }
-  }, [detailInfo, formMethod])
+  }, [detailInfoData, formMethod])
 
   return formMethod
 }

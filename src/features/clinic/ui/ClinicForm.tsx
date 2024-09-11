@@ -1,13 +1,10 @@
 'use client'
 import { useFormContext } from 'react-hook-form'
 
-import { InputGroup, Label, Tag } from '@/components'
-import ActionTag from '@/components/actionTag/ActionTag'
-import { useToggle } from '@/hooks'
+import { ActionTag, InputGroup, Label, Tag } from '@/components'
+import { AlarmBottomSheet, DateBottomSheet, TagBottomSheet } from '@/features'
 
-import { AlarmBottomSheet } from './AlarmBottomSheet'
-import { DateBottomSheet } from './DateBottomSheet'
-import { TagBottomSheet } from './TagBottomSheet'
+import { useClinicFormBottomSheet } from '../hook/useClinicFormBottomSheet'
 
 type ClinicFormProps = {
   isReadOnly?: boolean
@@ -16,17 +13,14 @@ type ClinicFormProps = {
 export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
   const { getValues } = useFormContext()
 
-  const [tagBottomSheet, toggleTagBottomSheet] = useToggle(false)
-  const [dateBottomSheet, toggleDateBottomSheet] = useToggle(false)
-  const [alarmBottomSheet, toggleAlarmBottomSheet] = useToggle(false)
-
-  const handleToggleDateBottomSheet = () => {
-    if (!isReadOnly) toggleDateBottomSheet()
-  }
-
-  const handleToggleAlarmBottomSheet = () => {
-    if (!isReadOnly) toggleAlarmBottomSheet()
-  }
+  const {
+    tagSheet,
+    toggleTagSheet,
+    dateSheet,
+    handletoggleDateSheet,
+    alarmSheet,
+    handleToggleAlarmSheet,
+  } = useClinicFormBottomSheet(isReadOnly)
 
   return (
     <form className="flex-column gap-8 overflow-scroll px-5 py-8 scrollbar-hide">
@@ -34,19 +28,15 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
         <Label icon="check-label">진료 과목</Label>
         <div className="flex flex-wrap gap-2">
           {getValues('medicalPart')?.map((part: string) => <Tag key={part} label={part} />)}
-          {!isReadOnly && <ActionTag.Plus label="추가" onClick={toggleTagBottomSheet} />}
+          {!isReadOnly && <ActionTag.Plus label="추가" onClick={toggleTagSheet} />}
         </div>
         <InputGroup.ErrorMessage section="medicalPart" />
-        <TagBottomSheet
-          section="medicalPart"
-          isShowing={tagBottomSheet}
-          onClickScrim={toggleTagBottomSheet}
-        />
+        <TagBottomSheet section="medicalPart" isShowing={tagSheet} onClickScrim={toggleTagSheet} />
       </InputGroup>
 
       <InputGroup>
         <Label icon="calendar-label">방문 날짜</Label>
-        <button type="button" onClick={handleToggleDateBottomSheet}>
+        <button type="button" onClick={handletoggleDateSheet}>
           <InputGroup.Input
             section="hospitalDate"
             readOnly
@@ -56,8 +46,8 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
         <InputGroup.ErrorMessage section="hospitalDate" />
         <DateBottomSheet
           section="hospitalDate"
-          isShowing={dateBottomSheet}
-          onClickScrim={handleToggleDateBottomSheet}
+          isShowing={dateSheet}
+          onClickScrim={handletoggleDateSheet}
         />
       </InputGroup>
 
@@ -84,13 +74,13 @@ export const ClinicForm = ({ isReadOnly = false }: ClinicFormProps) => {
         <Label icon="time-label">알람</Label>
         <div className="flex-between-align w-full rounded-xl border border-mint-3 py-4 pl-5 pr-4">
           <Label>알람</Label>
-          <InputGroup.TextWithArrow section="medicalAlarm" onClick={handleToggleAlarmBottomSheet} />
+          <InputGroup.TextWithArrow section="medicalAlarm" onClick={handleToggleAlarmSheet} />
         </div>
         <InputGroup.ErrorMessage section="medicalAlarm" />
         <AlarmBottomSheet
           section="medicalAlarm"
-          isShowing={alarmBottomSheet}
-          onClickScrim={handleToggleAlarmBottomSheet}
+          isShowing={alarmSheet}
+          onClickScrim={handleToggleAlarmSheet}
         />
       </InputGroup>
     </form>

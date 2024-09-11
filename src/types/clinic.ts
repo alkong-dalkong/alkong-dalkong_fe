@@ -6,6 +6,8 @@ export type ClinicFormType = {
   medicalAlarm: string
 }
 
+export type ClinicFormApiType = Omit<ClinicFormType, 'medicalAlarm'> & { medicalAlarm: number }
+
 export type ScheduleType = {
   medicalId: number
   hospitalName: string
@@ -19,10 +21,7 @@ export type ClinicBottomSheetType = {
   onClickScrim: VoidFunction
 }
 
-export type CreateClinicInfoRequest = Omit<ClinicFormType, 'medicalAlarm'> & {
-  userId: number
-  medicalAlarm: number
-}
+export type CreateClinicInfoRequest = ClinicFormApiType & { userId: number }
 
 export type CreateClinicInfoResponse = {
   code: number
@@ -31,10 +30,10 @@ export type CreateClinicInfoResponse = {
 
 export type DetailInfoResponse = {
   code: number
-  data: ClinicFormType & { medicalId: number }
+  data: ClinicFormApiType & { medicalId: number }
 }
 
-export type EditMedicalInfoRequest = Omit<CreateClinicInfoRequest, 'userId'>
+export type EditMedicalInfoRequest = ClinicFormApiType
 export type EditMedicalInfoResponse = { code: number }
 
 export type MedicalCalendarRequest = {

@@ -1,9 +1,10 @@
+'use client'
 import { useFormContext } from 'react-hook-form'
 
 import { MainHeader } from '@/components'
 import type { ClinicFormType } from '@/types'
 
-import { useEditInfoFormMethod } from '../service/useEditInfoFormMethod'
+import { useEditClinicFormMethod } from '../service/useEditClinicFormMethod'
 
 type HeaderProps = {
   isEdit: boolean
@@ -13,7 +14,7 @@ type HeaderProps = {
 
 export const ClinicInfoHeader = ({ isEdit, toggleIsEdit, openModal }: HeaderProps) => {
   const { handleSubmit } = useFormContext<ClinicFormType>()
-  const handleClickConfirm = useEditInfoFormMethod(toggleIsEdit)
+  const handleClickConfirm = useEditClinicFormMethod(toggleIsEdit)
 
   return (
     <div>
