@@ -58,13 +58,13 @@ export const BottomNav = () => {
                       {/* profile floating action button */}
                       <div className={`flex rounded-t-[50%] bg-white p-[8px] pb-0 ${zIndex.fab}`}>
                         <Profile
-                          name={user.username}
+                          name={user.name}
                           onClickProfile={toggleShowing}
                           bgColor={isShowing ? '#949698' : '#F5F6F8'}
                           textColor={isShowing ? 'text-gray-1' : 'text-gray-6'}
                         />
                       </div>
-                      {user.username}
+                      {user.name}
                     </div>
                   </div>
                 )}
