@@ -2,10 +2,8 @@
 
 import { FormProvider } from 'react-hook-form'
 
-import { ClinicForm, ClinicInfoHeader, ClinicInfoModal } from '@/features'
+import { ClinicForm, ClinicInfoHeader, ClinicInfoModal, useInsertedClinicForm } from '@/features'
 import { useBoolean, useToggle } from '@/hooks'
-
-import { useInsertedClinicForm } from '../service/useInsertedClinicForm'
 
 export const ClinicInfoClientPage = () => {
   const formMethod = useInsertedClinicForm()

@@ -3,9 +3,8 @@
 import { FormProvider } from 'react-hook-form'
 
 import { MainHeader } from '@/components/header/MainHeader'
+import { useAddClinicFormMethod } from '@/features'
 import { useClinicForm } from '@/schema'
-
-import { useAddClinicFormMethod } from '../service/useAddClinicFormMethod'
 
 import { ClinicForm } from './ClinicForm'
 

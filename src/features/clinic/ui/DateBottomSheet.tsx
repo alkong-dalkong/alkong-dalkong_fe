@@ -3,10 +3,9 @@ import { useEffect } from 'react'
 import dayjs from 'dayjs'
 
 import { BottomSheet, Calendar, Label, SubHeader, TimeSlider } from '@/components'
-import { useCalendarActions, useCurrentDate } from '@/store/calendarStore'
+import { useFormattedVisitDate } from '@/features'
+import { useCalendarActions, useCurrentDate } from '@/store'
 import type { ClinicBottomSheetType } from '@/types'
-
-import { useFormattedVisitDate } from '../hook/useFormattedVisitDate'
 
 const DateBottomSheetHeader = ({
   section,

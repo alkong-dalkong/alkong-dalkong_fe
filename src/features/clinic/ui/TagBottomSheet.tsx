@@ -3,11 +3,9 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 
-import { BottomSheet, Label, SubHeader } from '@/components'
-import ActionTag from '@/components/actionTag/ActionTag'
+import { ActionTag, BottomSheet, Label, SubHeader } from '@/components'
+import { useTagToggle } from '@/features'
 import type { ClinicBottomSheetType } from '@/types'
-
-import { useTagToggle } from '../hook/useTagToggle'
 
 const CLINIC_TAGS = [
   '건강검진',

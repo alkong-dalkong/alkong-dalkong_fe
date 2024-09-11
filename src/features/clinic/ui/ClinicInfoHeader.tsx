@@ -2,9 +2,8 @@
 import { useFormContext } from 'react-hook-form'
 
 import { MainHeader } from '@/components'
+import { useEditClinicFormMethod } from '@/features'
 import type { ClinicFormType } from '@/types'
-
-import { useEditClinicFormMethod } from '../service/useEditClinicFormMethod'
 
 type HeaderProps = {
   isEdit: boolean

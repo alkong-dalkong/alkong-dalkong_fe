@@ -2,9 +2,12 @@
 import { useFormContext } from 'react-hook-form'
 
 import { ActionTag, InputGroup, Label, Tag } from '@/components'
-import { AlarmBottomSheet, DateBottomSheet, TagBottomSheet } from '@/features'
-
-import { useClinicFormBottomSheet } from '../hook/useClinicFormBottomSheet'
+import {
+  AlarmBottomSheet,
+  DateBottomSheet,
+  TagBottomSheet,
+  useClinicFormBottomSheet,
+} from '@/features'
 
 type ClinicFormProps = {
   isReadOnly?: boolean

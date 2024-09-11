@@ -1,8 +1,6 @@
 'use client'
-import { Button } from '@/components'
-import Modal from '@/components/modal/Modal'
-
-import { useClinicDeleteModal } from '../service/useClinicDeleteModal'
+import { Button, Modal } from '@/components'
+import { useClinicDeleteModal } from '@/features'
 
 type ClinicInfoModalProps = {
   modalState: boolean
