@@ -1,3 +1,4 @@
+'use client'
 import { useParams, useRouter } from 'next/navigation'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'

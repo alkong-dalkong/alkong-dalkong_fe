@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 
 import { ALARM_TIME } from '@/constants'
