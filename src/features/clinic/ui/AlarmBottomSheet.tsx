@@ -1,23 +1,20 @@
 'use client'
 
-import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { BottomSheet, Label, SubHeader } from '@/components'
 import { ALARM_TIME } from '@/constants'
 import type { ClinicBottomSheetType } from '@/types'
 
+import { useSelectAlarmTime } from '../hook/useSelectAlarmTime'
+
 export const AlarmBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
   const { setValue } = useFormContext()
-  const [selectedTime, setSelectedTime] = useState<string>(ALARM_TIME[5])
+  const { selectedTime, handleClickTime } = useSelectAlarmTime()
 
   const handleClickComplete = () => {
     setValue(section, selectedTime)
     onClickScrim()
-  }
-
-  const handleClickTime = (time: string) => {
-    setSelectedTime(time)
   }
 
   return (

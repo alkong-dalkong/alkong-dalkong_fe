@@ -1,24 +1,18 @@
 'use client'
 import { useEffect } from 'react'
-import { useFormContext } from 'react-hook-form'
 import dayjs from 'dayjs'
 
 import { BottomSheet, Calendar, Label, SubHeader, TimeSlider } from '@/components'
 import { useCalendarActions, useCurrentDate } from '@/store/calendarStore'
-import { useSelectedTime } from '@/store/timeStore'
 import type { ClinicBottomSheetType } from '@/types'
 
-const Header = ({ section, onClickScrim }: Omit<ClinicBottomSheetType, 'isShowing'>) => {
-  const { setValue } = useFormContext()
-  const selectedDate = useCurrentDate()
-  const selectedTime = useSelectedTime()
+import { useFormattedVisitDate } from '../hook/useFormattedVisitDate'
 
-  const handleClickComplete = () => {
-    const date = `${selectedDate} ${selectedTime}`
-    const formattedDate = dayjs(date).format('YYYY년 M월 D일 dddd A HH:mm')
-    setValue(section, formattedDate)
-    onClickScrim()
-  }
+const DateBottomSheetHeader = ({
+  section,
+  onClickScrim,
+}: Omit<ClinicBottomSheetType, 'isShowing'>) => {
+  const handleClickComplete = useFormattedVisitDate(section, onClickScrim)
 
   return (
     <div className="-mx-2 w-full pb-5">
@@ -53,7 +47,7 @@ export const DateBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBott
 
   return (
     <BottomSheet isShowing={isShowing} onClickScrim={onClickScrim}>
-      <Header section={section} onClickScrim={onClickScrim} />
+      <DateBottomSheetHeader section={section} onClickScrim={onClickScrim} />
 
       <div className="size-full overflow-y-scroll pb-12 pt-5 scrollbar-hide">
         <section>

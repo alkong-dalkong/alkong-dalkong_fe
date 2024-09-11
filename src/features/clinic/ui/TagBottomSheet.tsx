@@ -1,11 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { BottomSheet, Label, SubHeader } from '@/components'
 import ActionTag from '@/components/actionTag/ActionTag'
 import type { ClinicBottomSheetType } from '@/types'
+
+import { useTagToggle } from '../hook/useTagToggle'
 
 const CLINIC_TAGS = [
   '건강검진',
@@ -39,15 +41,7 @@ const ToggledTagList = ({ selectedTags, onTagToggle }: ToggledTagListProps) => {
 
 export const TagBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
   const { getValues, setValue } = useFormContext()
-  const [selectedTags, setSelectedTags] = useState<string[]>(() => getValues(section) || [])
-
-  const handleTagToggle = (tag: string) => {
-    setSelectedTags((prevSelectedTags) =>
-      prevSelectedTags.includes(tag)
-        ? prevSelectedTags.filter((selectedTag) => selectedTag !== tag)
-        : [...prevSelectedTags, tag],
-    )
-  }
+  const { selectedTags, handleTagToggle } = useTagToggle(getValues(section) || [])
 
   const handleClickComplete = () => {
     setValue(section, selectedTags)
