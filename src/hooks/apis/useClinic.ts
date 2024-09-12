@@ -1,13 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
-  createMedicalInfo,
-  deleteMedicalInfo,
-  detailInfo,
-  editMedicalInfo,
-  medicalCalendar,
+  clinicCalendar,
+  clinicInfo,
+  createClinicInfo,
+  deleteClinicInfo,
+  editClinicInfo,
 } from '@/apis'
-import type { MedicalCalendarRequest } from '@/types'
+import type { ClinicCalendarRequest } from '@/types'
 
 const queryKeys = {
   all: ['clinic'] as const,
@@ -16,35 +16,35 @@ const queryKeys = {
     [...queryKeys.all, 'calendar', userId, localDate] as const,
 }
 
-export const useDetailInfo = (medicalId: number) =>
+export const useClinicInfo = (medicalId: number) =>
   useQuery({
     queryKey: queryKeys.detail(medicalId),
-    queryFn: () => detailInfo(medicalId),
+    queryFn: () => clinicInfo(medicalId),
   })
 
-export const useMedicalCalendar = ({ userId, localDate }: MedicalCalendarRequest) =>
+export const useClinicCalendar = ({ userId, localDate }: ClinicCalendarRequest) =>
   useQuery({
     queryKey: queryKeys.calendar(userId, localDate),
-    queryFn: () => medicalCalendar({ userId, localDate }),
+    queryFn: () => clinicCalendar({ userId, localDate }),
   })
 
-export const useCreateMedicalInfo = () => {
+export const useCreateClinicInfo = () => {
   return useMutation({
-    mutationFn: createMedicalInfo,
+    mutationFn: createClinicInfo,
   })
 }
 
-export const useEditMedicalInfo = (medicalId: number) => {
+export const useEditClinicInfo = (medicalId: number) => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: editMedicalInfo,
+    mutationFn: editClinicInfo,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.detail(medicalId) }),
   })
 }
 
-export const useDeleteMedicalInfo = () => {
+export const useDeleteClinicInfo = () => {
   return useMutation({
-    mutationFn: deleteMedicalInfo,
+    mutationFn: deleteClinicInfo,
   })
 }

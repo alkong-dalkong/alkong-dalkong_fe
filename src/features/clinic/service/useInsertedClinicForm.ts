@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import { ALARM_TIME } from '@/constants'
-import { useDetailInfo } from '@/hooks'
+import { useClinicInfo } from '@/hooks'
 import { useClinicForm } from '@/schema'
 
 /**
@@ -21,7 +21,7 @@ import { useClinicForm } from '@/schema'
 export const useInsertedClinicForm = () => {
   const formMethod = useClinicForm()
   const { medicalId } = useParams<{ medicalId: string }>()
-  const { data: detailInfoData } = useDetailInfo(parseInt(medicalId))
+  const { data: detailInfoData } = useClinicInfo(parseInt(medicalId))
 
   useEffect(() => {
     if (detailInfoData) {

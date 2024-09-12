@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 
 import { ALARM_TIME } from '@/constants'
-import { useCreateMedicalInfo } from '@/hooks'
+import { useCreateClinicInfo } from '@/hooks'
 import type { ClinicFormType } from '@/types'
 
 dayjs.extend(customParseFormat)
@@ -27,7 +27,7 @@ dayjs.extend(customParseFormat)
 export const useAddClinicFormMethod = () => {
   const router = useRouter()
   const { userId } = useParams<{ userId: string }>()
-  const { mutate: createMedicalInfoMutation } = useCreateMedicalInfo()
+  const { mutate: createMedicalInfoMutation } = useCreateClinicInfo()
 
   const handleClickCancle = () => {
     router.back()

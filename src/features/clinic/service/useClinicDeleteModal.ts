@@ -1,7 +1,7 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation'
 
-import { useDeleteMedicalInfo } from '@/hooks'
+import { useDeleteClinicInfo } from '@/hooks'
 
 /**
  * @description
@@ -16,10 +16,10 @@ import { useDeleteMedicalInfo } from '@/hooks'
 export const useClinicDeleteModal = () => {
   const router = useRouter()
   const { userId, medicalId } = useParams<{ userId: string; medicalId: string }>()
-  const { mutate: deleteMedicalInfo } = useDeleteMedicalInfo()
+  const { mutate: deleteClinicInfo } = useDeleteClinicInfo()
 
   const handleClickDelete = () => {
-    deleteMedicalInfo(medicalId, { onSuccess: () => router.replace(`/clinic/${userId}`) })
+    deleteClinicInfo(medicalId, { onSuccess: () => router.replace(`/clinic/${userId}`) })
   }
 
   return handleClickDelete

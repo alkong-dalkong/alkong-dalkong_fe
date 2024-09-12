@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
-import { useMedicalCalendar } from '@/hooks'
+import { useClinicCalendar } from '@/hooks'
 import { useCalendarActions } from '@/store'
 import type { ScheduleType } from '@/types'
 
@@ -25,7 +25,7 @@ export const useScheduleList = () => {
   const { userId } = useParams<{ userId: string }>()
   const [scheduleList, setScheduleList] = useState<ScheduleType[]>([])
 
-  const { data: medicalData, refetch } = useMedicalCalendar({ userId, localDate })
+  const { data: medicalData, refetch } = useClinicCalendar({ userId, localDate })
   const { resetCalendar, updateScheduledDates } = useCalendarActions()
 
   useEffect(() => {

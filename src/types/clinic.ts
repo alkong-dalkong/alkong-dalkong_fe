@@ -28,20 +28,20 @@ export type CreateClinicInfoResponse = {
   medicalId: number
 }
 
-export type DetailInfoResponse = {
+export type ClinicInfoResponse = {
   code: number
   data: ClinicFormApiType & { medicalId: number }
 }
 
-export type EditMedicalInfoRequest = ClinicFormApiType
-export type EditMedicalInfoResponse = { code: number }
+export type EditClinicInfoRequest = ClinicFormApiType
+export type EditClinicInfoResponse = { code: number }
 
-export type MedicalCalendarRequest = {
+export type ClinicCalendarRequest = {
   userId: string
   localDate: string
 }
 
-export type MedicalCalendarResponse = {
+export type ClinicCalendarResponse = {
   code: number
   data: ScheduleType[]
 }
