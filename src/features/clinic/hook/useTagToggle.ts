@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useTagToggle = (tags: string[]) => {
   const [selectedTags, setSelectedTags] = useState<string[]>(tags)
@@ -11,6 +11,10 @@ export const useTagToggle = (tags: string[]) => {
         : [...prevSelectedTags, tag],
     )
   }
+
+  useEffect(() => {
+    setSelectedTags(tags)
+  }, [tags])
 
   return { selectedTags, handleTagToggle }
 }
