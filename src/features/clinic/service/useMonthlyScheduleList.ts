@@ -16,14 +16,14 @@ import type { ScheduleType } from '@/types'
  *    `updateScheduledDates`로 데이터의 날짜 목록을 store에 업데이트한다.
  * 3. 진료 스케줄 목록은 `scheduleList` 상태에 저장하여, 이 상태값을 반환한다.
  *
- * @returns {ScheduleType[]} 스케줄 목록을 반환한다.
+ * @returns {ScheduleType[]} 이번달의 스케줄 목록을 반환한다.
  */
 
-export const useScheduleList = () => {
+export const useMonthlyScheduleList = () => {
   const localDate = dayjs().format('YYYY-MM')
 
   const { userId } = useParams<{ userId: string }>()
-  const [scheduleList, setScheduleList] = useState<ScheduleType[]>([])
+  const [monthlyScheduleList, setMonthlyScheduleList] = useState<ScheduleType[]>([])
 
   const { data: medicalData, refetch } = useClinicCalendar({ userId, localDate })
   const { resetCalendar, updateScheduledDates } = useCalendarActions()
@@ -35,7 +35,7 @@ export const useScheduleList = () => {
       const scheduleData = medicalData.data || []
       const dateList = scheduleData.map((schedule) => schedule.hospitalDate)
 
-      setScheduleList(scheduleData)
+      setMonthlyScheduleList(scheduleData)
       updateScheduledDates(dateList)
     }
   }, [resetCalendar, medicalData, updateScheduledDates])
@@ -44,5 +44,5 @@ export const useScheduleList = () => {
     refetch()
   }, [refetch])
 
-  return scheduleList
+  return monthlyScheduleList
 }
