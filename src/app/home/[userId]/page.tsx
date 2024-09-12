@@ -3,11 +3,10 @@
 import dayjs from 'dayjs'
 
 import { DashBoardTemplate } from '@/features'
+import { ClinicSection, HealthSection, MedicineSection } from '@/features'
+import { HealthInfo, MedicineInfo, RecentMedicalInfo, UpcomingMedicalInfo } from '@/features'
+import { ClinicHelper, HealthHelper, MedicineHelper } from '@/features'
 import { useHome } from '@/hooks/apis/useHome'
-
-import { ClinicSection } from './_clinic/ClinicSection'
-import { HealthSection } from './_health/HealthSection'
-import { MedicineSection } from './_medicine/MedicineSection'
 
 export type HomeRouteParams = {
   params: { userId: string }
@@ -15,9 +14,9 @@ export type HomeRouteParams = {
 
 const Home = ({ params: { userId } }: HomeRouteParams) => {
   const currentTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
-  const { data } = useHome({ userId, localDate: currentTime })
+  const { data: homePageData } = useHome({ userId, localDate: currentTime })
 
-  if (!data) {
+  if (!homePageData) {
     return
   }
 
@@ -62,12 +61,21 @@ const Home = ({ params: { userId } }: HomeRouteParams) => {
 
   return (
     <DashBoardTemplate route="home">
-      <ClinicSection
-        upcomingMedicalInfo={upcomingMedicalInfo}
-        recentMedicalInfo={recentMedicalInfo}
-      />
-      <HealthSection recentWeightInfo={recentWeightInfo} />
-      <MedicineSection currentMedicineInfo={currentMedicineInfo} />
+      <ClinicSection>
+        {!upcomingMedicalInfo && !recentMedicalInfo && <ClinicHelper />}
+        {upcomingMedicalInfo && <UpcomingMedicalInfo upcomingMedicalInfo={upcomingMedicalInfo} />}
+        {recentMedicalInfo && <RecentMedicalInfo recentMedicalInfo={recentMedicalInfo} />}
+      </ClinicSection>
+      <HealthSection>
+        {recentWeightInfo ? <HealthInfo recentWeightInfo={recentWeightInfo} /> : <HealthHelper />}
+      </HealthSection>
+      <MedicineSection>
+        {currentMedicineInfo.length === 0 ? (
+          <MedicineHelper />
+        ) : (
+          <MedicineInfo currentMedicineInfo={currentMedicineInfo} />
+        )}
+      </MedicineSection>
     </DashBoardTemplate>
   )
 }

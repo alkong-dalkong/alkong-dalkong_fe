@@ -1,4 +1,7 @@
 export * from './DashBoardTemplate'
+export * from './home/HelperBox'
+export * from './home/InfoBox'
+export * from './home/SectionWrapper'
 export * from './sign-in/SignInStep'
 export * from './sign-up/AccountStep'
 export * from './sign-up/CompleteStep'
