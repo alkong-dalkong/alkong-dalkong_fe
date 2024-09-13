@@ -6,6 +6,8 @@ import { GRAPHTYPE } from '@/constants'
 import { useGraph } from '@/hooks'
 import type { WeightInfoType } from '@/types'
 
+import { WeightChart } from './WeightChart'
+
 export const GraphSection = ({
   info,
   type,
@@ -16,7 +18,6 @@ export const GraphSection = ({
   toggle: VoidFunction
 }) => {
   const { data, increase, decrease } = useGraph(info)
-  console.log(data)
 
   return (
     <section className="mb-10 w-full">
@@ -47,7 +48,16 @@ export const GraphSection = ({
       </div>
 
       {/** 그래프 렌더링 */}
-      <div className="h-[243px] w-full"></div>
+      <div className="h-[243px] w-full">
+        {info.length !== 0 ? (
+          <WeightChart data={data} />
+        ) : (
+          <div className="flex-center size-full bg-gray-6">
+            {/** 추후 변경 예정 */}
+            {'아직 기록이 없어요!\n체중을 추가해보세요!'}
+          </div>
+        )}
+      </div>
     </section>
   )
 }
