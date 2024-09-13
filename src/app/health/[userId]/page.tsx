@@ -1,7 +1,7 @@
 'use client'
 
 import { GRAPHTYPE } from '@/constants'
-import { DashBoardTemplate } from '@/features'
+import { DashBoardTemplate, GraphSection, ReportSection, WeightSection } from '@/features'
 import { useToggle } from '@/hooks'
 import { useFetchHealth } from '@/hooks/apis/useHealth'
 
@@ -47,7 +47,13 @@ const HealthPage = ({ params: { userId } }: HealthRouteParams) => {
 
   const { weight, weightInfo, healthReport } = DUMMY.data
 
-  return <DashBoardTemplate route="health"></DashBoardTemplate>
+  return (
+    <DashBoardTemplate route="health">
+      <GraphSection type={graphType} toggle={toggleGraphType} info={weightInfo} />
+      <WeightSection weight={weight} />
+      <ReportSection report={healthReport} />
+    </DashBoardTemplate>
+  )
 }
 
 export default HealthPage

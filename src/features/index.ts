@@ -1,4 +1,7 @@
 export * from './DashBoardTemplate'
+export * from './health/GraphSection'
+export * from './health/ReportSection'
+export * from './health/WeightSection'
 export * from './sign-in/SignInStep'
 export * from './sign-up/AccountStep'
 export * from './sign-up/CompleteStep'
