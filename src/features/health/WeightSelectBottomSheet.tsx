@@ -2,6 +2,8 @@ import { domMax, LazyMotion } from 'framer-motion'
 
 import { BottomSheet, SubHeader } from '@/components'
 
+import { WeightSelect } from './WeightSelect'
+
 type WeightSelectBottomSheetProps = {
   isShowing: boolean
   toggleShowing: VoidFunction
@@ -21,7 +23,7 @@ export const WeightSelectBottomSheet = ({
             onConfirm={() => console.log('hello')}
           ></SubHeader.Confirm>
         </div>
-        {/* <WeightSelect /> */}
+        <WeightSelect />
       </BottomSheet>
     </LazyMotion>
   )
