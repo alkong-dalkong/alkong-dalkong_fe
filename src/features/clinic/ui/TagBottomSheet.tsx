@@ -4,20 +4,9 @@ import React from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { ActionTag, BottomSheet, Label, SubHeader } from '@/components'
+import { CLINIC_TAGS } from '@/constants'
 import { useTagToggle } from '@/features'
 import type { ClinicBottomSheetType } from '@/types'
-
-const CLINIC_TAGS = [
-  '건강검진',
-  '멍',
-  '속쓰림',
-  '기침',
-  '콧물',
-  '알레르기',
-  '피부염',
-  '열',
-  '어지러움',
-]
 
 type ToggledTagListProps = {
   selectedTags: string[]
