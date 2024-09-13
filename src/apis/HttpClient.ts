@@ -7,6 +7,9 @@ import axios, {
   isAxiosError,
 } from 'axios'
 
+const ACCESS_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN
+const REFRESH_TOKEN = process.env.NEXT_PUBLIC_REFRESH_TOKEN
+
 export class HttpClient {
   private readonly client: AxiosInstance
 
@@ -18,27 +21,32 @@ export class HttpClient {
   }
 
   get<T>(...args: Parameters<typeof this.client.get>) {
-    return this.client.get<T>(...args)
+    return this.client.get<T, T>(...args)
   }
 
   post<T>(...args: Parameters<typeof this.client.post>) {
-    return this.client.post<T>(...args)
+    return this.client.post<T, T>(...args)
   }
 
   put<T>(...args: Parameters<typeof this.client.put>) {
-    return this.client.put<T>(...args)
+    return this.client.put<T, T>(...args)
   }
 
   patch<T>(...args: Parameters<typeof this.client.patch>) {
-    return this.client.patch<T>(...args)
+    return this.client.patch<T, T>(...args)
   }
 
   delete<T>(...args: Parameters<typeof this.client.delete>) {
-    return this.client.delete<T>(...args)
+    return this.client.delete<T, T>(...args)
   }
 
   private onRequest(config: InternalAxiosRequestConfig) {
-    // 토큰 처리 방식에 따라 헤더 추가 설정
+    const accessToken = localStorage.getItem(ACCESS_TOKEN)
+
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
+
     return config
   }
 

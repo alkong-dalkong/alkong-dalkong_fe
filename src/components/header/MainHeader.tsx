@@ -20,14 +20,9 @@ export const Setting = ({ title }: Pick<HeaderProps, 'title'>) => {
   return (
     <header className="flex-column-between h-[182px] bg-mint-3 px-[20px] pb-[24px] pt-[20px]">
       <div className="flex-align w-full justify-end">
-        <Profile
-          name={user.username}
-          size="sm"
-          bgColor="#C5FDEC"
-          onClickProfile={handleGoSetting}
-        />
+        <Profile name={user.name} size="sm" bgColor="#C5FDEC" onClickProfile={handleGoSetting} />
       </div>
-      <h1 className="title-B whitespace-pre text-black">{`${user.username}${title}`}</h1>
+      <h1 className="title-B whitespace-pre text-black">{`${user.name}${title}`}</h1>
     </header>
   )
 }
