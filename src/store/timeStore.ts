@@ -3,6 +3,8 @@ import { create } from 'zustand'
 type Actions = {
   handleHourChange: (newHour: number) => void
   handleMinuteChange: (newMinute: number) => void
+  setInitialSelectedTime: (newTime: string) => void
+  resetSelectedTime: VoidFunction
 }
 
 type SelectedTimeStore = {
@@ -10,7 +12,7 @@ type SelectedTimeStore = {
   actions: Actions
 }
 
-const initialSelectedTime = '00:00:00'
+const initialSelectedTime = '12:30:00'
 
 export const useSelectedTimeStore = create<SelectedTimeStore>((set) => ({
   selectedTime: initialSelectedTime,
@@ -31,6 +33,8 @@ export const useSelectedTimeStore = create<SelectedTimeStore>((set) => ({
           selectedTime: `${hours}:${formattedMinute}:${seconds}`,
         }
       }),
+    setInitialSelectedTime: (newTime) => set(() => ({ selectedTime: newTime })),
+    resetSelectedTime: () => set(() => ({ selectedTime: initialSelectedTime })),
   },
 }))
 

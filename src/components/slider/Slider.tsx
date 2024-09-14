@@ -7,6 +7,7 @@ import 'swiper/css'
 
 type SliderProps = {
   list: readonly string[]
+  initialSlide: string
   onChange: (selected: number) => void
 }
 
@@ -20,7 +21,7 @@ const MemoizedSwiperSlide = memo(({ content }: MemoizedSwiperSlideProps) => {
 
 MemoizedSwiperSlide.displayName = 'MemoizedSwiperSlide'
 
-export const Slider = ({ list, onChange }: SliderProps) => {
+export const Slider = ({ list, initialSlide, onChange }: SliderProps) => {
   const activeIndexRef = useRef(0)
 
   const debouncedSlideChange = useDebounceCallback(() => {
@@ -42,7 +43,7 @@ export const Slider = ({ list, onChange }: SliderProps) => {
       slidesPerView={5}
       direction="vertical"
       loop={true}
-      initialSlide={list.length / 2 - 2}
+      initialSlide={parseInt(initialSlide) - 2}
       className="headline-M h-[150px] w-6 text-center"
       onSlideChange={handleSlideChange}
     >
