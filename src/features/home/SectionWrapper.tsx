@@ -25,7 +25,7 @@ const ClinicSection = ({ children }: PropsWithChildren) => {
 
 const HealthSection = ({ children }: PropsWithChildren) => {
   return (
-    <SectionWrapper label={<Label icon="clinic-label">체중 기록</Label>}>{children}</SectionWrapper>
+    <SectionWrapper label={<Label icon="health-label">체중 기록</Label>}>{children}</SectionWrapper>
   )
 }
 

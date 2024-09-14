@@ -2,10 +2,9 @@
 
 import dayjs from 'dayjs'
 
-import { DashBoardTemplate } from '@/features'
+import { DashBoardTemplate, HelperBox } from '@/features'
 import { ClinicSection, HealthSection, MedicineSection } from '@/features'
 import { HealthInfo, MedicineInfo, RecentMedicalInfo, UpcomingMedicalInfo } from '@/features'
-import { ClinicHelper, HealthHelper, MedicineHelper } from '@/features'
 import { useHome } from '@/hooks/apis/useHome'
 
 export type HomeRouteParams = {
@@ -57,21 +56,27 @@ const Home = ({ params: { userId } }: HomeRouteParams) => {
   }
 
   const { upcomingMedicalInfo, recentMedicalInfo, recentWeightInfo, currentMedicineInfo } =
-    DUMMY.data // data.data
+    homePageData.data // homePageData.data
 
   return (
     <DashBoardTemplate route="home">
       <ClinicSection>
-        {!upcomingMedicalInfo && !recentMedicalInfo && <ClinicHelper />}
+        {!upcomingMedicalInfo && !recentMedicalInfo && (
+          <HelperBox title="진료에서 내원 일정을 추가해 보세요!" />
+        )}
         {upcomingMedicalInfo && <UpcomingMedicalInfo upcomingMedicalInfo={upcomingMedicalInfo} />}
         {recentMedicalInfo && <RecentMedicalInfo recentMedicalInfo={recentMedicalInfo} />}
       </ClinicSection>
       <HealthSection>
-        {recentWeightInfo ? <HealthInfo recentWeightInfo={recentWeightInfo} /> : <HealthHelper />}
+        {recentWeightInfo ? (
+          <HealthInfo recentWeightInfo={recentWeightInfo} />
+        ) : (
+          <HelperBox title="건강에서 내 체중을 추가해 보세요!" />
+        )}
       </HealthSection>
       <MedicineSection>
         {currentMedicineInfo.length === 0 ? (
-          <MedicineHelper />
+          <HelperBox title="약에서 복용 중인 약을 추가해 보세요!" />
         ) : (
           <MedicineInfo currentMedicineInfo={currentMedicineInfo} />
         )}
