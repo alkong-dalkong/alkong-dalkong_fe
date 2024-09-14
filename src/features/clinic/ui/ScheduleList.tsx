@@ -16,7 +16,7 @@ const ScheduleListHeader = () => {
   const router = useRouter()
 
   const handleClickPlusButton = () => {
-    router.push(`/clinic/${userId}/write`)
+    router.push(`/clinic/${userId}/create`)
   }
 
   return (
