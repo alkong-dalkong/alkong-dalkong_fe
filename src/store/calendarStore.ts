@@ -1,29 +1,29 @@
 import dayjs from 'dayjs'
 import { create } from 'zustand'
 
-type CalendarActions = {
-  goToPreviousMonth: () => void
-  goToNextMonth: () => void
-  setSelectedDate: (date: string) => void
-  updateScheduledDates: (dates: string[]) => void
-  resetCalendar: () => void
-  setRemainedDate: (newDate: string) => void
-  swapCurrentWithRemained: () => void
-}
-
 type CalendarState = {
   selectedDate: string
+  createdScheduleDate: string
   scheduledDays: string[]
-  remainedDate: string
   actions: CalendarActions
+}
+
+type CalendarActions = {
+  goToPreviousMonth: VoidFunction
+  goToNextMonth: VoidFunction
+  setSelectedDate: (date: string) => void
+  updateScheduledDates: (dates: string[]) => void
+  resetCalendar: VoidFunction
+  setCreatedScheduleDate: (newDate: string) => void
+  swapSelectedDateToCreatedDate: VoidFunction
 }
 
 const initialDate = dayjs().format('YYYY-MM-DD')
 
 export const useCalendarStore = create<CalendarState>((set, get) => ({
   selectedDate: initialDate,
+  createdScheduleDate: initialDate,
   scheduledDays: [],
-  remainedDate: initialDate,
   actions: {
     goToPreviousMonth: () => {
       const { selectedDate } = get()
@@ -42,17 +42,17 @@ export const useCalendarStore = create<CalendarState>((set, get) => ({
     resetCalendar: () => {
       set({ selectedDate: initialDate, scheduledDays: [] })
     },
-    setRemainedDate: (newDate: string) => {
+    setCreatedScheduleDate: (newDate: string) => {
       const formattedDate = dayjs(newDate).format('YYYY-MM-DD')
-      set({ remainedDate: formattedDate })
-    },
-    swapCurrentWithRemained: () => {
-      const { remainedDate } = get()
-      set({ selectedDate: remainedDate })
+      set({ createdScheduleDate: formattedDate })
     },
     setSelectedDate: (newDate: string) => {
       const formattedDate = dayjs(newDate).format('YYYY-MM-DD')
       set({ selectedDate: formattedDate })
+    },
+    swapSelectedDateToCreatedDate: () => {
+      const { createdScheduleDate } = get()
+      set({ selectedDate: createdScheduleDate })
     },
   },
 }))

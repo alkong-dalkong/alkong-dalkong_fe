@@ -29,7 +29,7 @@ export const useSubmitAddClinicForm = () => {
   const router = useRouter()
   const { userId } = useParams<{ userId: string }>()
   const { mutate: createMedicalInfoMutation } = useCreateClinicInfo()
-  const { setRemainedDate } = useCalendarActions()
+  const { setCreatedScheduleDate } = useCalendarActions()
 
   const submitFormattedForm = (formData: ClinicFormType) => {
     const { medicalAlarm, hospitalDate } = formData
@@ -46,7 +46,7 @@ export const useSubmitAddClinicForm = () => {
 
     createMedicalInfoMutation(sendingFormData, {
       onSuccess: ({ medicalId }) => {
-        setRemainedDate(formattedDate)
+        setCreatedScheduleDate(formattedDate)
         router.replace(`/clinic/${userId}/info/${medicalId}`)
       },
     })
