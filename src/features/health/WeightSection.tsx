@@ -30,7 +30,11 @@ export const WeightSection = ({ weight: weightProps }: { weight: WeightType | un
           {weight ? '수정' : '추가'}
         </button>
       </div>
-      <WeightSelectBottomSheet isShowing={isShowing} toggleShowing={toggleShowing} />
+      <WeightSelectBottomSheet
+        existWeight={weight !== null}
+        isShowing={isShowing}
+        toggleShowing={toggleShowing}
+      />
     </section>
   )
 }

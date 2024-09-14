@@ -1,7 +1,5 @@
 'use client'
-
-import { useState } from 'react'
-import dayjs from 'dayjs'
+import type dayjs from 'dayjs'
 
 import { Icon, WeightSlider } from '@/components'
 
@@ -11,28 +9,28 @@ const getForm = (date: dayjs.Dayjs) => {
   return date.format('M/D(ddd)')
 }
 
-export const WeightSelect = () => {
-  const [today, setToday] = useState(dayjs().locale('ko'))
+type WeightSelectProps = {
+  today: dayjs.Dayjs
+  handlePrevDay: VoidFunction
+  handleNextDay: VoidFunction
+}
 
-  const handlePrevDay = () => {
-    setToday(today.subtract(1, 'day'))
-  }
-
-  const handleNextDay = () => {
-    setToday(today.add(1, 'day'))
-  }
+export const WeightSelect = ({ today, handlePrevDay, handleNextDay }: WeightSelectProps) => {
+  const day = getForm(today)
+  const prevDay = getForm(today.subtract(1, 'day'))
+  const nextDay = getForm(today.subtract(1, 'day'))
 
   return (
     <div className="flex-column mt-[8%] w-full gap-8">
       <div className="flex-center gap-3">
         <button type="button" onClick={handlePrevDay} className="headline-M text-gray-6">
-          {getForm(today.subtract(1, 'day'))}
+          {prevDay}
         </button>
         <Icon name="arrow-left" color="#0E8763" />
-        <div className="title-B">{getForm(today)}</div>
+        <div className="title-B">{day}</div>
         <Icon name="arrow-right" color="#0E8763" />
         <button type="button" onClick={handleNextDay} className="headline-M text-gray-6">
-          {getForm(today.add(1, 'day'))}
+          {nextDay}
         </button>
       </div>
       <div className="w-full">
