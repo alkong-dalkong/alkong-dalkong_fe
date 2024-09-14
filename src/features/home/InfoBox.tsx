@@ -41,9 +41,7 @@ type InfoProps = {
   currentMedicineInfo: CurrentMedicineInfo
 }
 
-const HealthInfo = ({
-  recentWeightInfo: { weight, date },
-}: Pick<InfoProps, 'recentWeightInfo'>) => {
+const HealthInfo = ({ weight, date }: RecentWeightInfo) => {
   const now = dayjs().locale('ko').startOf('day')
   const schedule = dayjs(date).locale('ko').startOf('day')
 
@@ -51,10 +49,10 @@ const HealthInfo = ({
   return <InfoBox title={`${weight}kg`} schedule={`${diffDays}일 전`} />
 }
 
-const MedicineInfo = ({ currentMedicineInfo }: Pick<InfoProps, 'currentMedicineInfo'>) => {
+const MedicineInfo = ({ info }: { info: CurrentMedicineInfo }) => {
   return (
     <>
-      {currentMedicineInfo.map(({ medicineName, times, weekList }, idx) => {
+      {info.map(({ medicineName, times, weekList }, idx) => {
         let schedule = ''
         if (weekList.length === 7) {
           schedule = '매일'
@@ -76,8 +74,10 @@ const MedicineInfo = ({ currentMedicineInfo }: Pick<InfoProps, 'currentMedicineI
 }
 
 const UpcomingMedicalInfo = ({
-  upcomingMedicalInfo: { hospitalName, hospitalDate, medicalPart },
-}: Pick<InfoProps, 'upcomingMedicalInfo'>) => {
+  hospitalName,
+  hospitalDate,
+  medicalPart,
+}: UpcomingMedicalInfoType) => {
   const now = dayjs().locale('ko').startOf('day')
   const schedule = dayjs(hospitalDate).locale('ko').startOf('day')
 
@@ -113,9 +113,7 @@ const UpcomingMedicalInfo = ({
   )
 }
 
-const RecentMedicalInfo = ({
-  recentMedicalInfo: { hospitalName, hospitalDate },
-}: Pick<InfoProps, 'recentMedicalInfo'>) => {
+const RecentMedicalInfo = ({ hospitalName, hospitalDate }: RecentMedicalInfoType) => {
   const now = dayjs().locale('ko').startOf('day')
   const schedule = dayjs(hospitalDate).locale('ko').startOf('day')
 

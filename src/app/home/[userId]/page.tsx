@@ -16,7 +16,11 @@ const Home = ({ params: { userId } }: HomeRouteParams) => {
   const { data: homePageData } = useHome({ userId, localDate: currentTime })
 
   if (!homePageData) {
-    return
+    return (
+      <DashBoardTemplate route="home">
+        <div>네트워크 요청 실패</div>
+      </DashBoardTemplate>
+    )
   }
 
   const DUMMY = {
@@ -64,12 +68,12 @@ const Home = ({ params: { userId } }: HomeRouteParams) => {
         {!upcomingMedicalInfo && !recentMedicalInfo && (
           <HelperBox title="진료에서 내원 일정을 추가해 보세요!" />
         )}
-        {upcomingMedicalInfo && <UpcomingMedicalInfo upcomingMedicalInfo={upcomingMedicalInfo} />}
-        {recentMedicalInfo && <RecentMedicalInfo recentMedicalInfo={recentMedicalInfo} />}
+        {upcomingMedicalInfo && <UpcomingMedicalInfo {...upcomingMedicalInfo} />}
+        {recentMedicalInfo && <RecentMedicalInfo {...recentMedicalInfo} />}
       </ClinicSection>
       <HealthSection>
         {recentWeightInfo ? (
-          <HealthInfo recentWeightInfo={recentWeightInfo} />
+          <HealthInfo {...recentWeightInfo} />
         ) : (
           <HelperBox title="건강에서 내 체중을 추가해 보세요!" />
         )}
@@ -78,7 +82,7 @@ const Home = ({ params: { userId } }: HomeRouteParams) => {
         {currentMedicineInfo.length === 0 ? (
           <HelperBox title="약에서 복용 중인 약을 추가해 보세요!" />
         ) : (
-          <MedicineInfo currentMedicineInfo={currentMedicineInfo} />
+          <MedicineInfo info={currentMedicineInfo} />
         )}
       </MedicineSection>
     </DashBoardTemplate>
