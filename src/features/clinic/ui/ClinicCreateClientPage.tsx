@@ -1,17 +1,23 @@
 'use client'
 
 import { FormProvider } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 
 import { MainHeader } from '@/components/header/MainHeader'
-import { useAddClinicFormMethod } from '@/features'
+import { useSubmitAddClinicForm } from '@/features'
 import { useClinicForm } from '@/schema'
 
 import { ClinicForm } from './ClinicForm'
 
-export const ClinicWriteClientPage = () => {
+export const ClinicCreateClientPage = () => {
+  const router = useRouter()
   const formMethod = useClinicForm()
   const { handleSubmit } = formMethod
-  const { handleClickCancle, handleClickConfirm } = useAddClinicFormMethod()
+  const submitFormattedForm = useSubmitAddClinicForm()
+
+  const handleClickCancle = () => {
+    router.back()
+  }
 
   return (
     <div className="flex-column h-full overflow-hidden">
@@ -19,7 +25,7 @@ export const ClinicWriteClientPage = () => {
         <MainHeader.Confirm
           title={`의사에게 전달할\n특이사항을 기입해주세요.`}
           onCancel={handleClickCancle}
-          onConfirm={handleSubmit(handleClickConfirm)}
+          onConfirm={handleSubmit(submitFormattedForm)}
         />
       </div>
 
