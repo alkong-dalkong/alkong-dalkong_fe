@@ -10,21 +10,16 @@ import type {
 
 import { api } from '.'
 
-export const clinicInfo = async (medicalId: number): Promise<ClinicInfoResponse> => {
-  return await api.get(`/medical/${medicalId}`)
+export const clinicInfo = async (medicalId: number) => {
+  return await api.get<ClinicInfoResponse>(`/medical/${medicalId}`)
 }
 
-export const clinicCalendar = async ({
-  userId,
-  localDate,
-}: ClinicCalendarRequest): Promise<ClinicCalendarResponse> => {
-  return await api.get(`/medical/calendar/${userId}/${localDate}`)
+export const clinicCalendar = async ({ userId, localDate }: ClinicCalendarRequest) => {
+  return await api.get<ClinicCalendarResponse>(`/medical/calendar/${userId}/${localDate}`)
 }
 
-export const createClinicInfo = async (
-  request: CreateClinicInfoRequest,
-): Promise<CreateClinicInfoResponse> => {
-  return await api.post(`/medical`, request)
+export const createClinicInfo = async (request: CreateClinicInfoRequest) => {
+  return await api.post<CreateClinicInfoResponse>(`/medical`, request)
 }
 
 export const editClinicInfo = async ({
@@ -33,8 +28,8 @@ export const editClinicInfo = async ({
 }: {
   medicalId: string
   request: EditClinicInfoRequest
-}): Promise<EditClinicInfoResponse> => {
-  return await api.put(`/medical/${medicalId}`, request)
+}) => {
+  return await api.put<EditClinicInfoResponse>(`/medical/${medicalId}`, request)
 }
 
 export const deleteClinicInfo = async (medicalId: string) => {
