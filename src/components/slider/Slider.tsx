@@ -30,8 +30,7 @@ export const Slider = ({ list, initialSlide, onChange }: SliderProps) => {
 
   const handleSlideChange = useCallback(
     ({ realIndex }: { realIndex: number }) => {
-      const currentIndex = (realIndex + 2) % list.length
-      activeIndexRef.current = currentIndex
+      activeIndexRef.current = realIndex
       debouncedSlideChange()
     },
     [debouncedSlideChange, list.length],
@@ -41,9 +40,10 @@ export const Slider = ({ list, initialSlide, onChange }: SliderProps) => {
     <Swiper
       spaceBetween={0}
       slidesPerView={5}
+      centeredSlides={true}
       direction="vertical"
       loop={true}
-      initialSlide={parseInt(initialSlide) - 2}
+      initialSlide={parseInt(initialSlide)}
       className="headline-M h-[150px] w-6 text-center"
       onSlideChange={handleSlideChange}
     >
