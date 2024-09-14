@@ -8,7 +8,6 @@ export * from './sign-up/TosStep'
 export * from './sign-up/UserInfoStep'
 
 // clinic
-export * from './clinic/hook/useClinicFormBottomSheet'
 export * from './clinic/hook/useFormattedVisitDate'
 export * from './clinic/hook/useSelectAlarmTime'
 export * from './clinic/hook/useTagToggle'
