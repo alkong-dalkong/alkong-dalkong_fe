@@ -1,7 +1,11 @@
-import type { HomeParamsType, HomeResponseType } from '@/types'
+import dayjs from 'dayjs'
+
+import type { HomeResponseType } from '@/types'
 
 import { api } from '.'
 
-export const getHomePageData = async ({ userId, localDate }: HomeParamsType) => {
-  return await api.get<HomeResponseType>(`/main/${userId}/${localDate}`)
+export const getHomePageData = async (userId: string) => {
+  const currentTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
+
+  return await api.get<HomeResponseType>(`/main/${userId}/${currentTime}`)
 }

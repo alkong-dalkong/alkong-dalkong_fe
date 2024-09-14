@@ -1,8 +1,3 @@
-export type HomeParamsType = {
-  userId: string
-  localDate: string
-}
-
 export type HomeResponseType = {
   code: number
   data: {
