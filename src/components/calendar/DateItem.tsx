@@ -1,4 +1,5 @@
 import React from 'react'
+import dayjs from 'dayjs'
 
 import { useCalendarActions, useCurrentDate, useScheduledDays } from '@/store/calendarStore'
 import { checkCalendarDateStyle } from '@/utils'
@@ -13,7 +14,7 @@ export const DateItem = ({ indexOfDate }: DateItemProps) => {
   const { setSelectedDate } = useCalendarActions()
 
   const handleClickDate = () => {
-    setSelectedDate(indexOfDate)
+    setSelectedDate(dayjs(date).format(`YYYY-MM-${indexOfDate}`))
   }
 
   return (

@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 
 import { ALARM_TIME } from '@/constants'
 import { useEditClinicInfo } from '@/hooks'
+import { useCalendarActions } from '@/store'
 import type { ClinicFormType } from '@/types'
 
 /**
@@ -22,6 +23,7 @@ export const useSubmitEditClinicForm = () => {
   const router = useRouter()
   const { medicalId } = useParams<{ userId: string; medicalId: string }>()
   const { mutate: editClinicInfo } = useEditClinicInfo(parseInt(medicalId))
+  const { setRemainedDate } = useCalendarActions()
 
   const submitFormattedForm = (formData: ClinicFormType) => {
     const { medicalAlarm, hospitalDate } = formData
@@ -36,7 +38,15 @@ export const useSubmitEditClinicForm = () => {
       hospitalDate: formattedDate,
     }
 
-    editClinicInfo({ medicalId, request: sendingFormData }, { onSuccess: () => router.back() })
+    editClinicInfo(
+      { medicalId, request: sendingFormData },
+      {
+        onSuccess: () => {
+          setRemainedDate(formattedDate)
+          router.back()
+        },
+      },
+    )
   }
 
   return submitFormattedForm

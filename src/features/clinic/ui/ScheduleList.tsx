@@ -28,8 +28,8 @@ const ScheduleListHeader = () => {
 }
 
 export const ScheduleList = ({ scheduleList }: ClinicListProps) => {
-  const currentDate = useCurrentDate()
-  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(currentDate))
+  const selectedDate = useCurrentDate()
+  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(selectedDate))
 
   return (
     <>

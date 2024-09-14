@@ -26,19 +26,19 @@ export const useMonthlyScheduleList = () => {
   const [monthlyScheduleList, setMonthlyScheduleList] = useState<ScheduleType[]>([])
 
   const { data: medicalData, refetch } = useClinicCalendar({ userId, localDate })
-  const { resetCalendar, updateScheduledDates } = useCalendarActions()
+  const { updateScheduledDates, swapCurrentWithRemained } = useCalendarActions()
 
   useEffect(() => {
-    if (medicalData) {
-      resetCalendar()
+    swapCurrentWithRemained()
 
+    if (medicalData) {
       const scheduleData = medicalData.data || []
       const dateList = scheduleData.map((schedule) => schedule.hospitalDate)
 
       setMonthlyScheduleList(scheduleData)
       updateScheduledDates(dateList)
     }
-  }, [resetCalendar, medicalData, updateScheduledDates])
+  }, [medicalData, updateScheduledDates, swapCurrentWithRemained])
 
   useEffect(() => {
     refetch()

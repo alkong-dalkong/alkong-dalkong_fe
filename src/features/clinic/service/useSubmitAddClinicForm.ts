@@ -5,6 +5,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 
 import { ALARM_TIME } from '@/constants'
 import { useCreateClinicInfo } from '@/hooks'
+import { useCalendarActions } from '@/store'
 import type { ClinicFormType } from '@/types'
 
 dayjs.extend(customParseFormat)
@@ -28,6 +29,7 @@ export const useSubmitAddClinicForm = () => {
   const router = useRouter()
   const { userId } = useParams<{ userId: string }>()
   const { mutate: createMedicalInfoMutation } = useCreateClinicInfo()
+  const { setRemainedDate } = useCalendarActions()
 
   const submitFormattedForm = (formData: ClinicFormType) => {
     const { medicalAlarm, hospitalDate } = formData
@@ -43,7 +45,10 @@ export const useSubmitAddClinicForm = () => {
     }
 
     createMedicalInfoMutation(sendingFormData, {
-      onSuccess: ({ medicalId }) => router.replace(`/clinic/${userId}/info/${medicalId}`),
+      onSuccess: ({ medicalId }) => {
+        setRemainedDate(formattedDate)
+        router.replace(`/clinic/${userId}/info/${medicalId}`)
+      },
     })
   }
 
