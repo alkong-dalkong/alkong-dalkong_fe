@@ -9,20 +9,19 @@ type TextWithArrowProps = {
 }
 
 export const TextWithArrow = ({ isLong = false, section, onClick }: TextWithArrowProps) => {
-  const { register } = useFormContext()
+  const { getValues, register } = useFormContext()
   const layoutStyle = isLong ? 'flex-between-align' : 'flex-align gap-1'
   const fontStyle = isLong ? 'body-M text-gray-6' : 'text-right headline-M text-gray-7'
 
   return (
-    <div className={layoutStyle}>
+    <button type="button" className={`${layoutStyle} cursor-pointer`} onClick={onClick}>
       <input
-        className={`max-w-[180px] ${fontStyle} disabled:bg-transparent`}
+        className={`${fontStyle} cursor-pointer focus:outline-none disabled:bg-transparent`}
+        size={getValues(section).length}
         {...register(section)}
-        disabled
+        readOnly
       />
-      <button type="button" onClick={onClick}>
-        <Icon size={28} name="arrow-right" />
-      </button>
-    </div>
+      <Icon size={28} name="arrow-right" />
+    </button>
   )
 }
