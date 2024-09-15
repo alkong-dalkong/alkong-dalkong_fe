@@ -1,11 +1,12 @@
 'use client'
 
+import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import { domMax, LazyMotion } from 'framer-motion'
 
 import { BottomSheet, SubHeader, WeightSlider } from '@/components'
 import { useCreateHealth, useEditHealth } from '@/hooks'
-import { useSelectedWeight } from '@/store'
+import { useSelectedWeight, useSelectedWeightActions } from '@/store'
 import type { WeightType } from '@/types'
 
 type WeightSelectBottomSheetProps = {
@@ -22,8 +23,15 @@ export const WeightSelectBottomSheet = ({
   toggleShowing,
 }: WeightSelectBottomSheetProps) => {
   const userWeight = useSelectedWeight()
+  const { setInitialWeight } = useSelectedWeightActions()
   const { mutate: editWeight } = useEditHealth()
   const { mutate: createWeight } = useCreateHealth()
+
+  useEffect(() => {
+    if (weight) {
+      setInitialWeight(weight.weight.toString())
+    }
+  }, [])
 
   const handleConfirm = () => {
     if (weight) {
@@ -41,19 +49,22 @@ export const WeightSelectBottomSheet = ({
         createdAt: dayjs().format('YYYY-MM-DD'),
       })
     }
+    toggleShowing()
   }
 
   return (
     <LazyMotion features={domMax}>
       <BottomSheet isShort onClickScrim={toggleShowing} isShowing={isShowing}>
-        <div className="mb-3 w-full">
+        <div className="w-full">
           <SubHeader.Confirm
             title="체중 입력"
             onCancel={toggleShowing}
             onConfirm={handleConfirm}
           ></SubHeader.Confirm>
         </div>
-        <WeightSlider />
+        <div className="flex-center size-full">
+          <WeightSlider />
+        </div>
       </BottomSheet>
     </LazyMotion>
   )
