@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { getHealth, postHealth, putHealth } from '@/apis/health'
-import type { GetPhysicalRequestType } from '@/types'
+import type { GetPhysicalRequestType, PutPhysicalRequestType } from '@/types'
 
 export const useFetchHealth = ({ userId, period }: GetPhysicalRequestType) => {
   return useQuery({
@@ -18,6 +18,7 @@ export const useCreateHealth = () => {
 
 export const useEditHealth = () => {
   return useMutation({
-    mutationFn: putHealth,
+    mutationFn: ({ weightId, request }: { weightId: number; request: PutPhysicalRequestType }) =>
+      putHealth(weightId, request),
   })
 }

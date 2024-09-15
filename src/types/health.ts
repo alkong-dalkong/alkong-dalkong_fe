@@ -7,7 +7,7 @@ export type GetPhysicalResponseType = {
   code: number
   period: string
   data: {
-    physicalId?: number
+    physicalId: number
     weight?: WeightType
     weightInfo: WeightInfoType
     healthReport?: HealthReportType

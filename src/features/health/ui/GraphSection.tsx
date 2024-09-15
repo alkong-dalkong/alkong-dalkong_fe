@@ -3,8 +3,9 @@
 import { Icon } from '@/components'
 import Label from '@/components/label/Label'
 import { GRAPHTYPE } from '@/constants'
-import { useGraph } from '@/hooks'
 import type { WeightInfoType } from '@/types'
+
+import { useGraph } from '../hooks/useGraph'
 
 import { WeightChart } from './WeightChart'
 

@@ -21,6 +21,6 @@ export const postHealth = async (request: PostPhysicalRequestType) => {
   return await api.post<PostPhysicalResponseType>('/physical', request)
 }
 
-export const putHealth = async (request: PutPhysicalRequestType) => {
-  return await api.put<PutPhysicalResponseType>('/physical', request)
+export const putHealth = async (weightId: number, request: PutPhysicalRequestType) => {
+  return await api.put<PutPhysicalResponseType>(`/physical/${weightId}`, request)
 }

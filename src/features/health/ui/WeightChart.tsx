@@ -13,7 +13,7 @@ import {
 
 import type { WeightInfoType } from '@/types'
 
-import './chart.css'
+import '../styles/chart.css'
 
 const weekMap = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주']
 

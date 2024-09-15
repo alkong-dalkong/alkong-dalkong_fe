@@ -6,9 +6,14 @@ import type { WeightType } from '@/types'
 
 import { WeightSelectBottomSheet } from './WeightSelectBottomSheet'
 
-export const WeightSection = ({ weight: weightProps }: { weight: WeightType | undefined }) => {
+export const WeightSection = ({
+  weight,
+  physicalId,
+}: {
+  weight: WeightType | undefined
+  physicalId: number
+}) => {
   const [isShowing, toggleShowing] = useToggle(false)
-  const { weight } = weightProps ?? { weight: null }
 
   return (
     <section className="mb-8 w-full">
@@ -16,7 +21,7 @@ export const WeightSection = ({ weight: weightProps }: { weight: WeightType | un
       <div className="mt-2 flex h-[56px] gap-[7px]">
         {weight ? (
           <div className="subtitle-M flex flex-1 items-center rounded-xl bg-mint-0 pl-6">
-            {weight}kg
+            {weight.weight}kg
           </div>
         ) : (
           <div className="subtitle-M flex flex-1 items-center rounded-xl bg-mint-0 pl-6 text-gray-6">
@@ -31,7 +36,8 @@ export const WeightSection = ({ weight: weightProps }: { weight: WeightType | un
         </button>
       </div>
       <WeightSelectBottomSheet
-        existWeight={weight !== null}
+        weight={weight}
+        physicalId={physicalId}
         isShowing={isShowing}
         toggleShowing={toggleShowing}
       />

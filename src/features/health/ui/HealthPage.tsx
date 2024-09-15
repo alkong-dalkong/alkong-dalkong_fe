@@ -14,14 +14,19 @@ export const HealthPage = ({ userId }: { userId: string }) => {
   const { data: healthPageData } = useFetchHealth({ userId, period: GRAPHTYPE[`${graphType}`].en })
 
   if (!healthPageData) {
-    return null
+    return (
+      <DashBoardTemplate route="health">
+        {/* 추후 수정 */}
+        <div>데이터를 불러오는데 실패하였습니다</div>
+      </DashBoardTemplate>
+    )
   }
 
   const DUMMY = {
     code: 200,
     period: 'weekly',
     data: {
-      physicalId: undefined,
+      physicalId: 2,
       weight: {
         weight: 56.2,
         weightId: 12,
@@ -45,12 +50,12 @@ export const HealthPage = ({ userId }: { userId: string }) => {
     },
   }
 
-  const { weight, weightInfo, healthReport } = DUMMY.data
+  const { physicalId, weight, weightInfo, healthReport } = healthPageData.data
 
   return (
     <DashBoardTemplate route="health">
       <GraphSection type={graphType} toggle={toggleGraphType} info={weightInfo} />
-      <WeightSection weight={weight} />
+      <WeightSection physicalId={physicalId} weight={weight} />
       <ReportSection report={healthReport} />
     </DashBoardTemplate>
   )
