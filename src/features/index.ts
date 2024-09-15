@@ -1,7 +1,5 @@
 // health
-export * from './health/GraphSection'
-export * from './health/ReportSection'
-export * from './health/WeightSection'
+export * from './health/ui/HealthPage'
 
 // home
 export * from './home/ui/HelperBox'

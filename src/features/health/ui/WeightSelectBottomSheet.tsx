@@ -5,7 +5,8 @@ import { domMax, LazyMotion } from 'framer-motion'
 import { BottomSheet, SubHeader } from '@/components'
 import { useCreateHealth, useEditHealth } from '@/hooks'
 
-import { useDay } from './hooks/useDay'
+import { useDay } from '../hooks/useDay'
+
 import { WeightSelect } from './WeightSelect'
 
 type WeightSelectBottomSheetProps = {
@@ -25,9 +26,9 @@ export const WeightSelectBottomSheet = ({
 
   const handleConfirm = () => {
     if (existWeight) {
-      editWeight()
+      // editWeight()
     } else {
-      createWeight()
+      // createWeight()
     }
   }
 
