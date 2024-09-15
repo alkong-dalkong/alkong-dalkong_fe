@@ -12,16 +12,14 @@ const schema = z.object({
   medicalAlarm: z.string().min(1, { message: '알람 시간을 선택해 주세요.' }),
 })
 
-export const useClinicForm = (initialValues?: ClinicFormType) => {
-  const defaultValue = {
+export const useClinicForm = () => {
+  const defaultValues = {
     hospitalName: '',
     hospitalDate: '',
     medicalPart: [],
     medicalMemo: '',
-    medicalAlarm: '',
+    medicalAlarm: '없음',
   }
-
-  const defaultValues = initialValues ? initialValues : defaultValue
 
   const formMethod = useForm<ClinicFormType>({
     mode: 'onSubmit',

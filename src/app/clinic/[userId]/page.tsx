@@ -1,15 +1,10 @@
-import { BottomNav } from '@/components'
+import { ClinicClientPage } from '@/features'
 
-export type ClinicRouteParams = {
-  params: { userId: string }
-}
-
-const Clinic = ({ params: { userId } }: ClinicRouteParams) => {
+const Clinic = () => {
   return (
-    <div>
-      <h2>{userId}</h2>
-      <BottomNav />
-    </div>
+    <>
+      <ClinicClientPage />
+    </>
   )
 }
 
