@@ -3,7 +3,7 @@ import { useParams, useRouter } from 'next/navigation'
 import dayjs from 'dayjs'
 
 import { ALARM_TIME } from '@/constants'
-import { useEditClinicInfo } from '@/hooks'
+import { useEditClinicInfo } from '@/features'
 import { useCalendarActions } from '@/store'
 import type { ClinicFormType } from '@/types'
 

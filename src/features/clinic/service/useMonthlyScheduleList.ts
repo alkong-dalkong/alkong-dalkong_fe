@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
-import { useClinicCalendar } from '@/hooks'
+import { useClinicCalendar } from '@/features'
 import { useCalendarActions } from '@/store'
 import type { ScheduleType } from '@/types'
 

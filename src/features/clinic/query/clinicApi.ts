@@ -1,3 +1,4 @@
+import { api } from '@/apis'
 import type {
   ClinicCalendarRequest,
   ClinicCalendarResponse,
@@ -7,8 +8,6 @@ import type {
   EditClinicInfoRequest,
   EditClinicInfoResponse,
 } from '@/types'
-
-import { api } from '.'
 
 export const clinicInfo = async (medicalId: number) => {
   return await api.get<ClinicInfoResponse>(`/medical/${medicalId}`)

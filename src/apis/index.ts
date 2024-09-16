@@ -10,4 +10,3 @@ export const api = new HttpClient({
 })
 
 export * from './auth'
-export * from './clinic'

@@ -2,7 +2,7 @@
 import { useParams, useRouter } from 'next/navigation'
 
 import { Button, Modal } from '@/components'
-import { useDeleteClinicInfo } from '@/hooks'
+import { useDeleteClinicInfo } from '@/features'
 
 type ClinicInfoModalProps = {
   modalState: boolean

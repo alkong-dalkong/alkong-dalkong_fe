@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 
 import { ALARM_TIME } from '@/constants'
-import { useCreateClinicInfo } from '@/hooks'
+import { useCreateClinicInfo } from '@/features'
 import { useCalendarActions } from '@/store'
 import type { ClinicFormType } from '@/types'
 
