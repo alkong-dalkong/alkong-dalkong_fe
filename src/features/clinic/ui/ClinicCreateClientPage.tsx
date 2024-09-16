@@ -9,7 +9,7 @@ import {
   AlarmBottomSheet,
   DateBottomSheet,
   TagBottomSheet,
-  useSubmitAddClinicForm,
+  useSubmitCreateClinicForm,
 } from '@/features'
 import { useToggle } from '@/hooks'
 import { useClinicForm } from '@/schema'
@@ -23,7 +23,7 @@ export const ClinicCreateClientPage = () => {
   const [dateSheet, toggleDateSheet] = useToggle(false)
   const [alarmSheet, toggleAlarmSheet] = useToggle(false)
 
-  const submitFormattedForm = useSubmitAddClinicForm()
+  const submitFormattedForm = useSubmitCreateClinicForm()
   const handleClickCancle = () => router.back()
 
   return (

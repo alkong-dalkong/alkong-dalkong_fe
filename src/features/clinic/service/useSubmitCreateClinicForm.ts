@@ -25,7 +25,7 @@ dayjs.extend(customParseFormat)
  * - `handleClickConfirm`: 확인 버튼 클릭 핸들러
  */
 
-export const useSubmitAddClinicForm = () => {
+export const useSubmitCreateClinicForm = () => {
   const router = useRouter()
   const { userId } = useParams<{ userId: string }>()
   const { mutate: createMedicalInfoMutation } = useCreateClinicInfo()
