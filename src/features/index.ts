@@ -1,5 +1,13 @@
-// auth
+// home
+export * from './home/ui/HelperBox'
+export * from './home/ui/HomePage'
+export * from './home/ui/InfoBox'
+export * from './home/ui/SectionWrapper'
+
+// template
 export * from './DashBoardTemplate'
+
+// auth
 export * from './sign-in/SignInStep'
 export * from './sign-up/AccountStep'
 export * from './sign-up/CompleteStep'

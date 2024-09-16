@@ -1,16 +1,11 @@
-import { BottomNav } from '@/components'
+import { HomePage } from '@/features'
 
 export type HomeRouteParams = {
   params: { userId: string }
 }
 
 const Home = ({ params: { userId } }: HomeRouteParams) => {
-  return (
-    <div>
-      <h2>{userId}</h2>
-      <BottomNav />
-    </div>
-  )
+  return <HomePage userId={userId} />
 }
 
 export default Home

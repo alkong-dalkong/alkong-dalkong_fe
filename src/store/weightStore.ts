@@ -4,35 +4,42 @@ type Actions = {
   handleTensWeightChange: (newTens: number) => void
   handleOnesWeightChange: (newOnes: number) => void
   handleDecimalWeightChange: (newDecimal: number) => void
+  setInitialWeight: (newWeight: string) => void
+  resetWeight: VoidFunction
 }
 
 type SelectedWeightStore = {
-  weight: number
+  weight: string
   actions: Actions
 }
 
-const initialSelectedWeight = 0.0
+const initialSelectedWeight = '50.0'
 
 export const useSelectedWeightStore = create<SelectedWeightStore>((set) => ({
   weight: initialSelectedWeight,
   actions: {
     handleTensWeightChange: (newTens) =>
       set((state) => {
-        const currentIntegerPart = Math.floor(state.weight)
-        const newWeight = newTens * 10 + (currentIntegerPart % 10) + (state.weight % 1)
-        return { weight: parseFloat(newWeight.toFixed(1)) }
+        const [integerPart, decimalPart] = state.weight.split('.')
+        const ones = integerPart.slice(1)
+        const newWeight = `${newTens}${ones}.${decimalPart}`
+        return { weight: newWeight }
       }),
     handleOnesWeightChange: (newOnes) =>
       set((state) => {
-        const currentIntegerPart = Math.floor(state.weight)
-        const newWeight = Math.floor(currentIntegerPart / 10) * 10 + newOnes + (state.weight % 1)
-        return { weight: parseFloat(newWeight.toFixed(1)) }
+        const [integerPart, decimalPart] = state.weight.split('.')
+        const tens = integerPart.slice(0, 1)
+        const newWeight = `${tens}${newOnes}.${decimalPart}`
+        return { weight: newWeight }
       }),
     handleDecimalWeightChange: (newDecimal) =>
       set((state) => {
-        const newWeight = Math.floor(state.weight) + newDecimal / 10
-        return { weight: parseFloat(newWeight.toFixed(1)) }
+        const [integerPart] = state.weight.split('.')
+        const newWeight = `${integerPart}.${newDecimal}`
+        return { weight: newWeight }
       }),
+    setInitialWeight: (newWeight) => set(() => ({ weight: newWeight })),
+    resetWeight: () => set(() => ({ weight: initialSelectedWeight })),
   },
 }))
 
