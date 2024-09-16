@@ -5,7 +5,7 @@ type InputProps = {
   type?: string
   section: string
   readOnly?: boolean
-  placeholder: string
+  placeholder?: string
 }
 
 type InputWithoutRegisterProps = Pick<InputProps, 'type' | 'placeholder'>

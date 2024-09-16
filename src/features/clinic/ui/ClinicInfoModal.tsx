@@ -1,6 +1,8 @@
 'use client'
+import { useParams, useRouter } from 'next/navigation'
+
 import { Button, Modal } from '@/components'
-import { useClinicDeleteModal } from '@/features'
+import { useDeleteClinicInfo } from '@/features'
 
 type ClinicInfoModalProps = {
   modalState: boolean
@@ -8,7 +10,13 @@ type ClinicInfoModalProps = {
 }
 
 export const ClinicInfoModal = ({ modalState, closeModal }: ClinicInfoModalProps) => {
-  const handleClickDelete = useClinicDeleteModal()
+  const router = useRouter()
+  const { userId, medicalId } = useParams<{ userId: string; medicalId: string }>()
+  const { mutate: deleteClinicInfo } = useDeleteClinicInfo()
+
+  const handleClickDelete = () => {
+    deleteClinicInfo(medicalId, { onSuccess: () => router.replace(`/clinic/${userId}`) })
+  }
 
   return (
     <Modal isOpen={modalState} onClose={closeModal}>

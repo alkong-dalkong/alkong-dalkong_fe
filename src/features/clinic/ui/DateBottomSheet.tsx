@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import { useFormContext } from 'react-hook-form'
 import dayjs from 'dayjs'
 
 import { BottomSheet, Calendar, Label, SubHeader, TimeSlider } from '@/components'
@@ -38,11 +39,20 @@ const DateOfVisit = () => {
 }
 
 export const DateBottomSheet = ({ section, isShowing, onClickScrim }: ClinicBottomSheetType) => {
-  const { resetCalendar } = useCalendarActions()
+  const { getValues } = useFormContext()
+  const { setSelectedDate, resetCalendar } = useCalendarActions()
+
+  const formattedDate = getValues(section)
+    ? dayjs(getValues(section), 'YYYY년 M월 D일 dddd A hh:mm').format('YYYY-MM-DD')
+    : dayjs().format('YYYY-MM-DD')
 
   useEffect(() => {
     resetCalendar()
-  }, [resetCalendar])
+  }, [])
+
+  useEffect(() => {
+    setSelectedDate(formattedDate)
+  }, [isShowing, setSelectedDate, formattedDate])
 
   return (
     <BottomSheet isShowing={isShowing} onClickScrim={onClickScrim}>
