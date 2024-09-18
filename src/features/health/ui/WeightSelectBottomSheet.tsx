@@ -5,9 +5,10 @@ import dayjs from 'dayjs'
 import { domMax, LazyMotion } from 'framer-motion'
 
 import { BottomSheet, Icon, SubHeader, WeightSlider } from '@/components'
-import { useCreateHealth, useEditHealth } from '@/hooks'
-import { useSelectedWeight, useSelectedWeightActions } from '@/store'
+import { useSelectedWeightActions } from '@/store'
 import type { WeightType } from '@/types'
+
+import { useWeightSelectConfirm } from '../service/useWeightSelectConfirm'
 
 type WeightSelectBottomSheetProps = {
   weight: WeightType | undefined
@@ -22,10 +23,8 @@ export const WeightSelectBottomSheet = ({
   isShowing,
   toggleShowing,
 }: WeightSelectBottomSheetProps) => {
-  const userWeight = useSelectedWeight()
+  const handleConfirm = useWeightSelectConfirm({ weight, physicalId, toggleShowing })
   const { setInitialWeight } = useSelectedWeightActions()
-  const { mutate: editWeight } = useEditHealth()
-  const { mutate: createWeight } = useCreateHealth()
   const today = dayjs().format('M월 D일 dddd')
 
   useEffect(() => {
@@ -33,25 +32,6 @@ export const WeightSelectBottomSheet = ({
       setInitialWeight(weight.weight.toString())
     }
   }, [])
-
-  const handleConfirm = () => {
-    if (weight) {
-      editWeight({
-        weightId: weight.weightId,
-        request: {
-          weight: Number(userWeight),
-          createdAt: dayjs().format('YYYY-MM-DD'),
-        },
-      })
-    } else {
-      createWeight({
-        physicalId,
-        weight: Number(userWeight),
-        createdAt: dayjs().format('YYYY-MM-DD'),
-      })
-    }
-    toggleShowing()
-  }
 
   return (
     <LazyMotion features={domMax}>
