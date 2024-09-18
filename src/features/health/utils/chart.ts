@@ -1,10 +1,8 @@
-import type { TooltipProps } from 'recharts'
-
 import type { WeightInfoType } from '@/types'
 
 import { 몇째주 } from '../constants/몇째주'
 
-const formatTooltip = (date: string): string => {
+export const formatTooltip = (date: string): string => {
   const dates = date.split('-')
 
   if (dates.length === 3 && dates[2].startsWith('W')) {
@@ -31,16 +29,4 @@ export const getYLabel = (data: WeightInfoType) => {
   }
 
   return [minWeight, avgWeight, maxWeight]
-}
-
-export const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="flex-center flex-col rounded-lg bg-mint-1 px-[14px] pb-[8px] pt-[6px]">
-        <p className="caption-M">{formatTooltip(payload[0].payload.avgDate)}</p>
-        <p className="headline-B">{payload[0].value}kg</p>
-      </div>
-    )
-  }
-  return null
 }
