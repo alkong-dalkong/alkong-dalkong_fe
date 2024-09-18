@@ -1,9 +1,9 @@
-export type GetPhysicalRequestType = {
+export type GetPhysicalRequest = {
   userId: string
   period: string
 }
 
-export type GetPhysicalResponseType = {
+export type GetPhysicalResponse = {
   code: number
   period: string
   data: {
@@ -30,23 +30,23 @@ export type HealthReportType = {
   lastweekWeight: number // 오늘의 체중 - 지난주 평균 체중
 }
 
-export type PostPhysicalRequestType = {
+export type PostPhysicalRequest = {
   physicalId: number
   weight: number
   createdAt: string
 }
 
-export type PostPhysicalResponseType = {
+export type PostPhysicalResponse = {
   code: number
   weightId: number
 }
 
-export type PutPhysicalRequestType = {
+export type PutPhysicalRequest = {
   weight: number
   createdAt: string
 }
 
-export type PutPhysicalResponseType = {
+export type PutPhysicalResponse = {
   code: number
   weightId: number
 }
