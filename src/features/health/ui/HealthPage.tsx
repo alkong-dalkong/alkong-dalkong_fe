@@ -1,5 +1,7 @@
 'use client'
 
+import { useParams } from 'next/navigation'
+
 import { GRAPHTYPE } from '@/constants'
 import { DashBoardTemplate } from '@/features'
 import { useToggle } from '@/hooks'
@@ -9,7 +11,8 @@ import { GraphSection } from './GraphSection'
 import { ReportSection } from './ReportSection'
 import { WeightSection } from './WeightSection'
 
-export const HealthPage = ({ userId }: { userId: string }) => {
+export const HealthPage = () => {
+  const { userId } = useParams<{ userId: string }>()
   const [graphType, toggleGraphType] = useToggle(true)
   const { data: healthPageData } = useFetchHealth({ userId, period: GRAPHTYPE[`${graphType}`].en })
 
