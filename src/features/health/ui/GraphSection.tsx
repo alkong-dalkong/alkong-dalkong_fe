@@ -53,9 +53,8 @@ export const GraphSection = ({
         {info.length !== 0 ? (
           <WeightChart data={data} />
         ) : (
-          <div className="flex-center size-full bg-gray-6">
-            {/** 추후 변경 예정 */}
-            {'아직 기록이 없어요!\n체중을 추가해보세요!'}
+          <div className="flex-center size-full whitespace-pre text-center text-gray-6">
+            {'체중을 입력하면\n그래프가 나타나요!'}
           </div>
         )}
       </div>

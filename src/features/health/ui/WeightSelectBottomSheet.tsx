@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import { domMax, LazyMotion } from 'framer-motion'
 
-import { BottomSheet, SubHeader, WeightSlider } from '@/components'
+import { BottomSheet, Icon, SubHeader, WeightSlider } from '@/components'
 import { useCreateHealth, useEditHealth } from '@/hooks'
 import { useSelectedWeight, useSelectedWeightActions } from '@/store'
 import type { WeightType } from '@/types'
@@ -26,6 +26,7 @@ export const WeightSelectBottomSheet = ({
   const { setInitialWeight } = useSelectedWeightActions()
   const { mutate: editWeight } = useEditHealth()
   const { mutate: createWeight } = useCreateHealth()
+  const today = dayjs().format('M월 D일 dddd')
 
   useEffect(() => {
     if (weight) {
@@ -62,7 +63,13 @@ export const WeightSelectBottomSheet = ({
             onConfirm={handleConfirm}
           ></SubHeader.Confirm>
         </div>
-        <div className="flex-center size-full">
+        <div className="mt-10 size-full">
+          <div className="mb-3 flex w-full gap-2">
+            <Icon name="calendar-label" />
+            <div className="flex-center subtitle-B whitespace-pre">
+              {`체중을 입력해 주세요.\n오늘은 ${today}이에요.`}
+            </div>
+          </div>
           <WeightSlider />
         </div>
       </BottomSheet>
