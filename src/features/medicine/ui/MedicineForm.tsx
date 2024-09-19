@@ -33,7 +33,7 @@ export const MedicineForm = () => {
 
         <InputGroup direction="row">
           <Label>복용 기간</Label>
-          <InputGroup.TextWithArrow section="medicineEnd" onClick={togglePeriodSheet} />
+          <InputGroup.TextWithArrow section="medicinePeriod" onClick={togglePeriodSheet} />
         </InputGroup>
 
         <InputGroup direction="row">
