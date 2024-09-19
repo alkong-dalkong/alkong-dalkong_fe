@@ -1,8 +1,9 @@
 'use client'
 import { useFormContext } from 'react-hook-form'
 
-import { ActionTag, InputGroup, Label, Tag } from '@/components'
-import { AlarmBottomSheet, DateBottomSheet, TagBottomSheet } from '@/features'
+import { ActionTag, AlarmBottomSheet, InputGroup, Label, Tag } from '@/components'
+import { CLINIC_ALARM_TIME } from '@/constants'
+import { DateBottomSheet, TagBottomSheet } from '@/features'
 import { useToggle } from '@/hooks'
 
 export const ClinicForm = () => {
@@ -60,6 +61,7 @@ export const ClinicForm = () => {
         </div>
         <InputGroup.ErrorMessage section="medicalAlarm" />
         <AlarmBottomSheet
+          timeList={CLINIC_ALARM_TIME}
           section="medicalAlarm"
           isShowing={alarmSheet}
           onClickScrim={toggleAlarmSheet}

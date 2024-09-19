@@ -1,4 +1,5 @@
 export { default as ActionTag } from './actionTag/ActionTag'
+export * from './alarmBottomSheet/AlarmBottomSheet'
 export * from './bottomNav/BottomNav'
 export * from './bottomSheet/BottomSheet'
 export * from './button/Button'

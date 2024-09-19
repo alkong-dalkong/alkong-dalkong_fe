@@ -1,4 +1,5 @@
-import { InputGroup, Label } from '@/components'
+import { AlarmBottomSheet, InputGroup, Label } from '@/components'
+import { MEDICINE_ALARM_TIME } from '@/constants'
 import { Stepper } from '@/features'
 import { useToggle } from '@/hooks'
 
@@ -49,6 +50,12 @@ export const MedicineForm = () => {
       <InputGroup direction="row">
         <Label>알람</Label>
         <InputGroup.TextWithArrow section="medicineAlarm" onClick={toggleAlarmSheet} />
+        <AlarmBottomSheet
+          timeList={MEDICINE_ALARM_TIME}
+          section="medicineAlarm"
+          isShowing={alarmSheet}
+          onClickScrim={toggleAlarmSheet}
+        />
       </InputGroup>
     </form>
   )
