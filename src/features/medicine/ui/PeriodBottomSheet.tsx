@@ -1,0 +1,62 @@
+'use client'
+
+import { useEffect } from 'react'
+import { useFormContext } from 'react-hook-form'
+import dayjs from 'dayjs'
+
+import { BottomSheet, Calendar, Label, SubHeader } from '@/components'
+import { Toggle } from '@/features'
+import { useToggle } from '@/hooks'
+import { useCalendarActions, useCurrentDate } from '@/store'
+import type { BottomSheetType } from '@/types'
+
+export const PeriodBottomSheet = ({ section, isShowing, onClickScrim }: BottomSheetType) => {
+  const selectedDate = useCurrentDate()
+  const { resetCalendar } = useCalendarActions()
+  const { getValues, setValue } = useFormContext()
+  const [isToggleActive, changeToggleState] = useToggle(getValues(section) === '9999-12-31')
+
+  useEffect(() => {
+    resetCalendar()
+  }, [resetCalendar])
+
+  const handleClickConfirm = () => {
+    if (isToggleActive) {
+      setValue(section, '꾸준히 섭취')
+    } else {
+      setValue(section, dayjs(selectedDate).format('M월 D일'))
+    }
+    onClickScrim()
+  }
+
+  return (
+    <BottomSheet isShowing={isShowing} onClickScrim={onClickScrim}>
+      <div className="w-full pb-5">
+        <SubHeader.Confirm
+          title="복용 기간"
+          onCancel={onClickScrim}
+          onConfirm={handleClickConfirm}
+        />
+      </div>
+
+      <div className="size-full overflow-y-scroll pb-12 pt-5 scrollbar-hide">
+        <Label icon="time-label">복용 기간을 선택해주세요.</Label>
+
+        <div className="flex-column mt-3 gap-[6px]">
+          <Calendar />
+          <div className="flex-between-align mx-1 mt-[6px]">
+            <p className="headline-B">방문 예정 날짜</p>
+            <div className="body-M rounded-md bg-mint-2 px-3 py-[6px]">
+              {dayjs(selectedDate).format('YYYY/MM/DD')}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-between-align mx-1 mt-8">
+          <p className="headline-B">계속 먹을게요</p>
+          <Toggle toggleState={isToggleActive} toggleAction={changeToggleState} />
+        </div>
+      </div>
+    </BottomSheet>
+  )
+}
