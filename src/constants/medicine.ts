@@ -12,3 +12,4 @@ export const EN_DAYS = [
 ]
 
 export const MEDICINE_ALARM_TIME = ['1시간 전', '30분 전', '10분전', '없음']
+export const MEDICINE_DOSAGE_MAX_VALUE = 9
