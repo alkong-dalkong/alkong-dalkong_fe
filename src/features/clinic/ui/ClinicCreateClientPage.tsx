@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import { ActionTag, AlarmBottomSheet, InputGroup, Label, Tag } from '@/components'
 import { MainHeader } from '@/components/header/MainHeader'
+import { CLINIC_ALARM_TIME } from '@/constants'
 import { DateBottomSheet, TagBottomSheet, useSubmitCreateClinicForm } from '@/features'
 import { useToggle } from '@/hooks'
 import { useClinicForm } from '@/schema'
@@ -84,6 +85,7 @@ export const ClinicCreateClientPage = () => {
 
             <InputGroup.ErrorMessage section="medicalAlarm" />
             <AlarmBottomSheet
+              timeList={CLINIC_ALARM_TIME}
               section="medicalAlarm"
               isShowing={alarmSheet}
               onClickScrim={toggleAlarmSheet}
