@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import dayjs from 'dayjs'
 import { z } from 'zod'
 
+import { EVERYDAY } from '@/constants'
 import type { MedicineFormType } from '@/types'
 
 const schema = z.object({
@@ -21,7 +22,7 @@ export const useMedicineForm = () => {
 
   const defaultValues = {
     medicineName: '',
-    medicineWeek: '월',
+    medicineWeek: EVERYDAY[today.day()],
     medicineTimes: 0,
     medicineTakenTimeList: [],
     medicinePeriod: today.format('M월 D일'),
