@@ -45,7 +45,7 @@ export const PeriodBottomSheet = ({ section, isShowing, onClickScrim }: BottomSh
         <div className="flex-column mt-3 gap-[6px]">
           <Calendar />
           <div className="flex-between-align mx-1 mt-[6px]">
-            <p className="headline-B">방문 예정 날짜</p>
+            <p className="headline-B">반복 종료 날짜</p>
             <div className="body-M rounded-md bg-mint-2 px-3 py-[6px]">
               {dayjs(selectedDate).format('YYYY/MM/DD')}
             </div>
