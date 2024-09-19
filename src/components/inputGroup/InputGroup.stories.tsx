@@ -98,11 +98,6 @@ export const Form = () => {
           </InputGroup>
 
           <InputGroup direction="row">
-            <Label>Stepper</Label>
-            <InputGroup.Stepper section="stepper" />
-          </InputGroup>
-
-          <InputGroup direction="row">
             <Label>TextWithArrow</Label>
             <InputGroup.TextWithArrow
               section="textWithArrow"

@@ -82,13 +82,6 @@ export const MedicineForm: StoryFn = () => {
 
             <Divider />
 
-            <InputGroup direction="row">
-              <Label>복용 횟수</Label>
-              <InputGroup.Stepper section="medicineTimes" />
-            </InputGroup>
-
-            <Divider />
-
             <InputGroup>
               <Label>복용 시간</Label>
               <InputGroup.TextWithArrow
