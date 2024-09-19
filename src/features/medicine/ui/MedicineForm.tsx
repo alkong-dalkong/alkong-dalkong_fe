@@ -1,6 +1,12 @@
 import { AlarmBottomSheet, InputGroup, Label } from '@/components'
 import { MEDICINE_ALARM_TIME } from '@/constants'
-import { DayBottomSheet, PeriodBottomSheet, Stepper, TakenDosageBottomSheet } from '@/features'
+import {
+  DayBottomSheet,
+  PeriodBottomSheet,
+  Stepper,
+  TakenDosageBottomSheet,
+  TakenTimeFormField,
+} from '@/features'
 import { useToggle } from '@/hooks'
 
 export const MedicineForm = () => {
@@ -33,9 +39,7 @@ export const MedicineForm = () => {
           <Stepper section="medicineTimes" />
         </InputGroup>
 
-        <InputGroup>
-          <Label>복용 시간</Label>
-        </InputGroup>
+        <TakenTimeFormField />
 
         <InputGroup direction="row">
           <Label>복용 기간</Label>

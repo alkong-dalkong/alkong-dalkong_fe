@@ -3,14 +3,9 @@
 import { FormProvider } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
-import { ActionTag, InputGroup, Label, Tag } from '@/components'
+import { ActionTag, AlarmBottomSheet, InputGroup, Label, Tag } from '@/components'
 import { MainHeader } from '@/components/header/MainHeader'
-import {
-  AlarmBottomSheet,
-  DateBottomSheet,
-  TagBottomSheet,
-  useSubmitCreateClinicForm,
-} from '@/features'
+import { DateBottomSheet, TagBottomSheet, useSubmitCreateClinicForm } from '@/features'
 import { useToggle } from '@/hooks'
 import { useClinicForm } from '@/schema'
 
