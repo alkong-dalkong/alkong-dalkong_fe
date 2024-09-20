@@ -1,9 +1,9 @@
-import { DashBoardTemplate } from '@/features'
+import { DashBoardTemplate, MedicineMainSection } from '@/features'
 
 const Medicine = () => {
   return (
     <DashBoardTemplate route="medicine">
-      <div>medicine</div>
+      <MedicineMainSection />
     </DashBoardTemplate>
   )
 }
