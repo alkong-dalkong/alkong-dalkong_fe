@@ -1,9 +1,25 @@
-import { DashBoardTemplate, MedicineMainSection } from '@/features'
+import Link from 'next/link'
 
-const Medicine = () => {
+import { Label } from '@/components'
+import { DashBoardTemplate, MedicineList } from '@/features'
+
+type MedicineRouteParams = {
+  params: { userId: string }
+}
+
+const Medicine = ({ params: { userId } }: MedicineRouteParams) => {
   return (
     <DashBoardTemplate route="medicine">
-      <MedicineMainSection />
+      <div className="flex-between-align w-full">
+        <Label icon="medicine-label">오늘 드셔야 할 약</Label>
+        <div className="flex-align gap-3 text-gray-7">
+          <Link href={`/medicine/${userId}/create`}>추가</Link>
+          <div className="h-3 w-px bg-gray-7" />
+          <Link href={`/medicine/${userId}/detail`}>수정</Link>
+        </div>
+      </div>
+
+      <MedicineList />
     </DashBoardTemplate>
   )
 }

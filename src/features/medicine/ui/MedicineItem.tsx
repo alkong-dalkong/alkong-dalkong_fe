@@ -1,12 +1,6 @@
 import { Icon } from '@/components'
 import { useToggleTakenInfo } from '@/features'
-import type { MedicineDateDtoType, MedicineTakenInfoType } from '@/types'
-
-type MedicineListByHoursProps = {
-  time: string
-  medicines: MedicineTakenInfoType[keyof MedicineTakenInfoType]
-  medicineList: Record<MedicineDateDtoType['medicineId'], MedicineDateDtoType>
-}
+import type { MedicineDateDtoType } from '@/types'
 
 type MedicineItemProps = {
   isTaken: boolean
@@ -14,8 +8,7 @@ type MedicineItemProps = {
   takenIndex: number
 }
 
-const MedicineItem = ({ medicine, isTaken, takenIndex }: MedicineItemProps) => {
-  console.log(medicine)
+export const MedicineItem = ({ medicine, isTaken, takenIndex }: MedicineItemProps) => {
   const { medicineRecordId, medicineName, medicineDosage, medicineTakenType } = medicine
   const dosageText = medicineTakenType === 'DOSE' ? '회분' : '정'
   const { mutate: toggleTakenInfo } = useToggleTakenInfo()
@@ -40,27 +33,5 @@ const MedicineItem = ({ medicine, isTaken, takenIndex }: MedicineItemProps) => {
         <Icon name={isTaken ? 'check-yes' : 'check-no'} />
       </button>
     </li>
-  )
-}
-
-export const MedicineListByHours = ({
-  time,
-  medicines,
-  medicineList,
-}: MedicineListByHoursProps) => {
-  return (
-    <div className="flex-column">
-      <p className="headline-R mb-3 text-gray-7">{time}</p>
-      <ul className="flex-column gap-2">
-        {medicines.map((takenInfo) => (
-          <MedicineItem
-            key={takenInfo.medicine_id}
-            medicine={medicineList[takenInfo.medicine_id]}
-            takenIndex={takenInfo.index}
-            isTaken={takenInfo.taken === 'TAKEN'}
-          />
-        ))}
-      </ul>
-    </div>
   )
 }
