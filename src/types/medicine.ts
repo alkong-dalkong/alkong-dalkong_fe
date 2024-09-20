@@ -45,3 +45,8 @@ export type MedicineInfoResponse = {
     medicineTakenInfo: MedicineTakenInfoType
   }
 }
+
+export type ToggleTakenInfoRequest = {
+  timeNum: number
+  takenNum: number
+}
