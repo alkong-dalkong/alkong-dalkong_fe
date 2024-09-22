@@ -16,12 +16,12 @@ const DetailItem = () => {
 
   const { mutate: deleteMutation } = useDeleteMedicine()
 
+  const handleClickEdit = (medicineId: number) => {
+    router.push(`/medicine/${userId}/edit/${medicineId}`)
+  }
   const handleClickDelete = (medicineId: number) => {
     setDeleteMedicineId(medicineId)
     openModal()
-  }
-  const handleClickEdit = (medicineId: number) => {
-    router.push(`/medicine/${userId}/edit/${medicineId}`)
   }
 
   if (isPending) return <p>로딩중</p>
@@ -71,7 +71,7 @@ const DetailItem = () => {
       <DeleteModal
         modalState={modalState}
         closeModal={closeModal}
-        onClickDelete={() => deleteMutation(deleteMedicineId as number)}
+        onClickDelete={() => deleteMutation(deleteMedicineId as number, { onSuccess: closeModal })}
       />
     </div>
   )
