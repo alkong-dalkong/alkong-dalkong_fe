@@ -13,8 +13,12 @@ export const useToggleDaySelection = (section: string) => {
   const watchSection = watch(section)
 
   useEffect(() => {
-    const convertedDaysArray = convertDayStringToArray(watchSection)
-    setSelectedDays(convertedDaysArray)
+    console.log(watchSection)
+    if (!watchSection) setSelectedDays([])
+    else {
+      const convertedDaysArray = convertDayStringToArray(watchSection)
+      setSelectedDays(convertedDaysArray)
+    }
   }, [watchSection])
 
   const toggleDaySelection = (day: string) => {

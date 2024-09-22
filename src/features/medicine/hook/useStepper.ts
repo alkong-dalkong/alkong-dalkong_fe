@@ -7,13 +7,13 @@ export const useStepper = (section: string) => {
   const [count, setCount] = useState<number>(getValues(section))
 
   const decreaseCount = () => {
-    const newCountValue = count > 0 ? count - 1 : count
+    const newCountValue = count > 1 ? count - 1 : count
     setCount(newCountValue)
     setValue(section, newCountValue)
   }
 
   const increaseCount = () => {
-    const newCountValue = count + 1
+    const newCountValue = count < 5 ? count + 1 : count
     setCount(newCountValue)
     setValue(section, newCountValue)
   }

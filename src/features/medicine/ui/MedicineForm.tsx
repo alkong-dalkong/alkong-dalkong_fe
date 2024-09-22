@@ -24,15 +24,18 @@ export const MedicineForm = () => {
       </InputGroup>
 
       <div className="flex-column mt-2 divide-y divide-mint-5 [&_>_div]:py-6">
-        <InputGroup direction="row">
-          <Label>복용 요일</Label>
-          <InputGroup.TextWithArrow section="medicineWeek" onClick={toggleDaySheet} />
-          <DayBottomSheet
-            section="medicineWeek"
-            isShowing={daySheet}
-            onClickScrim={toggleDaySheet}
-          />
-        </InputGroup>
+        <div className="flex-column gap-2">
+          <InputGroup direction="row">
+            <Label>복용 요일</Label>
+            <InputGroup.TextWithArrow section="medicineWeek" onClick={toggleDaySheet} />
+            <DayBottomSheet
+              section="medicineWeek"
+              isShowing={daySheet}
+              onClickScrim={toggleDaySheet}
+            />
+          </InputGroup>
+          <InputGroup.ErrorMessage section="medicineWeek" />
+        </div>
 
         <InputGroup direction="row">
           <Label>복용 횟수</Label>

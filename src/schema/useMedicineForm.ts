@@ -9,7 +9,7 @@ import type { MedicineFormType } from '@/types'
 const schema = z.object({
   medicineName: z.string().min(1, { message: '약품명을 입력해주세요.' }),
   medicineWeek: z.string().min(1, { message: '복용 요일을 선택해주세요.' }),
-  medicineTimes: z.number().min(1, '복용 횟수는 1 이상이어야 합니다.'),
+  medicineTimes: z.number(),
   medicineTakenTimeList: z.array(z.string()),
   medicinePeriod: z.string(),
   medicineDosage: z.string(),
@@ -23,7 +23,7 @@ export const useMedicineForm = () => {
   const defaultValues = {
     medicineName: '',
     medicineWeek: EVERYDAY[today.day()],
-    medicineTimes: 0,
+    medicineTimes: 1,
     medicineTakenTimeList: [],
     medicinePeriod: today.format('M월 D일'),
     medicineDosage: '1회분',
