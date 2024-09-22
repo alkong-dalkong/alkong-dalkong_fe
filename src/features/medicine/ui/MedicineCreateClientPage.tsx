@@ -4,14 +4,20 @@ import { FormProvider } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 
 import { SubHeader } from '@/components'
-import { MedicineForm, useCreateMedicineForm } from '@/features'
+import { formattedMedicineForm, MedicineForm, useCreateMedicineInfo } from '@/features'
 import { useMedicineForm } from '@/schema'
+import type { MedicineFormType } from '@/types'
 
 export const MedicineCreateClientPage = () => {
-  const formMethod = useMedicineForm()
   const router = useRouter()
+  const formMethod = useMedicineForm()
   const { handleSubmit } = formMethod
-  const submitFormattedForm = useCreateMedicineForm()
+  const { mutate: createMutation } = useCreateMedicineInfo()
+
+  const handleSubmitForm = (formData: MedicineFormType) => {
+    const formmatedForm = formattedMedicineForm(formData)
+    createMutation(formmatedForm)
+  }
 
   return (
     <div className="flex-column h-full overflow-hidden">
@@ -19,7 +25,7 @@ export const MedicineCreateClientPage = () => {
         <SubHeader.Confirm
           title="복용약 추가"
           onCancel={() => router.back()}
-          onConfirm={handleSubmit(submitFormattedForm)}
+          onConfirm={handleSubmit(handleSubmitForm)}
         />
       </div>
       <FormProvider {...formMethod}>

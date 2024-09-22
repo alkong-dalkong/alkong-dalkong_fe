@@ -44,12 +44,16 @@ export const useEditMedicineInfo = () => {
 }
 
 export const useCreateMedicineInfo = () => {
-  const { userId } = useParams<{ userId: string }>()
+  const router = useRouter()
   const queryClient = useQueryClient()
+  const { userId } = useParams<{ userId: string }>()
 
   return useMutation({
     mutationFn: (request: CreateMedicineRequest) => createMedicineInfo(userId, request),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: medicineQueryKeys.all }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: medicineQueryKeys.all })
+      router.replace(`/medicine/${userId}/detail`)
+    },
   })
 }
 
