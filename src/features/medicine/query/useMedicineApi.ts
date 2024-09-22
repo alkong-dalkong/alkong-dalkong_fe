@@ -44,9 +44,11 @@ export const useEditMedicineInfo = () => {
 
 export const useCreateMedicineInfo = () => {
   const { userId } = useParams<{ userId: string }>()
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: (request: CreateMedicineRequest) => createMedicineInfo(userId, request),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: medicineQueryKeys.all }),
   })
 }
 
