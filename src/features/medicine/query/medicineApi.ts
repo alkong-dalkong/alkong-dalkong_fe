@@ -21,3 +21,7 @@ export const medicineDetail = async (userId: string) => {
 export const toggleTakenInfo = async (recordId: number, request: ToggleTakenInfoRequest) => {
   return await api.patch(`/medicine/${recordId}/taken`, request)
 }
+
+export const deleteMedicine = async (userId: string, medicineId: number) => {
+  return await api.delete(`/medicine/${userId}/${medicineId}/delete`)
+}

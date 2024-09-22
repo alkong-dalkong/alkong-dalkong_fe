@@ -1,10 +1,21 @@
 'use client'
 
-import { Button, SubHeader, Tag } from '@/components'
-import { useMedicineDetailData } from '@/features'
+import { useState } from 'react'
+
+import { Button, DeleteModal, SubHeader, Tag } from '@/components'
+import { useDeleteMedicine, useMedicineDetailData } from '@/features'
+import { useBoolean } from '@/hooks'
 
 const DetailItem = () => {
   const { detailData, isPending, isError } = useMedicineDetailData()
+  const [modalState, openModal, closeModal] = useBoolean(false)
+  const [deleteMedicineId, setDeleteMedicineId] = useState<number | undefined>()
+  const { mutate: deleteMutation } = useDeleteMedicine()
+
+  const handleClickDelete = (id: number) => {
+    setDeleteMedicineId(id)
+    openModal()
+  }
 
   if (isPending) return <p>로딩중</p>
   if (isError) return <p>에러</p>
@@ -34,13 +45,22 @@ const DetailItem = () => {
           )}
 
           <div className="mt-8 flex gap-[15px]">
-            <Button size="sm" primary={false}>
+            <Button
+              size="sm"
+              primary={false}
+              onClick={() => handleClickDelete(medicine.medicineId)}
+            >
               약 삭제
             </Button>
             <Button size="sm">정보 수정</Button>
           </div>
         </div>
       ))}
+      <DeleteModal
+        modalState={modalState}
+        closeModal={closeModal}
+        onClickDelete={() => deleteMutation(deleteMedicineId as number)}
+      />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 
 import {
   createMedicineInfo,
+  deleteMedicine,
   medicineDetail,
   medicineInfo,
   medicineQueryKeys,
@@ -47,5 +48,15 @@ export const useToggleTakenInfo = () => {
     mutationFn: ({ recordId, request }: { recordId: number; request: ToggleTakenInfoRequest }) =>
       toggleTakenInfo(recordId, request),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: medicineQueryKeys.info(userId) }),
+  })
+}
+
+export const useDeleteMedicine = () => {
+  const { userId } = useParams<{ userId: string }>()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (medicineId: number) => deleteMedicine(userId, medicineId),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: medicineQueryKeys.all }),
   })
 }
