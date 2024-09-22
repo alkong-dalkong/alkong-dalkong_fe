@@ -1,5 +1,5 @@
 'use client'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 
@@ -8,6 +8,7 @@ import {
   deleteMedicine,
   editMedicine,
   medicineDetail,
+  medicineEditInfo,
   medicineInfo,
   medicineQueryKeys,
   toggleTakenInfo,
@@ -38,7 +39,7 @@ export const useEditMedicineInfo = () => {
 
   return useQuery({
     queryKey: medicineQueryKeys.edit(userId, medicineId),
-    queryFn: () => editMedicine(userId, medicineId),
+    queryFn: () => medicineEditInfo(userId, medicineId),
   })
 }
 
@@ -70,5 +71,19 @@ export const useDeleteMedicine = () => {
   return useMutation({
     mutationFn: (medicineId: number) => deleteMedicine(userId, medicineId),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: medicineQueryKeys.all }),
+  })
+}
+
+export const useEditMedicine = () => {
+  const router = useRouter()
+  const queryClient = useQueryClient()
+  const { userId, medicineId } = useParams<{ userId: string; medicineId: string }>()
+
+  return useMutation({
+    mutationFn: (request: CreateMedicineRequest) => editMedicine(userId, medicineId, request),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: medicineQueryKeys.all })
+      router.replace(`/medicine/${userId}/detail`)
+    },
   })
 }
