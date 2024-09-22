@@ -15,7 +15,6 @@ export const useInsertedMedicineForm = () => {
 
   useEffect(() => {
     if (editInfoData) {
-      console.log(editInfoData)
       const parsedEditInfoData = editInfoData.data
       const {
         medicineDosage,

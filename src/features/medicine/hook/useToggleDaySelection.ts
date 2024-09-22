@@ -1,11 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 
 import { EVERYDAY } from '@/constants'
+import { convertDayStringToArray } from '@/features'
 
-export const useToggleDaySelection = (initialDays: string[]) => {
-  const [selectedDays, setSelectedDays] = useState<string[]>(initialDays)
+export const useToggleDaySelection = (section: string) => {
+  const { watch } = useFormContext()
+  const [selectedDays, setSelectedDays] = useState<string[]>([])
+
+  const watchSection = watch(section)
+
+  useEffect(() => {
+    const convertedDaysArray = convertDayStringToArray(watchSection)
+    setSelectedDays(convertedDaysArray)
+  }, [watchSection])
 
   const toggleDaySelection = (day: string) => {
     if (selectedDays.includes(day)) {

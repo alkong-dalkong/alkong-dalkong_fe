@@ -33,12 +33,12 @@ const DayList = ({ selectedDays, toggleAction }: DayListProps) => {
 }
 
 export const DayBottomSheet = ({ section, isShowing, onClickScrim }: BottomSheetType) => {
-  const { setValue, getValues } = useFormContext()
-  const { selectedDays, toggleDaySelection } = useToggleDaySelection(getValues(section))
+  const { setValue } = useFormContext()
+  const { selectedDays, toggleDaySelection } = useToggleDaySelection(section)
 
   const handleClickConfirm = () => {
-    const convertedDays = convertDayArrayToString(selectedDays)
-    setValue(section, convertedDays)
+    const convertedDaysString = convertDayArrayToString(selectedDays)
+    setValue(section, convertedDaysString)
     onClickScrim()
   }
 
