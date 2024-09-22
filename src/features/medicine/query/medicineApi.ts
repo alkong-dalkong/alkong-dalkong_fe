@@ -2,6 +2,7 @@ import { api } from '@/apis'
 import type {
   CreateMedicineRequest,
   MedicineDetailResponse,
+  MedicineEditResponse,
   MedicineInfoResponse,
   ToggleTakenInfoRequest,
 } from '@/types'
@@ -16,6 +17,10 @@ export const medicineInfo = async (userId: string, date: string) => {
 
 export const medicineDetail = async (userId: string) => {
   return await api.get<MedicineDetailResponse>(`/medicine/${userId}/total_medicine_info`)
+}
+
+export const editMedicine = async (userId: string, medicineId: string) => {
+  return await api.get<MedicineEditResponse>(`/medicine/${userId}/${medicineId}/medicine_info`)
 }
 
 export const toggleTakenInfo = async (recordId: number, request: ToggleTakenInfoRequest) => {

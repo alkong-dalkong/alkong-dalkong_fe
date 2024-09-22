@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 import {
   createMedicineInfo,
   deleteMedicine,
+  editMedicine,
   medicineDetail,
   medicineInfo,
   medicineQueryKeys,
@@ -29,6 +30,15 @@ export const useMedicineDetail = () => {
   return useQuery({
     queryKey: medicineQueryKeys.detail(userId),
     queryFn: () => medicineDetail(userId),
+  })
+}
+
+export const useEditMedicineInfo = () => {
+  const { userId, medicineId } = useParams<{ userId: string; medicineId: string }>()
+
+  return useQuery({
+    queryKey: medicineQueryKeys.edit(userId, medicineId),
+    queryFn: () => editMedicine(userId, medicineId),
   })
 }
 

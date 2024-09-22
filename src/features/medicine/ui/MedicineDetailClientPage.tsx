@@ -1,20 +1,27 @@
 'use client'
 
 import { useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
 
 import { Button, DeleteModal, SubHeader, Tag } from '@/components'
 import { useDeleteMedicine, useMedicineDetailData } from '@/features'
 import { useBoolean } from '@/hooks'
 
 const DetailItem = () => {
+  const router = useRouter()
+  const { userId } = useParams<{ userId: string }>()
   const { detailData, isPending, isError } = useMedicineDetailData()
   const [modalState, openModal, closeModal] = useBoolean(false)
   const [deleteMedicineId, setDeleteMedicineId] = useState<number | undefined>()
+
   const { mutate: deleteMutation } = useDeleteMedicine()
 
-  const handleClickDelete = (id: number) => {
-    setDeleteMedicineId(id)
+  const handleClickDelete = (medicineId: number) => {
+    setDeleteMedicineId(medicineId)
     openModal()
+  }
+  const handleClickEdit = (medicineId: number) => {
+    router.push(`/medicine/${userId}/edit/${medicineId}`)
   }
 
   if (isPending) return <p>로딩중</p>
@@ -55,7 +62,9 @@ const DetailItem = () => {
             >
               약 삭제
             </Button>
-            <Button size="sm">정보 수정</Button>
+            <Button size="sm" onClick={() => handleClickEdit(medicine.medicineId)}>
+              정보 수정
+            </Button>
           </div>
         </div>
       ))}

@@ -65,3 +65,12 @@ export type MedicineDetailResponse = {
   code: number
   data: MedicineDetailType[]
 }
+
+export type MedicineEditResponse = {
+  code: number
+  data: Omit<CreateMedicineRequest, 'medicineStart' | 'medicineEnd' | 'medicineTakenTimeList'> & {
+    medicineEndDate: string
+    medicineTakenType: string
+    medicineTakenTime: string[]
+  }
+}
