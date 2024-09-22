@@ -20,6 +20,9 @@ const DetailItem = () => {
   if (isPending) return <p>로딩중</p>
   if (isError) return <p>에러</p>
 
+  if (!detailData.length)
+    return <p className="subtitle-M h-full text-center text-gray-6">복용 중인 약이 없어요!</p>
+
   return (
     <div className="flex-column gap-6 overflow-scroll px-5 py-4 scrollbar-hide">
       {detailData.map((medicine) => (
