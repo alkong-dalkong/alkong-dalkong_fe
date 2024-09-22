@@ -3,7 +3,13 @@ import { useParams } from 'next/navigation'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 
-import { createMedicineInfo, medicineInfo, medicineQueryKeys, toggleTakenInfo } from '@/features'
+import {
+  createMedicineInfo,
+  medicineDetail,
+  medicineInfo,
+  medicineQueryKeys,
+  toggleTakenInfo,
+} from '@/features'
 import type { CreateMedicineRequest, ToggleTakenInfoRequest } from '@/types'
 
 export const useMedicineInfo = () => {
@@ -13,6 +19,15 @@ export const useMedicineInfo = () => {
   return useQuery({
     queryKey: medicineQueryKeys.info(userId),
     queryFn: () => medicineInfo(userId, today),
+  })
+}
+
+export const useMedicineDetail = () => {
+  const { userId } = useParams<{ userId: string }>()
+
+  return useQuery({
+    queryKey: medicineQueryKeys.detail(userId),
+    queryFn: () => medicineDetail(userId),
   })
 }
 

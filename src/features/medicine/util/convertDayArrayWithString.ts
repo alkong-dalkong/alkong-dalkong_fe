@@ -34,3 +34,8 @@ type convertDayArrayToEnglishType = (days: string[]) => string[]
 export const convertDayArrayToEnglish: convertDayArrayToEnglishType = (days) => {
   return days.map((day) => EN_DAYS[EVERYDAY.indexOf(day)])
 }
+
+type convertEnglishDaysToKoreanType = (days: string[]) => string[]
+export const convertDayArrayEnglishToKorean: convertEnglishDaysToKoreanType = (days) => {
+  return days.map((day) => EVERYDAY[EN_DAYS.indexOf(day)])
+}

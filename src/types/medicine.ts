@@ -50,3 +50,18 @@ export type ToggleTakenInfoRequest = {
   timeNum: number
   takenNum: number
 }
+
+export type MedicineDetailType = {
+  medicineId: number
+  medicineName: string
+  medicineWeek: string[]
+  medicineTakenTime: string[]
+  medicineDosage: number
+  medicineTakenType: string
+  medicineMemo: string
+}
+
+export type MedicineDetailResponse = {
+  code: number
+  data: MedicineDetailType[]
+}

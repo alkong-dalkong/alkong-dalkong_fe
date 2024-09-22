@@ -1,5 +1,7 @@
+import { MedicineDetailClientPage } from '@/features'
+
 const MedicineDetail = () => {
-  return <div>MedicineDetail</div>
+  return <MedicineDetailClientPage />
 }
 
 export default MedicineDetail
