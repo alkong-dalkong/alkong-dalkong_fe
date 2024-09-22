@@ -1,5 +1,7 @@
 'use client'
 
+import type { Dispatch, SetStateAction } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { BottomSheet, Icon, Label, SubHeader } from '@/components'
@@ -9,10 +11,10 @@ import type { BottomSheetType } from '@/types'
 
 type TakenDosageDropdownProps = {
   isPillType: boolean
-  toggleDoseType: VoidFunction
+  setIsPillType: Dispatch<SetStateAction<boolean>>
 }
 
-const TakenDosageDropdown = ({ isPillType, toggleDoseType }: TakenDosageDropdownProps) => {
+const TakenDosageDropdown = ({ isPillType, setIsPillType }: TakenDosageDropdownProps) => {
   const [isOpenDropdown, toggleDropdown] = useToggle()
 
   const upBorderStyle = isOpenDropdown ? 'rounded-md rounded-t-none' : 'rounded-md'
@@ -21,7 +23,7 @@ const TakenDosageDropdown = ({ isPillType, toggleDoseType }: TakenDosageDropdown
     : 'rounded-md'
 
   const handleClickButton = () => {
-    toggleDoseType()
+    setIsPillType((prev) => !prev)
     toggleDropdown()
   }
 
@@ -50,11 +52,16 @@ const TakenDosageDropdown = ({ isPillType, toggleDoseType }: TakenDosageDropdown
 }
 
 export const TakenDosageBottomSheet = ({ section, isShowing, onClickScrim }: BottomSheetType) => {
-  const { getValues, setValue } = useFormContext()
-  const { dosageAmount, dosageType } = parseDosage(getValues(section))
-  const { inputValue, handleChangeInput } = useDosageInput(dosageAmount.toString())
+  const { setValue, watch } = useFormContext()
+  const watchSection = watch(section)
+  const { dosageAmount, dosageType } = parseDosage(watchSection)
 
-  const [isPillType, toggleDoseType] = useToggle(dosageType === '정')
+  const { inputValue, handleChangeInput } = useDosageInput(dosageAmount.toString())
+  const [isPillType, setIsPillType] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsPillType(dosageType === '정')
+  }, [dosageType, watchSection])
 
   const handleClickConfirm = () => {
     setValue(section, `${inputValue}${isPillType ? '정' : '회분'}`)
@@ -75,7 +82,7 @@ export const TakenDosageBottomSheet = ({ section, isShowing, onClickScrim }: Bot
             value={inputValue}
             onChange={handleChangeInput}
           />
-          <TakenDosageDropdown isPillType={isPillType} toggleDoseType={toggleDoseType} />
+          <TakenDosageDropdown isPillType={isPillType} setIsPillType={setIsPillType} />
           <p>씩 복용해요!</p>
         </div>
       </div>
