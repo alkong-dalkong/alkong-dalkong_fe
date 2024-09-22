@@ -11,7 +11,13 @@ export const Toggle = ({ toggleState, toggleAction }: ToggleProps) => {
 
   return (
     <div className="inline-block">
-      <input type="checkbox" id="toggle" onChange={toggleAction} className="hidden" />
+      <input
+        type="checkbox"
+        id="toggle"
+        checked={toggleState}
+        onChange={toggleAction}
+        className="hidden"
+      />
       <label
         htmlFor="toggle"
         className={`flex-align h-[34px] w-[66px] shrink-0 cursor-pointer rounded-full p-[5px] transition-all focus-visible:outline-none ${containerStyle}`}

@@ -2,7 +2,6 @@
 
 import { FormProvider } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { DevTool } from '@hookform/devtools'
 
 import { SubHeader } from '@/components'
 import { MedicineForm, useCreateMedicineForm, useInsertedMedicineForm } from '@/features'
@@ -10,7 +9,7 @@ import { MedicineForm, useCreateMedicineForm, useInsertedMedicineForm } from '@/
 export const MedicineEditClientPage = () => {
   const formMethod = useInsertedMedicineForm()
   const router = useRouter()
-  const { handleSubmit, control } = formMethod
+  const { handleSubmit } = formMethod
   const submitFormattedForm = useCreateMedicineForm()
 
   return (
@@ -24,7 +23,6 @@ export const MedicineEditClientPage = () => {
       </div>
       <FormProvider {...formMethod}>
         <MedicineForm />
-        <DevTool control={control} />
       </FormProvider>
     </div>
   )
