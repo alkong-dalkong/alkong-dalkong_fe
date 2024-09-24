@@ -13,8 +13,6 @@ export const WeightSlider = () => {
   const onesOfWeight = weight.slice(1, 2)
   const decimalOfWeight = weight.slice(3, 4)
 
-  console.log(weight, tensOfWeight, onesOfWeight, decimalOfWeight)
-
   return (
     <div className="flex-center relative w-full select-none rounded-xl bg-mint-0 py-[17px]">
       <div className="headline-M absolute top-1/2 h-[30px] w-[158px] -translate-x-6 -translate-y-1/2 rounded-lg bg-mint-2" />
