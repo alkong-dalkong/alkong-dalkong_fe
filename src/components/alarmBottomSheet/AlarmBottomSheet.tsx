@@ -22,6 +22,12 @@ export const AlarmBottomSheet = ({
     onClickScrim()
   }
 
+  const handleClickButton = (time: string) => {
+    setSelectedTime(time)
+    setValue(section, time)
+    onClickScrim()
+  }
+
   useEffect(() => {
     setSelectedTime(getValues(section))
   }, [getValues, section])
@@ -40,7 +46,7 @@ export const AlarmBottomSheet = ({
             <button
               key={time}
               className="headline-M border border-b-gray-4 py-[14px] text-left last:border-none"
-              onClick={() => setSelectedTime(time)}
+              onClick={() => handleClickButton(time)}
             >
               {time}
             </button>
