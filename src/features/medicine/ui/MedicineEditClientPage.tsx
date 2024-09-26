@@ -1,7 +1,7 @@
 'use client'
 
 import { FormProvider } from 'react-hook-form'
-import router from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 import { SubHeader } from '@/components'
 import {
@@ -13,6 +13,7 @@ import {
 import type { MedicineFormType } from '@/types'
 
 export const MedicineEditClientPage = () => {
+  const router = useRouter()
   const formMethod = useInsertedMedicineForm()
   const { mutate: editMutation } = useEditMedicine()
 
