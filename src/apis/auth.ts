@@ -1,5 +1,4 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
 
 import type { SignUpRequest } from '@/types'
 
@@ -18,10 +17,9 @@ const signInConfig = {
 export const signIn = async (request: SignUpRequest) => {
   const res = await axios.post(`/user/login`, request, signInConfig)
 
-  const refreshToken = Cookies.get('refresh')
   const accessToken: string = res.headers['authorization']
 
-  return { ...res.data, accessToken, refreshToken }
+  return { ...res.data, accessToken }
 }
 
 export const checkDuplicateId = async (request: { id: string }) => {

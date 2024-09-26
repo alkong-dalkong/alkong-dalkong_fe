@@ -6,7 +6,6 @@ import { checkDuplicateId, signIn, signOut, signUp } from '@/apis'
 import type { SignInRequest, SignInResponse, SignUpRequest } from '@/types'
 
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN
-const REFRESH_TOKEN = process.env.NEXT_PUBLIC_REFRESH_TOKEN
 
 export const useSignIn = (
   options?: UseMutationOptions<SignInResponse, AxiosError, SignInRequest>,
@@ -16,7 +15,6 @@ export const useSignIn = (
     ...options,
     onSuccess: async (data, ...rest) => {
       localStorage.setItem(ACCESS_TOKEN, data.accessToken)
-      localStorage.setItem(REFRESH_TOKEN, data.refreshToken)
       options?.onSuccess?.({ ...data }, ...rest)
     },
   })
