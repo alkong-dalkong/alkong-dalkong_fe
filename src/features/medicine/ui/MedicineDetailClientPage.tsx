@@ -28,7 +28,11 @@ const DetailItem = () => {
   if (isError) return <p>에러</p>
 
   if (!detailData.length)
-    return <p className="subtitle-M h-full text-center text-gray-6">복용 중인 약이 없어요!</p>
+    return (
+      <p className="subtitle-M flex-center h-full text-center text-gray-6">
+        복용 중인 약이 없어요!
+      </p>
+    )
 
   return (
     <div className="flex-column gap-6 overflow-scroll px-5 py-4 scrollbar-hide">
