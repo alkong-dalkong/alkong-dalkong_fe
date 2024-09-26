@@ -33,3 +33,12 @@ export const signUp = async (request: SignUpRequest) => {
 export const signOut = async () => {
   return await api.post('/user/logout')
 }
+
+export const issueToken = async () => {
+  console.log('토큰 재발급 api 호출됨') // 나중에 제거
+  const res = await axios.post(`${BASE_URL}/user/reissue`)
+
+  const accessToken = res.headers['authorization']
+
+  return { ...res.data, accessToken }
+}
