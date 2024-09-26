@@ -1,7 +1,7 @@
 'use client'
 
 import { FormProvider } from 'react-hook-form'
-import router from 'next/router'
+import router from 'next/navigation'
 
 import { SubHeader } from '@/components'
 import {
