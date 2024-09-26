@@ -1,6 +1,7 @@
-export const WEEKDAYS = ['월', '화', '수', '목', '금']
-export const WEEKENDS = ['토', '일']
 export const EVERYDAY = ['일', '월', '화', '수', '목', '금', '토']
+export const WEEKDAYS = EVERYDAY.slice(1, 6)
+export const WEEKENDS = EVERYDAY.slice(0, 1).concat(EVERYDAY.slice(6))
+
 export const EN_DAYS = [
   'SUNDAY',
   'MONDAY',
