@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import dayjs from 'dayjs'
 
 import { MEDICINE_ALARM_TIME } from '@/constants'
 import {
@@ -26,16 +27,21 @@ export const useInsertedMedicineForm = () => {
       } = parsedEditInfoData
 
       const takenType = medicineTakenType === 'TABLET' ? '정' : '회분'
-      const medicinePeriod = medicineEndDate === '9999-12-31' ? '꾸준히 섭취' : medicineEndDate
+      const medicinePeriod =
+        medicineEndDate === '9999-12-31' ? '꾸준히 섭취' : dayjs(medicineEndDate).format('M월 D일')
 
       const convertDaysEnToKo = convertDayArrayEnglishToKorean(medicineWeek)
       const formattedWeek = convertDayArrayToString(convertDaysEnToKo)
+
+      const formattedTimeList = medicineTakenTime.map((time) =>
+        dayjs(time, 'HH:mm:ss').format('HH:mm'),
+      )
 
       const insertingFormData = {
         ...editInfoData.data,
         medicineDosage: `${medicineDosage}${takenType}`,
         medicineAlarm: MEDICINE_ALARM_TIME[medicineAlarm],
-        medicineTakenTimeList: medicineTakenTime,
+        medicineTakenTimeList: formattedTimeList,
         medicineWeek: formattedWeek,
         medicinePeriod,
       }

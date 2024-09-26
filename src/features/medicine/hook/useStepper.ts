@@ -1,10 +1,16 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 export const useStepper = (section: string) => {
-  const { setValue, getValues } = useFormContext()
-  const [count, setCount] = useState<number>(getValues(section))
+  const { setValue, watch } = useFormContext()
+  const watchSection = watch(section)
+  const [count, setCount] = useState<number>(watchSection)
+
+  useEffect(() => {
+    if (watchSection) setCount(watchSection)
+    else setCount(1)
+  }, [watchSection])
 
   const decreaseCount = () => {
     const newCountValue = count > 1 ? count - 1 : count
