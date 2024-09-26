@@ -7,8 +7,9 @@ import axios, {
   isAxiosError,
 } from 'axios'
 
+import { issueToken, signOut } from './auth'
+
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN
-const REFRESH_TOKEN = process.env.NEXT_PUBLIC_REFRESH_TOKEN
 
 export class HttpClient {
   private readonly client: AxiosInstance
@@ -44,7 +45,7 @@ export class HttpClient {
     const accessToken = localStorage.getItem(ACCESS_TOKEN)
 
     if (accessToken) {
-      config.headers.Authorization = `${accessToken}`
+      config.headers.Authorization = accessToken
     }
 
     return config
@@ -59,6 +60,31 @@ export class HttpClient {
 
     if (isAxiosError(error)) {
       console.error(response.data)
+    }
+
+    if (error.config && response?.status === 401) {
+      error.config.headers.Authorization = null
+      error.config.withCredentials = true
+
+      return issueToken()
+        .then(async (res) => {
+          const accessToken = res.accessToken
+
+          if (res?.status === 200 && accessToken) {
+            localStorage.setItem(ACCESS_TOKEN, accessToken)
+            res.config.headers.Authorization = accessToken
+
+            return this.client(res.config)
+          }
+        })
+        .catch((reissueError) => {
+          console.error('액세스 토큰 재발급 실패', reissueError)
+
+          signOut()
+          window.location.href = '/sign-in'
+
+          return Promise.reject(reissueError)
+        })
     }
 
     return Promise.reject(error)
