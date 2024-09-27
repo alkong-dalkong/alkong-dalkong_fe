@@ -38,7 +38,7 @@ const DetailItem = () => {
     <div className="flex-column gap-6 overflow-scroll px-5 py-4 scrollbar-hide">
       {detailData.map((medicine) => (
         <div key={medicine.medicineId} className="rounded-xl border border-mint-3 bg-white p-5">
-          <div className="flex-between-align border-b border-b-mint-5 pb-4">
+          <div className="flex-between-align border-b border-b-mint-5 px-1 pb-4">
             <p className="subtitle-B">{medicine.medicineName}</p>
             <p className="body-M text-gray-6">{medicine.medicineWeek}</p>
           </div>
