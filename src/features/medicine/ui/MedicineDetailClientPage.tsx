@@ -53,7 +53,7 @@ const DetailItem = () => {
           </div>
 
           {medicine.medicineMemo && (
-            <div className="mt-6 min-h-16 rounded-xl bg-mint-0 px-4 py-2">
+            <div className="body-R mt-6 min-h-16 rounded-xl bg-mint-0 px-4 py-2">
               {medicine.medicineMemo}
             </div>
           )}
