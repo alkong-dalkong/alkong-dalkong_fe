@@ -37,3 +37,6 @@ export * from './clinic/ui/DateBottomSheet'
 export * from './clinic/ui/ScheduleItem'
 export * from './clinic/ui/ScheduleList'
 export * from './clinic/ui/TagBottomSheet'
+
+// onboarding
+export * from './onboarding/ui/OnboardingWrapper'
