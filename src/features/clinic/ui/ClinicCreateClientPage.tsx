@@ -41,12 +41,12 @@ export const ClinicCreateClientPage = () => {
               <ActionTag.Plus label="추가" onClick={toggleTagSheet} />
             </div>
             <InputGroup.ErrorMessage section="medicalPart" />
-            <TagBottomSheet
-              section="medicalPart"
-              isShowing={tagSheet}
-              onClickScrim={toggleTagSheet}
-            />
           </InputGroup>
+          <TagBottomSheet
+            section="medicalPart"
+            isShowing={tagSheet}
+            onClickScrim={toggleTagSheet}
+          />
 
           <InputGroup>
             <Label icon="calendar-label">방문 날짜</Label>
@@ -58,12 +58,12 @@ export const ClinicCreateClientPage = () => {
               />
             </button>
             <InputGroup.ErrorMessage section="hospitalDate" />
-            <DateBottomSheet
-              section="hospitalDate"
-              isShowing={dateSheet}
-              onClickScrim={toggleDateSheet}
-            />
           </InputGroup>
+          <DateBottomSheet
+            section="hospitalDate"
+            isShowing={dateSheet}
+            onClickScrim={toggleDateSheet}
+          />
 
           <InputGroup>
             <Label icon="clinic-label">방문 병원</Label>
@@ -85,15 +85,14 @@ export const ClinicCreateClientPage = () => {
               <Label>알람</Label>
               <InputGroup.TextWithArrow section="medicalAlarm" />
             </button>
-
             <InputGroup.ErrorMessage section="medicalAlarm" />
-            <AlarmBottomSheet
-              timeList={CLINIC_ALARM_TIME}
-              section="medicalAlarm"
-              isShowing={alarmSheet}
-              onClickScrim={toggleAlarmSheet}
-            />
           </InputGroup>
+          <AlarmBottomSheet
+            timeList={CLINIC_ALARM_TIME}
+            section="medicalAlarm"
+            isShowing={alarmSheet}
+            onClickScrim={toggleAlarmSheet}
+          />
         </form>
       </FormProvider>
     </div>

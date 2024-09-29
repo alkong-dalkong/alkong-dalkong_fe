@@ -28,12 +28,12 @@ export const MedicineForm = () => {
           <InputGroup direction="row" onClick={toggleDaySheet}>
             <Label>복용 요일</Label>
             <InputGroup.TextWithArrow section="medicineWeek" />
-            <DayBottomSheet
-              section="medicineWeek"
-              isShowing={daySheet}
-              onClickScrim={toggleDaySheet}
-            />
           </InputGroup>
+          <DayBottomSheet
+            section="medicineWeek"
+            isShowing={daySheet}
+            onClickScrim={toggleDaySheet}
+          />
           <InputGroup.ErrorMessage section="medicineWeek" />
         </div>
 
@@ -47,38 +47,39 @@ export const MedicineForm = () => {
         <InputGroup direction="row" onClick={togglePeriodSheet}>
           <Label>복용 기간</Label>
           <InputGroup.TextWithArrow section="medicinePeriod" />
-          <PeriodBottomSheet
-            section="medicinePeriod"
-            isShowing={periodSheet}
-            onClickScrim={togglePeriodSheet}
-          />
         </InputGroup>
+        <PeriodBottomSheet
+          section="medicinePeriod"
+          isShowing={periodSheet}
+          onClickScrim={togglePeriodSheet}
+        />
 
         <InputGroup direction="row" onClick={toggleDosageSheet}>
           <Label>복용량</Label>
           <InputGroup.TextWithArrow section="medicineDosage" />
-          <TakenDosageBottomSheet
-            section="medicineDosage"
-            isShowing={dosageSheet}
-            onClickScrim={toggleDosageSheet}
-          />
         </InputGroup>
+        <TakenDosageBottomSheet
+          section="medicineDosage"
+          isShowing={dosageSheet}
+          onClickScrim={toggleDosageSheet}
+        />
 
         <InputGroup>
           <Label>메모</Label>
           <InputGroup.TextArea section="medicineMemo" placeholder="메모를 기록해 주세요." />
         </InputGroup>
       </div>
+
       <InputGroup direction="row" onClick={toggleAlarmSheet}>
         <Label>알람</Label>
         <InputGroup.TextWithArrow section="medicineAlarm" />
-        <AlarmBottomSheet
-          timeList={MEDICINE_ALARM_TIME}
-          section="medicineAlarm"
-          isShowing={alarmSheet}
-          onClickScrim={toggleAlarmSheet}
-        />
       </InputGroup>
+      <AlarmBottomSheet
+        timeList={MEDICINE_ALARM_TIME}
+        section="medicineAlarm"
+        isShowing={alarmSheet}
+        onClickScrim={toggleAlarmSheet}
+      />
     </form>
   )
 }

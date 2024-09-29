@@ -16,7 +16,7 @@ export const Container = ({
   return (
     <div className={layoutStyle}>
       {onClick ? (
-        <button className={layoutStyle} onClick={onClick}>
+        <button type="button" className={layoutStyle} onClick={onClick}>
           {children}
         </button>
       ) : (

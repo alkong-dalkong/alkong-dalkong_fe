@@ -14,6 +14,7 @@ export const TextWithArrow = ({ section }: TextWithArrowProps) => {
     <div className="flex-align gap-1">
       <input
         className="headline-M cursor-pointer text-right text-gray-7 focus:outline-none disabled:bg-transparent"
+        size={15}
         {...register(section)}
         readOnly
       />
