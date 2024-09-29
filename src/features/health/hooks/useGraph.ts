@@ -27,5 +27,5 @@ export const useGraph = (info: WeightInfoType) => {
     }
   }
 
-  return { data: groupedData[index], increase, decrease }
+  return { data: groupedData[index].toReversed(), increase, decrease }
 }

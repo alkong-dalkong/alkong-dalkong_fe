@@ -1,5 +1,4 @@
 export * from './apis/useAuth'
-export * from './apis/useClinic'
 export * from './apis/useHealth'
 export * from './Hydration'
 export * from './LazyMotionProvider'

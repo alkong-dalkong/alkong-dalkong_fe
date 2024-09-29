@@ -29,7 +29,7 @@ export const WeightSelectBottomSheet = ({
 
   useEffect(() => {
     if (weight) {
-      setInitialWeight(weight.weight.toString())
+      setInitialWeight(weight.weight.toFixed(1).padStart(4, '0'))
     }
   }, [])
 
