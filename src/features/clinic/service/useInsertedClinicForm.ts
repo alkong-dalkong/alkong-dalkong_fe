@@ -3,8 +3,8 @@ import { useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
-import { ALARM_TIME } from '@/constants'
-import { useClinicInfo } from '@/hooks'
+import { CLINIC_ALARM_TIME } from '@/constants'
+import { useClinicInfo } from '@/features'
 import { useClinicForm } from '@/schema'
 
 /**
@@ -34,7 +34,7 @@ export const useInsertedClinicForm = () => {
 
       const insertingFormData = {
         ...parsedDetailInfoData,
-        medicalAlarm: ALARM_TIME[medicalAlarm],
+        medicalAlarm: CLINIC_ALARM_TIME[medicalAlarm],
         hospitalDate: formattedDate,
       }
 

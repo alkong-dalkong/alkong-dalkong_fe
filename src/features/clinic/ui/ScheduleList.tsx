@@ -16,7 +16,7 @@ const ScheduleListHeader = () => {
   const router = useRouter()
 
   const handleClickPlusButton = () => {
-    router.push(`/clinic/${userId}/write`)
+    router.push(`/clinic/${userId}/create`)
   }
 
   return (
@@ -28,8 +28,8 @@ const ScheduleListHeader = () => {
 }
 
 export const ScheduleList = ({ scheduleList }: ClinicListProps) => {
-  const currentDate = useCurrentDate()
-  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(currentDate))
+  const selectedDate = useCurrentDate()
+  const todaySchedules = scheduleList.filter((item) => item.hospitalDate.startsWith(selectedDate))
 
   return (
     <>

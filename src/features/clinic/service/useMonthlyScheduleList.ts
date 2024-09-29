@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import dayjs from 'dayjs'
 
-import { useClinicCalendar } from '@/hooks'
+import { useClinicCalendar } from '@/features'
 import { useCalendarActions } from '@/store'
 import type { ScheduleType } from '@/types'
 
@@ -26,19 +26,19 @@ export const useMonthlyScheduleList = () => {
   const [monthlyScheduleList, setMonthlyScheduleList] = useState<ScheduleType[]>([])
 
   const { data: medicalData, refetch } = useClinicCalendar({ userId, localDate })
-  const { resetCalendar, updateScheduledDates } = useCalendarActions()
+  const { updateScheduledDates, swapSelectedDateToCreatedDate } = useCalendarActions()
 
   useEffect(() => {
-    if (medicalData) {
-      resetCalendar()
+    swapSelectedDateToCreatedDate()
 
+    if (medicalData) {
       const scheduleData = medicalData.data || []
       const dateList = scheduleData.map((schedule) => schedule.hospitalDate)
 
       setMonthlyScheduleList(scheduleData)
       updateScheduledDates(dateList)
     }
-  }, [resetCalendar, medicalData, updateScheduledDates])
+  }, [medicalData, updateScheduledDates, swapSelectedDateToCreatedDate])
 
   useEffect(() => {
     refetch()

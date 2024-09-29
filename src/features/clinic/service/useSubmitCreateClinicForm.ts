@@ -3,8 +3,9 @@ import { useParams, useRouter } from 'next/navigation'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 
-import { ALARM_TIME } from '@/constants'
-import { useCreateClinicInfo } from '@/hooks'
+import { CLINIC_ALARM_TIME } from '@/constants'
+import { useCreateClinicInfo } from '@/features'
+import { useCalendarActions } from '@/store'
 import type { ClinicFormType } from '@/types'
 
 dayjs.extend(customParseFormat)
@@ -24,16 +25,13 @@ dayjs.extend(customParseFormat)
  * - `handleClickConfirm`: 확인 버튼 클릭 핸들러
  */
 
-export const useAddClinicFormMethod = () => {
+export const useSubmitCreateClinicForm = () => {
   const router = useRouter()
   const { userId } = useParams<{ userId: string }>()
   const { mutate: createMedicalInfoMutation } = useCreateClinicInfo()
+  const { setCreatedScheduleDate } = useCalendarActions()
 
-  const handleClickCancle = () => {
-    router.back()
-  }
-
-  const handleClickConfirm = (formData: ClinicFormType) => {
+  const submitFormattedForm = (formData: ClinicFormType) => {
     const { medicalAlarm, hospitalDate } = formData
     const formattedDate = dayjs(hospitalDate, 'YYYY년 M월 D일 dddd A hh:mm').format(
       'YYYY-MM-DD HH:mm:ss',
@@ -41,18 +39,18 @@ export const useAddClinicFormMethod = () => {
 
     const sendingFormData = {
       ...formData,
-      medicalAlarm: ALARM_TIME.indexOf(medicalAlarm),
+      medicalAlarm: CLINIC_ALARM_TIME.indexOf(medicalAlarm),
       hospitalDate: formattedDate,
       userId: parseInt(userId),
     }
 
     createMedicalInfoMutation(sendingFormData, {
-      onSuccess: ({ medicalId }) => router.replace(`/clinic/${userId}/info/${medicalId}`),
+      onSuccess: ({ medicalId }) => {
+        setCreatedScheduleDate(formattedDate)
+        router.replace(`/clinic/${userId}/info/${medicalId}`)
+      },
     })
   }
 
-  return {
-    handleClickCancle,
-    handleClickConfirm,
-  }
+  return submitFormattedForm
 }

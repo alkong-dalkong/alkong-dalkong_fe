@@ -1,15 +1,14 @@
 'use client'
-import { Button, Modal } from '@/components'
-import { useClinicDeleteModal } from '@/features'
 
-type ClinicInfoModalProps = {
+import { Button, Modal } from '@/components'
+
+type DeleteModalProps = {
   modalState: boolean
   closeModal: VoidFunction
+  onClickDelete: VoidFunction
 }
 
-export const ClinicInfoModal = ({ modalState, closeModal }: ClinicInfoModalProps) => {
-  const handleClickDelete = useClinicDeleteModal()
-
+export const DeleteModal = ({ modalState, closeModal, onClickDelete }: DeleteModalProps) => {
   return (
     <Modal isOpen={modalState} onClose={closeModal}>
       <h4 className="subtitle-B">삭제하시겠습니까?</h4>
@@ -19,7 +18,7 @@ export const ClinicInfoModal = ({ modalState, closeModal }: ClinicInfoModalProps
         <Button primary={false} onClick={closeModal}>
           취소
         </Button>
-        <Button onClick={handleClickDelete}>삭제</Button>
+        <Button onClick={onClickDelete}>삭제</Button>
       </div>
     </Modal>
   )
