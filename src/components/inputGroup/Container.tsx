@@ -11,14 +11,17 @@ export const Container = ({
   onClick,
   children,
 }: PropsWithChildren<ContainerProps>) => {
-  const layoutStyle = direction === 'row' ? 'flex-between-align' : 'flex-column gap-2'
-  if (onClick) {
-    return (
-      <button className={layoutStyle} onClick={onClick}>
-        {children}
-      </button>
-    )
-  } else {
-    return <div className={layoutStyle}>{children}</div>
-  }
+  const layoutStyle = direction === 'row' ? 'flex-between-align w-full' : 'flex-column gap-2'
+
+  return (
+    <div className={layoutStyle}>
+      {onClick ? (
+        <button className={layoutStyle} onClick={onClick}>
+          {children}
+        </button>
+      ) : (
+        children
+      )}
+    </div>
+  )
 }
