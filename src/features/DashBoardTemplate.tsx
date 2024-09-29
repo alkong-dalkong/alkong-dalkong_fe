@@ -11,7 +11,7 @@ type DashBoardTemplateProps = {
 const HeaderTitle = {
   health: '님의\n최근체중 변화',
   home: '님의\n최근 건강 정보를 모아봤어요',
-  medicine: '님의\n최근 체중 변화',
+  medicine: '님\n 오늘의 약 챙겨드셨나요?',
 }
 
 export const DashBoardTemplate = ({
