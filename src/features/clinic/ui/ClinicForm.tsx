@@ -1,8 +1,9 @@
 'use client'
 import { useFormContext } from 'react-hook-form'
 
-import { ActionTag, InputGroup, Label, Tag } from '@/components'
-import { AlarmBottomSheet, DateBottomSheet, TagBottomSheet } from '@/features'
+import { ActionTag, AlarmBottomSheet, InputGroup, Label, Tag } from '@/components'
+import { CLINIC_ALARM_TIME } from '@/constants'
+import { DateBottomSheet, TagBottomSheet } from '@/features'
 import { useToggle } from '@/hooks'
 
 export const ClinicForm = () => {
@@ -34,12 +35,12 @@ export const ClinicForm = () => {
           />
         </button>
         <InputGroup.ErrorMessage section="hospitalDate" />
-        <DateBottomSheet
-          section="hospitalDate"
-          isShowing={dateSheet}
-          onClickScrim={toggleDateSheet}
-        />
       </InputGroup>
+      <DateBottomSheet
+        section="hospitalDate"
+        isShowing={dateSheet}
+        onClickScrim={toggleDateSheet}
+      />
 
       <InputGroup>
         <Label icon="clinic-label">방문 병원</Label>
@@ -52,19 +53,20 @@ export const ClinicForm = () => {
         <InputGroup.TextArea section="medicalMemo" placeholder="증상을 입력해주세요." />
       </InputGroup>
 
-      <InputGroup>
+      <InputGroup onClick={toggleAlarmSheet}>
         <Label icon="time-label">알람</Label>
         <div className="flex-between-align w-full rounded-xl border border-mint-3 py-4 pl-5 pr-4">
           <Label>알람</Label>
-          <InputGroup.TextWithArrow section="medicalAlarm" onClick={toggleAlarmSheet} />
+          <InputGroup.TextWithArrow section="medicalAlarm" />
         </div>
         <InputGroup.ErrorMessage section="medicalAlarm" />
-        <AlarmBottomSheet
-          section="medicalAlarm"
-          isShowing={alarmSheet}
-          onClickScrim={toggleAlarmSheet}
-        />
       </InputGroup>
+      <AlarmBottomSheet
+        timeList={CLINIC_ALARM_TIME}
+        section="medicalAlarm"
+        isShowing={alarmSheet}
+        onClickScrim={toggleAlarmSheet}
+      />
     </form>
   )
 }

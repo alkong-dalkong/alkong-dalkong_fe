@@ -97,17 +97,9 @@ export const Form = () => {
             <InputGroup.CheckBoxAll>전체 동의</InputGroup.CheckBoxAll>
           </InputGroup>
 
-          <InputGroup direction="row">
-            <Label>Stepper</Label>
-            <InputGroup.Stepper section="stepper" />
-          </InputGroup>
-
-          <InputGroup direction="row">
+          <InputGroup direction="row" onClick={() => alert('Bottom Sheet')}>
             <Label>TextWithArrow</Label>
-            <InputGroup.TextWithArrow
-              section="textWithArrow"
-              onClick={() => alert('Bottom Sheet')}
-            />
+            <InputGroup.TextWithArrow section="textWithArrow" />
           </InputGroup>
 
           <button type="submit" onClick={() => console.log(errors)}>
