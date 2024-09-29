@@ -25,9 +25,9 @@ export const MedicineForm = () => {
 
       <div className="flex-column mt-2 divide-y divide-mint-5 [&_>_div]:py-6">
         <div className="flex-column gap-2">
-          <InputGroup direction="row">
+          <InputGroup direction="row" onClick={toggleDaySheet}>
             <Label>복용 요일</Label>
-            <InputGroup.TextWithArrow section="medicineWeek" onClick={toggleDaySheet} />
+            <InputGroup.TextWithArrow section="medicineWeek" />
             <DayBottomSheet
               section="medicineWeek"
               isShowing={daySheet}
@@ -44,9 +44,9 @@ export const MedicineForm = () => {
 
         <TakenTimeFormField />
 
-        <InputGroup direction="row">
+        <InputGroup direction="row" onClick={togglePeriodSheet}>
           <Label>복용 기간</Label>
-          <InputGroup.TextWithArrow section="medicinePeriod" onClick={togglePeriodSheet} />
+          <InputGroup.TextWithArrow section="medicinePeriod" />
           <PeriodBottomSheet
             section="medicinePeriod"
             isShowing={periodSheet}
@@ -54,9 +54,9 @@ export const MedicineForm = () => {
           />
         </InputGroup>
 
-        <InputGroup direction="row">
+        <InputGroup direction="row" onClick={toggleDosageSheet}>
           <Label>복용량</Label>
-          <InputGroup.TextWithArrow section="medicineDosage" onClick={toggleDosageSheet} />
+          <InputGroup.TextWithArrow section="medicineDosage" />
           <TakenDosageBottomSheet
             section="medicineDosage"
             isShowing={dosageSheet}
@@ -69,9 +69,9 @@ export const MedicineForm = () => {
           <InputGroup.TextArea section="medicineMemo" placeholder="메모를 기록해 주세요." />
         </InputGroup>
       </div>
-      <InputGroup direction="row">
+      <InputGroup direction="row" onClick={toggleAlarmSheet}>
         <Label>알람</Label>
-        <InputGroup.TextWithArrow section="medicineAlarm" onClick={toggleAlarmSheet} />
+        <InputGroup.TextWithArrow section="medicineAlarm" />
         <AlarmBottomSheet
           timeList={MEDICINE_ALARM_TIME}
           section="medicineAlarm"
