@@ -1,3 +1,6 @@
+// health
+export * from './health/ui/HealthPage'
+
 // home
 export * from './home/ui/HelperBox'
 export * from './home/ui/HomePage'
