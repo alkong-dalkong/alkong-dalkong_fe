@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import { FormProvider } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import type { Meta, StoryFn } from '@storybook/react'
 import { domMax, LazyMotion } from 'framer-motion'
@@ -9,9 +9,6 @@ import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
 import { useToggle } from '@/hooks'
-import type { MedicineFormType } from '@/types'
-
-import { useMedicineForm } from '../useMedicineForm'
 
 const Container = ({ children }: PropsWithChildren) => {
   return <div className="max-w-[450px]">{children}</div>
@@ -47,14 +44,14 @@ const Divider = () => {
 }
 
 export const MedicineForm: StoryFn = () => {
-  const formMethod = useMedicineForm()
+  const formMethod = useForm()
   const { handleSubmit, control, setValue } = formMethod
   const [weekBottomSheet, toggleWeekBottomSheet] = useToggle(false)
   const [takenTimeBottomSheet, toggleTakenTimeBottomSheet] = useToggle(false)
   const [endDateBottomSheet, toggleEndDateBottomSheet] = useToggle(false)
   const [alarmBottomSheet, toggleAlarmBottomSheet] = useToggle(false)
 
-  const handleSubmitMedicineForm = (formData: MedicineFormType) => {
+  const handleSubmitMedicineForm = (formData: unknown) => {
     alert(JSON.stringify(formData, null, 2))
   }
 
@@ -69,9 +66,9 @@ export const MedicineForm: StoryFn = () => {
               <InputGroup.ErrorMessage section="medicineName" />
             </InputGroup>
 
-            <InputGroup direction="row">
+            <InputGroup direction="row" onClick={toggleWeekBottomSheet}>
               <Label>복용 요일</Label>
-              <InputGroup.TextWithArrow section="medicineWeek" onClick={toggleWeekBottomSheet} />
+              <InputGroup.TextWithArrow section="medicineWeek" />
               <InputGroup.ErrorMessage section="medicineWeek" />
               <TestBottomSheet
                 isShowing={weekBottomSheet}
@@ -82,35 +79,11 @@ export const MedicineForm: StoryFn = () => {
 
             <Divider />
 
-            <InputGroup direction="row">
-              <Label>복용 횟수</Label>
-              <InputGroup.Stepper section="medicineTimes" />
-            </InputGroup>
-
             <Divider />
 
-            <InputGroup>
-              <Label>복용 시간</Label>
-              <InputGroup.TextWithArrow
-                isLong
-                section="medicineTakenTime"
-                onClick={toggleTakenTimeBottomSheet}
-              />
-              <TestBottomSheet
-                isShowing={takenTimeBottomSheet}
-                onClickScrim={toggleTakenTimeBottomSheet}
-                onClickButton={() => setValue('medicineTakenTime', ['오전 09:00'])}
-              />
-            </InputGroup>
-
-            <Divider />
-
-            <InputGroup direction="row">
+            <InputGroup direction="row" onClick={toggleEndDateBottomSheet}>
               <Label>복용 기간</Label>
-              <InputGroup.TextWithArrow
-                section="medicineEndDate"
-                onClick={toggleEndDateBottomSheet}
-              />
+              <InputGroup.TextWithArrow section="medicineEndDate" />
               <InputGroup.ErrorMessage section="medicineEndDate" />
               <TestBottomSheet
                 isShowing={endDateBottomSheet}
@@ -123,7 +96,7 @@ export const MedicineForm: StoryFn = () => {
 
             <InputGroup direction="row">
               <Label>복용량</Label>
-              <InputGroup.TextWithArrow section="medicineDosage" onClick={() => {}} />
+              <InputGroup.TextWithArrow section="medicineDosage" />
               <InputGroup.ErrorMessage section="medicineDosage" />
             </InputGroup>
 
@@ -134,9 +107,9 @@ export const MedicineForm: StoryFn = () => {
               <InputGroup.TextArea section="medicalMemo" placeholder="메모를 기록해주세요." />
             </InputGroup>
 
-            <InputGroup direction="row">
+            <InputGroup direction="row" onClick={toggleAlarmBottomSheet}>
               <Label>알람</Label>
-              <InputGroup.TextWithArrow section="medicineAlarm" onClick={toggleAlarmBottomSheet} />
+              <InputGroup.TextWithArrow section="medicineAlarm" />
               <TestBottomSheet
                 isShowing={alarmBottomSheet}
                 onClickScrim={toggleAlarmBottomSheet}

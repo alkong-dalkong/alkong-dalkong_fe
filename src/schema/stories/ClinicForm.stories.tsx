@@ -94,10 +94,13 @@ export const ClinicForm: StoryFn = () => {
 
             <InputGroup>
               <Label>알람</Label>
-              <div className="flex-between-align w-full rounded-xl border border-mint-3 px-6 py-4">
+              <button
+                className="flex-between-align w-full rounded-xl border border-mint-3 px-6 py-4"
+                onClick={toggleAlarmBottomSheet}
+              >
                 <Label>알람</Label>
-                <InputGroup.TextWithArrow section="medicalAlarm" onClick={toggleAlarmBottomSheet} />
-              </div>
+                <InputGroup.TextWithArrow section="medicalAlarm" />
+              </button>
               <InputGroup.ErrorMessage section="medicalAlarm" />
               <TestBottomSheet
                 isShowing={alarmBottomSheet}
