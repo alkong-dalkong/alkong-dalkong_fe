@@ -36,6 +36,9 @@ export * from './clinic/ui/ScheduleItem'
 export * from './clinic/ui/ScheduleList'
 export * from './clinic/ui/TagBottomSheet'
 
+// onboarding
+export * from './onboarding/ui/OnboardingWrapper'
+
 // medicine
 export * from './medicine/hook/useDosageInput'
 export * from './medicine/hook/useStepper'
