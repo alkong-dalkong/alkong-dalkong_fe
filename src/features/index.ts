@@ -66,6 +66,7 @@ export * from './medicine/util/parseDosage'
 
 // setting
 export * from './setting/ui/FamilyGroupSettingBottomSheet'
+export * from './setting/ui/FamilySettingBottomSheet'
 export * from './setting/ui/PasswordSettingBottomSheet'
 export * from './setting/ui/SettingClientPage'
 export * from './setting/ui/SettingModal'
