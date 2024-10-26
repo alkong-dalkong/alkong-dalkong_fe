@@ -65,5 +65,6 @@ export * from './medicine/util/formattedMedicineForm'
 export * from './medicine/util/parseDosage'
 
 // setting
+export * from './setting/ui/PasswordSettingBottomSheet'
 export * from './setting/ui/SettingClientPage'
 export * from './setting/ui/UserInfoSettingBottomSheet'
