@@ -8,7 +8,7 @@ import {
   PasswordSettingBottomSheet,
   UserInfoSettingBottomSheet,
 } from '@/features'
-import { useBottomSheet } from '@/hooks'
+import { useBottomSheet, useCancelAccout, useSignOut } from '@/hooks'
 import { useUserStore } from '@/store'
 
 export const SettingCleintPage = () => {
@@ -21,14 +21,17 @@ export const SettingCleintPage = () => {
     '가족 설정하기': FamilySettingBottomSheet,
   })
 
+  const { mutate: signOut } = useSignOut()
+  const { mutate: cancelAccout } = useCancelAccout()
+
   return (
     <>
       <div className="flex-column p-[20px]">
         <SubHeader.Back title="마이페이지" />
         <main>
           <div className="flex-between-align mb-[50px] mt-[28px]">
-            <h1 className="title-B whitespace-pre text-black">{`안녕하세요,\n${user.name}님!`}</h1>
-            <Profile name={user.name} size="xl" bgColor="#C5FDEC" />
+            <h1 className="title-B whitespace-pre text-black">{`안녕하세요,\n${user.ownerName}님!`}</h1>
+            <Profile name={user.ownerName} size="xl" bgColor="#C5FDEC" />
           </div>
           <section className="flex-column gap-[24px]">
             <Section>
@@ -45,9 +48,9 @@ export const SettingCleintPage = () => {
             </Section>
           </section>
           <div className="body-M mb-[45px] mt-[34px] flex justify-end gap-[6px] text-gray-6">
-            <button>회원 탈퇴</button>
+            <button onClick={() => cancelAccout()}>회원 탈퇴</button>
             <Icon name="line-bar" />
-            <button>로그아웃</button>
+            <button onClick={() => signOut()}>로그아웃</button>
           </div>
         </main>
       </div>
