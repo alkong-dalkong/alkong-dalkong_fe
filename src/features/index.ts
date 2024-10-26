@@ -66,3 +66,4 @@ export * from './medicine/util/parseDosage'
 
 // setting
 export * from './setting/ui/SettingClientPage'
+export * from './setting/ui/UserInfoSettingBottomSheet'
