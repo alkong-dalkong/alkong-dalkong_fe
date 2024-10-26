@@ -63,3 +63,6 @@ export * from './medicine/ui/Toggle'
 export * from './medicine/util/convertDayArrayWithString'
 export * from './medicine/util/formattedMedicineForm'
 export * from './medicine/util/parseDosage'
+
+// setting
+export * from './setting/ui/SettingClientPage'
