@@ -23,11 +23,11 @@ export type FamilyCodeForm = {
   familyCode: string
 }
 
-export type createFamilyGroupResponse = FamilyCodeForm & {
+export type CreateFamilyGroupResponse = FamilyCodeForm & {
   familyName: string
 }
 
-export type enterFamilyGroupRequest = FamilyCodeForm
+export type EnterFamilyGroupRequest = FamilyCodeForm
 
 export type Member = {
   userId: string
