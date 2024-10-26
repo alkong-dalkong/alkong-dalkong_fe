@@ -8,8 +8,13 @@ import { useAccountEditForm } from '@/schema'
 import { useUserStore } from '@/store'
 import type { CustomBottomSheetProps, UserInfoFormType } from '@/types'
 
+import { useEditUserInfo } from '../query/useSetting'
+
 export const UserInfoSettingBottomSheet = ({ isShowing, onClickScrim }: CustomBottomSheetProps) => {
-  const { user } = useUserStore()
+  const { user, setUser } = useUserStore()
+
+  const { mutate: editUserInfo } = useEditUserInfo()
+
   const formMethod = useAccountEditForm()
   const { handleSubmit, control } = formMethod
 
@@ -18,8 +23,12 @@ export const UserInfoSettingBottomSheet = ({ isShowing, onClickScrim }: CustomBo
       ...formData,
       birth: formData.birth.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3'),
     }
-    // api 호출 커스텀 훅 추가
-    onClickScrim()
+    editUserInfo(editUserInfoData, {
+      onSuccess: () => {
+        setUser({ ...user, name: editUserInfoData.name })
+        onClickScrim()
+      },
+    })
   }
 
   return (
@@ -33,7 +42,7 @@ export const UserInfoSettingBottomSheet = ({ isShowing, onClickScrim }: CustomBo
           />
           <main className="flex-column-align pb-[55px]">
             <div className="mb-[16px] mt-[27px]">
-              <Profile name={user.name} size="2xl" bgColor="#C5FDEC" />
+              <Profile name={user.ownerName} size="2xl" bgColor="#C5FDEC" />
             </div>
             <FormProvider {...formMethod}>
               <form className="flex-column w-full gap-[16px]">
