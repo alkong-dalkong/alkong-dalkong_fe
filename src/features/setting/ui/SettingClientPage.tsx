@@ -8,7 +8,7 @@ import {
   PasswordSettingBottomSheet,
   UserInfoSettingBottomSheet,
 } from '@/features'
-import { useBottomSheet, useCancelAccout, useSignOut } from '@/hooks'
+import { useBottomSheet, useCancelAccount, useSignOut } from '@/hooks'
 import { useUserStore } from '@/store'
 
 export const SettingCleintPage = () => {
@@ -22,7 +22,7 @@ export const SettingCleintPage = () => {
   })
 
   const { mutate: signOut } = useSignOut()
-  const { mutate: cancelAccout } = useCancelAccout()
+  const { mutate: cancelAccount } = useCancelAccount()
 
   return (
     <>
@@ -48,7 +48,7 @@ export const SettingCleintPage = () => {
             </Section>
           </section>
           <div className="body-M mb-[45px] mt-[34px] flex justify-end gap-[6px] text-gray-6">
-            <button onClick={() => cancelAccout()}>회원 탈퇴</button>
+            <button onClick={() => cancelAccount()}>회원 탈퇴</button>
             <Icon name="line-bar" />
             <button onClick={() => signOut()}>로그아웃</button>
           </div>

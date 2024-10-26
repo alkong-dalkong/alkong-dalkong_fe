@@ -36,6 +36,6 @@ export const signOut = async () => {
   return await api.post('/user/logout')
 }
 
-export const cancelAccout = async () => {
+export const cancelAccount = async () => {
   return await api.delete('/user/exit')
 }
