@@ -4,35 +4,16 @@ import { useState } from 'react'
 
 import { BottomSheet, Button, Icon, Profile, SubHeader } from '@/components'
 import { useBoolean } from '@/hooks'
-import type { CustomBottomSheetProps, FamilyGroup } from '@/types'
+import type { CustomBottomSheetProps } from '@/types'
+
+import { useReadFamilyGroups } from '../query/useSetting'
 
 import { CodeModal } from './SettingModal'
 
 export const FamilySettingBottomSheet = ({ isShowing, onClickScrim }: CustomBottomSheetProps) => {
-  const [code, setCode] = useState('')
-  // 추후 useQuery 이용
-  const groupList: FamilyGroup[] = [
-    {
-      familyCode: '1234',
-      familyName: '가나다라님의 가족',
-      members: [
-        { name: '가나다라', userId: '1' },
-        { name: '마바사아', userId: '2' },
-        { name: '자차카타', userId: '3' },
-        { name: '파하', userId: '4' },
-      ],
-    },
-    {
-      familyCode: '5678',
-      familyName: '마바사아님의 가족',
-      members: [
-        { name: '가나다라', userId: '5' },
-        { name: '마바사아', userId: '6' },
-        { name: '자차카타', userId: '7' },
-        { name: '파하', userId: '8' },
-      ],
-    },
-  ]
+  const { data: familyGroups } = useReadFamilyGroups()
+
+  const [code, setCode] = useState<string>('')
 
   const handleInviteGroup = (code: string) => {
     setCode(code)
@@ -47,7 +28,7 @@ export const FamilySettingBottomSheet = ({ isShowing, onClickScrim }: CustomBott
         <div className="size-full overflow-y-scroll pb-[65px] scrollbar-hide">
           <SubHeader.Close title="가족 설정하기" onClose={onClickScrim} />
           <main className="flex-column gap-[24px] pt-[40px]">
-            {groupList.map(({ familyCode, familyName, members }) => (
+            {familyGroups?.families.map(({ familyCode, familyName, members }) => (
               <section
                 key={familyCode}
                 className="flex-column rounded-xl bg-mint-0 p-[20px] shadow-underShadow"
