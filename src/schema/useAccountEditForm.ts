@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+import { useReadUserInfo } from '@/features'
 import type { UserInfoFormType } from '@/types/setting'
 
 const schema = z.object({
@@ -17,10 +18,13 @@ const schema = z.object({
 })
 
 export const useAccountEditForm = () => {
+  const { data: userInfo } = useReadUserInfo()
+
   const formMethod = useForm<UserInfoFormType>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     resolver: zodResolver(schema),
+    values: userInfo && { ...userInfo, birth: userInfo?.birth.replace(/-/g, '') },
   })
 
   return formMethod
