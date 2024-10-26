@@ -39,6 +39,8 @@ export type Family = {
   members: Member[]
 }
 
+export type ReadFamilyMembersRequest = FamilyCodeForm
+
 export type ReadFamilyMembersResponse = Family
 
 export type FamilyGroup = Family & {
@@ -57,5 +59,5 @@ export type CodeModalProps = ModalProps & {
 
 export type InviteModalProps = ModalProps & {
   onConfirm: VoidFunction
-  inviter: string
+  inviter?: string // 추후 제거/수정 필요
 }
