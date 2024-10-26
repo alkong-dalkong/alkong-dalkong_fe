@@ -7,13 +7,21 @@ import { BottomSheet, Button, DevTool, InputGroup, Label, SubHeader } from '@/co
 import { usePasswordEditForm } from '@/schema'
 import type { CustomBottomSheetProps, PasswordFormType } from '@/types'
 
+import { useEditPassword } from '../query/useSetting'
+
 export const PasswordSettingBottomSheet = ({ isShowing, onClickScrim }: CustomBottomSheetProps) => {
+  const { mutate: editPassword } = useEditPassword()
+
   const formMethod = usePasswordEditForm()
-  const { handleSubmit, control } = formMethod
+  const { handleSubmit, setError, control } = formMethod
 
   const editPasswordHandler: SubmitHandler<PasswordFormType> = (formData) => {
-    // api 호출 커스텀 훅 추가
-    onClickScrim()
+    editPassword(formData, {
+      onSuccess: onClickScrim,
+      onError: () => {
+        setError('password', { type: 'custom', message: '기존 비밀번호가 일치하지 않습니다.' })
+      },
+    })
   }
 
   return (
