@@ -35,7 +35,9 @@ export const InviteModal = ({ isOpen, onConfirm, onClose, inviter }: InviteModal
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="flex-column-align w-full px-[16px]">
-        <h1 className="subtitle-B mb-[8px] text-black">{`${inviter}님의 그룹에 초대받았어요!`}</h1>
+        <h1 className="subtitle-B mb-[8px] text-black">
+          {inviter ? `${inviter}님의 그룹에 초대받았어요!` : '그룹에 초대받았어요!'}
+        </h1>
         <h2 className="headline-M mb-[24px]">해당 가족에 들어가시겠습니까?</h2>
         <div className="flex w-full gap-[15px]">
           <Button size="sm" type="submit" onClick={onConfirm}>
