@@ -16,11 +16,6 @@ type HealthState = {
 
 type HealthActions = {
   togglePeriod: VoidFunction
-  setPhysicalId: (physicalId: number) => void
-  setWeightId: (weightId: number) => void
-  setWeight: (weight: number) => void
-  setWeightInfo: (info: WeightInfoType) => void
-  setReport: (report: HealthReportType) => void
   syncFetchHealthData: (data: GetPhysicalResponse) => void
 }
 
@@ -35,21 +30,6 @@ const useHealthStore = create<HealthState>((set, get) => ({
     togglePeriod: () => {
       const { period } = get()
       set({ period: period === 'weekly' ? 'monthly' : 'weekly' })
-    },
-    setPhysicalId: (physicalId: number) => {
-      set({ physicalId })
-    },
-    setWeightId: (weightId: number) => {
-      set({ weightId })
-    },
-    setWeight: (weight: number) => {
-      set({ weight })
-    },
-    setWeightInfo: (weightInfo: WeightInfoType) => {
-      set({ weightInfo })
-    },
-    setReport: (healthreport: HealthReportType) => {
-      set({ healthreport })
     },
     syncFetchHealthData: ({ data }: GetPhysicalResponse) => {
       set({
