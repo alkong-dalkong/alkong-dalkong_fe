@@ -2,23 +2,17 @@
 
 import { Icon } from '@/components'
 import Label from '@/components/label/Label'
-import { GRAPHTYPE } from '@/constants'
-import type { WeightInfoType } from '@/types'
 
 import { useGraph } from '../hooks/useGraph'
+import { useHealthActions, usePeriod, useWeightInfo } from '../store/healthStore'
 
 import { WeightChart } from './WeightChart'
 
-export const GraphSection = ({
-  info,
-  type,
-  toggle,
-}: {
-  info: WeightInfoType
-  type: boolean
-  toggle: VoidFunction
-}) => {
-  const { data, increase, decrease } = useGraph(info)
+export const GraphSection = () => {
+  const period = usePeriod()
+  const info = useWeightInfo()
+  const { togglePeriod } = useHealthActions()
+  const { data, increase, decrease } = useGraph()
 
   return (
     <section className="mb-10 w-full">
@@ -27,9 +21,9 @@ export const GraphSection = ({
         <Label icon="check-label">체중 그래프</Label>
         <button
           className="body-M flex-center gap-2 rounded-full bg-gray-2 px-3 pb-[6px] pt-1 text-gray-7"
-          onClick={toggle}
+          onClick={togglePeriod}
         >
-          <span>{GRAPHTYPE[`${type}`].ko}</span>
+          <span>{period === 'weekly' ? '주간' : '월간'}</span>
           <span className="mt-[2px]">
             <Icon name="arrow-down" />
           </span>

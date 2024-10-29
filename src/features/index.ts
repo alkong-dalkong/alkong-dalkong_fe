@@ -1,5 +1,5 @@
 // health
-export * from './health/ui/HealthPage'
+export * from './health/ui/HealthClientPage'
 
 // home
 export * from './home/ui/HelperBox'

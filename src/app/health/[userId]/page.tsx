@@ -1,7 +1,7 @@
-import { HealthPage } from '@/features'
+import { HealthClientPage } from '@/features'
 
 const Health = () => {
-  return <HealthPage />
+  return <HealthClientPage />
 }
 
 export default Health

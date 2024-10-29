@@ -6,30 +6,27 @@ import { domMax, LazyMotion } from 'framer-motion'
 
 import { BottomSheet, Icon, SubHeader, WeightSlider } from '@/components'
 import { useSelectedWeightActions } from '@/store'
-import type { WeightType } from '@/types'
 
 import { useWeightSelectConfirm } from '../service/useWeightSelectConfirm'
+import { useWeight } from '../store/healthStore'
 
 type WeightSelectBottomSheetProps = {
-  weight: WeightType | undefined
-  physicalId: number
   isShowing: boolean
   toggleShowing: VoidFunction
 }
 
 export const WeightSelectBottomSheet = ({
-  weight,
-  physicalId,
   isShowing,
   toggleShowing,
 }: WeightSelectBottomSheetProps) => {
-  const handleConfirm = useWeightSelectConfirm({ weight, physicalId, toggleShowing })
+  const weight = useWeight()
+  const handleConfirm = useWeightSelectConfirm(toggleShowing)
   const { setInitialWeight } = useSelectedWeightActions()
   const today = dayjs().format('M월 D일 dddd')
 
   useEffect(() => {
     if (weight) {
-      setInitialWeight(weight.weight.toFixed(1).padStart(4, '0'))
+      setInitialWeight(weight.toFixed(1).padStart(4, '0'))
     }
   }, [])
 
@@ -37,11 +34,7 @@ export const WeightSelectBottomSheet = ({
     <LazyMotion features={domMax}>
       <BottomSheet isShort onClickScrim={toggleShowing} isShowing={isShowing}>
         <div className="w-full">
-          <SubHeader.Confirm
-            title="체중 입력"
-            onCancel={toggleShowing}
-            onConfirm={handleConfirm}
-          ></SubHeader.Confirm>
+          <SubHeader.Confirm title="체중 입력" onCancel={toggleShowing} onConfirm={handleConfirm} />
         </div>
         <div className="mt-10 size-full">
           <div className="mb-3 flex w-full gap-2">

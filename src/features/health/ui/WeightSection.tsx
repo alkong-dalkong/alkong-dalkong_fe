@@ -2,17 +2,13 @@
 
 import Label from '@/components/label/Label'
 import { useToggle } from '@/hooks'
-import type { WeightType } from '@/types'
+
+import { useWeight } from '../store/healthStore'
 
 import { WeightSelectBottomSheet } from './WeightSelectBottomSheet'
 
-export const WeightSection = ({
-  weight,
-  physicalId,
-}: {
-  weight: WeightType | undefined
-  physicalId: number
-}) => {
+export const WeightSection = () => {
+  const weight = useWeight()
   const [isShowing, toggleShowing] = useToggle(false)
 
   return (
@@ -21,7 +17,7 @@ export const WeightSection = ({
       <div className="mt-2 flex h-[56px] gap-[7px]">
         {weight ? (
           <div className="subtitle-M flex flex-1 items-center rounded-xl bg-mint-0 pl-6">
-            {weight.weight}kg
+            {weight}kg
           </div>
         ) : (
           <div className="subtitle-M flex flex-1 items-center rounded-xl bg-mint-0 pl-6 text-gray-6">
@@ -35,12 +31,7 @@ export const WeightSection = ({
           {weight ? '수정' : '추가'}
         </button>
       </div>
-      <WeightSelectBottomSheet
-        weight={weight}
-        physicalId={physicalId}
-        isShowing={isShowing}
-        toggleShowing={toggleShowing}
-      />
+      <WeightSelectBottomSheet isShowing={isShowing} toggleShowing={toggleShowing} />
     </section>
   )
 }

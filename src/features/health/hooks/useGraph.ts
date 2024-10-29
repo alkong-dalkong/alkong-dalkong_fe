@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from 'react'
 
-import type { WeightInfoType } from '@/types'
+import { useWeightInfo } from '../store/healthStore'
 
-export const useGraph = (info: WeightInfoType) => {
+export const useGraph = () => {
+  const info = useWeightInfo()
   const [index, setIndex] = useState<number>(0)
 
   const groupedData = useMemo(() => {

@@ -2,12 +2,14 @@
 
 import Label from '@/components/label/Label'
 import { useUserStore } from '@/store'
-import type { HealthReportType } from '@/types'
 
-export const ReportSection = ({ report }: { report: HealthReportType | undefined }) => {
+import { useHealthReport } from '../store/healthStore'
+
+export const ReportSection = () => {
   const {
     user: { name },
   } = useUserStore()
+  const report = useHealthReport()
 
   return (
     <section className="w-full">
