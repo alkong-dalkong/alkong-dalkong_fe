@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 import { usePhysicalId, useWeightId } from '@/features'
-import { useCreateHealth, useEditHealth } from '@/hooks'
+import { useCreateHealth, useEditHealth } from '@/features'
 import { useSelectedWeight } from '@/store'
 
 export const useWeightSelectConfirm = (toggleShowing: VoidFunction) => {
