@@ -29,7 +29,7 @@ const Modal = ({ children, isOpen, onClose }: PropsWithChildren<ModalProps>) => 
   return (
     isOpen && (
       <div
-        className="fixed inset-0 flex items-center justify-center bg-gray-6 mix-blend-multiply"
+        className="fixed inset-0 flex items-center justify-center bg-gray-8/60"
         ref={modalBackground}
         onClick={handleBackgroundClick}
         aria-hidden="true"
