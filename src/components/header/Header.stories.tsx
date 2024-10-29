@@ -35,6 +35,11 @@ export const All = () => {
       />
       <SubHeader.Back title="뒤로가기 아이콘 헤더" />
       <SubHeader.Close title="닫기 아이콘 헤더" onClose={() => alert('닫기')} />
+      <SubHeader.Modify
+        title="닫기 아이콘 헤더"
+        onClose={() => alert('닫기')}
+        onModify={() => alert('수정')}
+      />
       <SubHeader.Confirm
         title="취소 + 완료 헤더"
         onCancel={() => alert('취소')}
