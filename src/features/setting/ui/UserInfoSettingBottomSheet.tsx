@@ -25,7 +25,7 @@ export const UserInfoSettingBottomSheet = ({ isShowing, onClickScrim }: CustomBo
     }
     editUserInfo(editUserInfoData, {
       onSuccess: () => {
-        setUser({ ...user, name: editUserInfoData.name })
+        setUser({ ...user, name: editUserInfoData.name, ownerName: editUserInfoData.name })
         onClickScrim()
       },
     })
