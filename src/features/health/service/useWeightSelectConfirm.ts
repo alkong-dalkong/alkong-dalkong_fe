@@ -1,31 +1,31 @@
 import dayjs from 'dayjs'
 
+import { usePhysicalId, useWeightId } from '@/features'
 import { useCreateHealth, useEditHealth } from '@/hooks'
 import { useSelectedWeight } from '@/store'
-
-import { usePhysicalId, useWeightId } from '../store/healthStore'
 
 export const useWeightSelectConfirm = (toggleShowing: VoidFunction) => {
   const weightId = useWeightId()
   const physicalId = usePhysicalId()
-  const userWeight = useSelectedWeight()
+  const weight = Number(useSelectedWeight())
   const { mutate: editWeight } = useEditHealth()
   const { mutate: createWeight } = useCreateHealth()
+  const createdAt = dayjs().format('YYYY-MM-DD')
 
   const handleConfirm = () => {
     if (weightId) {
       editWeight({
         weightId,
         request: {
-          weight: Number(userWeight),
-          createdAt: dayjs().format('YYYY-MM-DD'),
+          weight,
+          createdAt,
         },
       })
     } else if (physicalId) {
       createWeight({
         physicalId,
-        weight: Number(userWeight),
-        createdAt: dayjs().format('YYYY-MM-DD'),
+        weight,
+        createdAt,
       })
     }
     toggleShowing()

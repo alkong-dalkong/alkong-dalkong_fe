@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { getHealth, postHealth, putHealth } from '@/apis/health'
+import { getHealth, postHealth, putHealth } from '@/features'
 import { usePeriod } from '@/features/health/store/healthStore'
 import type { PutPhysicalRequest } from '@/types'
 

@@ -1,13 +1,13 @@
 import type { WeightInfoType } from '@/types'
 
-import { 몇째주 } from '../constants/몇째주'
+const weekNthNumber = ['첫째주', '둘째주', '셋째주', '넷째주', '다섯째주']
 
 export const formatTooltip = (date: string): string => {
   const dates = date.split('-')
 
   if (dates.length === 3 && dates[2].startsWith('W')) {
     const weekNumber = parseInt(dates[2].replace('W', ''), 10)
-    return `${parseInt(dates[1], 10)}월 ${몇째주[weekNumber - 1]}`
+    return `${parseInt(dates[1], 10)}월 ${weekNthNumber[weekNumber - 1]}`
   } else {
     return `${parseInt(dates[1], 10)}월`
   }

@@ -1,15 +1,14 @@
 'use client'
 
 import Label from '@/components/label/Label'
+import { useWeight } from '@/features'
 import { useToggle } from '@/hooks'
-
-import { useWeight } from '../store/healthStore'
 
 import { WeightSelectBottomSheet } from './WeightSelectBottomSheet'
 
 export const WeightSection = () => {
   const weight = useWeight()
-  const [isShowing, toggleShowing] = useToggle(false)
+  const [isModalShowing, toggleModal] = useToggle(false)
 
   return (
     <section className="mb-8 w-full">
@@ -25,13 +24,13 @@ export const WeightSection = () => {
           </div>
         )}
         <button
-          onClick={toggleShowing}
+          onClick={toggleModal}
           className="flex-center h-full w-[100px] rounded-xl bg-mint-4 text-white"
         >
           {weight ? '수정' : '추가'}
         </button>
       </div>
-      <WeightSelectBottomSheet isShowing={isShowing} toggleShowing={toggleShowing} />
+      <WeightSelectBottomSheet isShowing={isModalShowing} toggleShowing={toggleModal} />
     </section>
   )
 }

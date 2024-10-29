@@ -1,9 +1,8 @@
 'use client'
 
 import Label from '@/components/label/Label'
+import { useHealthReport } from '@/features'
 import { useUserStore } from '@/store'
-
-import { useHealthReport } from '../store/healthStore'
 
 export const ReportSection = () => {
   const {

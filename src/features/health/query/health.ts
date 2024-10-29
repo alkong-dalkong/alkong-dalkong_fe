@@ -1,3 +1,4 @@
+import { api } from '@/apis'
 import type {
   GetPhysicalRequest,
   GetPhysicalResponse,
@@ -6,8 +7,6 @@ import type {
   PutPhysicalRequest,
   PutPhysicalResponse,
 } from '@/types'
-
-import { api } from '.'
 
 export const getHealth = async ({ userId, period }: GetPhysicalRequest) => {
   return await api.get<GetPhysicalResponse>(`/physical/${userId}`, {

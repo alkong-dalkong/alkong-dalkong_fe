@@ -1,9 +1,8 @@
 'use client'
 
 import { DashBoardTemplate } from '@/features'
-import { useFetchHealth } from '@/hooks/apis/useHealth'
-
-import { useHealthActions } from '../index'
+import { useHealthActions } from '@/features'
+import { useFetchHealth } from '@/features'
 
 import { GraphSection } from './GraphSection'
 import { ReportSection } from './ReportSection'

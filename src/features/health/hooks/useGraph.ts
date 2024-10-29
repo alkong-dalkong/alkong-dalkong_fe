@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from 'react'
 
-import { useWeightInfo } from '../store/healthStore'
+import { useWeightInfo } from '@/features'
 
 export const useGraph = () => {
   const info = useWeightInfo()
   const [index, setIndex] = useState<number>(0)
 
-  const groupedData = useMemo(() => {
+  const quadGraphData = useMemo(() => {
     const groups = []
     for (let i = 0; i < info.length; i += 4) {
       groups.push(info.slice(i, i + 4))
@@ -17,7 +17,7 @@ export const useGraph = () => {
   }, [info])
 
   const increase = () => {
-    if (index < groupedData.length - 1) {
+    if (index < quadGraphData.length - 1) {
       setIndex((prev) => prev + 1)
     }
   }
@@ -28,5 +28,5 @@ export const useGraph = () => {
     }
   }
 
-  return { data: groupedData[index].toReversed(), increase, decrease }
+  return { data: quadGraphData[index]?.toReversed(), increase, decrease }
 }

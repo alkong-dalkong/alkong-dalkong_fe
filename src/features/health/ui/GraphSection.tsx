@@ -2,15 +2,15 @@
 
 import { Icon } from '@/components'
 import Label from '@/components/label/Label'
+import { useHealthActions, usePeriod, useWeightInfo } from '@/features'
 
 import { useGraph } from '../hooks/useGraph'
-import { useHealthActions, usePeriod, useWeightInfo } from '../store/healthStore'
 
 import { WeightChart } from './WeightChart'
 
 export const GraphSection = () => {
   const period = usePeriod()
-  const info = useWeightInfo()
+  const WeightInfo = useWeightInfo()
   const { togglePeriod } = useHealthActions()
   const { data, increase, decrease } = useGraph()
 
@@ -44,7 +44,7 @@ export const GraphSection = () => {
 
       {/** 그래프 렌더링 */}
       <div className="h-[243px] w-full">
-        {info.length !== 0 ? (
+        {WeightInfo.length !== 0 ? (
           <WeightChart data={data} />
         ) : (
           <div className="flex-center size-full whitespace-pre text-center text-gray-6">
