@@ -1,5 +1,6 @@
 import { ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from './Arrow'
-import { HandleBar } from './Bar'
+import { HandleBar, LineBar } from './Bar'
+import { NextBtn } from './Button'
 import { CheckNoIcon, CheckYesIcon } from './Check'
 import { CloseIcon } from './Close'
 import { EllipseIcon } from './Ellipse'
@@ -43,7 +44,9 @@ export const iconMap = {
   clinic: ClinicIcon,
   health: HealthIcon,
   'handle-bar': HandleBar,
+  'line-bar': LineBar,
   ellipse: EllipseIcon,
+  'next-btn': NextBtn,
 }
 
 export type IconComponentProps = IconProps & {

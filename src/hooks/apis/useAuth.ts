@@ -1,8 +1,9 @@
+import { redirect } from 'next/navigation'
 import type { UseMutationOptions } from '@tanstack/react-query'
 import { useMutation } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 
-import { checkDuplicateId, signIn, signOut, signUp } from '@/apis'
+import { cancelAccount, checkDuplicateId, signIn, signOut, signUp } from '@/apis'
 import type { SignInRequest, SignInResponse, SignUpRequest } from '@/types'
 
 const ACCESS_TOKEN = process.env.NEXT_PUBLIC_ACCESS_TOKEN
@@ -39,12 +40,20 @@ export const useSignUp = (options?: UseMutationOptions<unknown, AxiosError, Sign
     },
   })
 
-export const useSignOut = (options?: UseMutationOptions) =>
+export const useSignOut = () =>
   useMutation({
     mutationFn: signOut,
-    ...options,
-    onSuccess: async (data, ...rest) => {
+    onSuccess: () => {
       localStorage.clear()
-      options?.onSuccess?.(data, ...rest)
+      redirect('/sign-in')
+    },
+  })
+
+export const useCancelAccount = () =>
+  useMutation({
+    mutationFn: cancelAccount,
+    onSuccess: () => {
+      localStorage.clear()
+      redirect('/sign-in')
     },
   })

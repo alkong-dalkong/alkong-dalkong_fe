@@ -17,6 +17,7 @@ export const Button = ({
   primary = true,
   disabled = false,
   type = 'button',
+  ...props
 }: PropsWithChildren<ButtonProps>) => {
   const color = disabled
     ? 'bg-gray-5 text-white'
@@ -29,6 +30,7 @@ export const Button = ({
       className={`flex-center rounded-[12px] ${color} w-full ${buttonSize}`}
       disabled={disabled}
       type={type}
+      {...props}
     >
       {children}
     </button>

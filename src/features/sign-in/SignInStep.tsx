@@ -1,4 +1,5 @@
 'use client'
+import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { FormProvider } from 'react-hook-form'
 import Image from 'next/image'
@@ -11,16 +12,23 @@ import { useLoginForm } from '@/schema'
 import { useUserStore } from '@/store'
 import type { LoginFormType } from '@/types'
 
+import { useReadFamilyMembers } from '../setting/query/useSetting'
+
 export const SignInStep = () => {
   const formMethod = useLoginForm()
   const { handleSubmit, control } = formMethod
 
   const { user, setUser } = useUserStore()
+  const { data: family } = useReadFamilyMembers(user.familyCode)
+
+  useEffect(() => {
+    setUser({ ...user, family: family?.members })
+  }, [family?.members])
 
   const { mutate: signIn } = useSignIn({
     onSuccess: (userInfo) => {
-      setUser({ ...userInfo })
-      router.replace(`/home/${user.userId}`)
+      setUser({ ...userInfo, ownerName: userInfo.name })
+      router.replace(`/home/${userInfo.userId}`)
     },
     onError: (error) => {
       console.log(error.message)
