@@ -1,16 +1,7 @@
-import { BottomNav } from '@/components'
+import { HealthClientPage } from '@/features'
 
-export type HealthRouteParams = {
-  params: { userId: string }
-}
-
-const Health = ({ params: { userId } }: HealthRouteParams) => {
-  return (
-    <div>
-      <h2>{userId}</h2>
-      <BottomNav />
-    </div>
-  )
+const Health = () => {
+  return <HealthClientPage />
 }
 
 export default Health

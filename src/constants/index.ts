@@ -1,5 +1,4 @@
 export * from './clinic'
-export * from './medicine'
 export * from './slide'
 export * from './tos'
 export * from './zIndex'

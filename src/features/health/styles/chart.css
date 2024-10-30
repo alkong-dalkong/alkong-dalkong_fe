@@ -1,0 +1,19 @@
+.recharts-xAxis {
+  display: none;
+}
+
+.recharts-cartesian-axis-line {
+  display: none;
+}
+
+.recharts-cartesian-axis-tick-line {
+  display: none;
+}
+
+.recharts-cartesian-grid-vertical {
+  display: none;
+}
+
+.recharts-yAxis {
+  width: 0;
+}
