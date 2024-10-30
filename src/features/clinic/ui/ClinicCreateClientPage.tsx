@@ -79,6 +79,7 @@ export const ClinicCreateClientPage = () => {
           <InputGroup>
             <Label icon="time-label">알람</Label>
             <button
+              type="button"
               className="flex-between-align w-full rounded-xl border border-mint-3 py-4 pl-5 pr-4"
               onClick={toggleAlarmSheet}
             >
