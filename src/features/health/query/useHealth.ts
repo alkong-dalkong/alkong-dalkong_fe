@@ -4,13 +4,9 @@ import { useParams } from 'next/navigation'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { getHealth, postHealth, putHealth } from '@/features'
+import { queryKeys } from '@/features'
 import { usePeriod } from '@/features/health/store/healthStore'
 import type { PutPhysicalRequest } from '@/types'
-
-const queryKeys = {
-  all: ['health'] as const,
-  page: (userId: string, period: string) => [...queryKeys.all, userId, period],
-}
 
 export const useFetchHealth = () => {
   const period = usePeriod()
