@@ -10,7 +10,7 @@ import { useSwiper } from '@/features'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import '../style/swiper.css'
+import '../styles/swiper.css'
 
 export const OnBoardingClientPage = () => {
   const { SwiperOptions, isBeginning, isEnd, handlePrev, handleNext } = useSwiper()
