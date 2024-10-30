@@ -42,7 +42,7 @@ export const BottomSheet = ({
   return (
     <AnimatePortal isShowing={isShowing} mode={mode}>
       <m.div
-        className={`absolute inset-0 ${zIndex.bottomNav} size-full overflow-hidden bg-[rgba(15,23,42,0.5)]`}
+        className={`fixed bottom-0 ${zIndex.bottomNav} size-full min-w-[320px] max-w-[450px] overflow-hidden bg-gray-8/60`}
         onClick={handleClickScrim}
         variants={bottomSheetFadeInVariants}
         initial="initial"

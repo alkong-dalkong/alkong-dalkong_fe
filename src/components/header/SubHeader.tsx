@@ -40,6 +40,24 @@ export const Close = ({ title, onClose }: Pick<HeaderProps, 'title' | 'onClose'>
   )
 }
 
+export const Modify = ({
+  title,
+  onModify,
+  onClose,
+}: Pick<HeaderProps, 'title' | 'onModify' | 'onClose'>) => {
+  return (
+    <header className="flex-between-align relative">
+      <button className="body-B text-gray-6" onClick={onModify}>
+        수정
+      </button>
+      <h1 className="subtitle-B absolute left-1/2 -translate-x-1/2 text-black">{title}</h1>
+      <button onClick={onClose}>
+        <Icon name="close" />
+      </button>
+    </header>
+  )
+}
+
 export const Confirm = ({
   title,
   onCancel,
@@ -58,4 +76,4 @@ export const Confirm = ({
   )
 }
 
-export const SubHeader = { Back, Confirm, Close }
+export const SubHeader = { Back, Confirm, Modify, Close }

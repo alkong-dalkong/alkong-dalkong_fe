@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import type { PasswordEditFormType } from '@/types/mypage'
+import type { PasswordFormType } from '@/types/setting'
 
 const schema = z
   .object({
@@ -23,7 +23,7 @@ const schema = z
   })
 
 export const usePasswordEditForm = () => {
-  const formMethod = useForm<PasswordEditFormType>({
+  const formMethod = useForm<PasswordFormType>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     resolver: zodResolver(schema),

@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import type { AccountEditFormType } from '@/types/mypage'
+import { useReadUserInfo } from '@/features'
+import type { UserInfoFormType } from '@/types/setting'
 
 const schema = z.object({
   name: z.string().min(2, { message: '두 글자 이상입력해주세요.' }),
@@ -17,10 +18,13 @@ const schema = z.object({
 })
 
 export const useAccountEditForm = () => {
-  const formMethod = useForm<AccountEditFormType>({
+  const { data: userInfo } = useReadUserInfo()
+
+  const formMethod = useForm<UserInfoFormType>({
     mode: 'onSubmit',
     reValidateMode: 'onSubmit',
     resolver: zodResolver(schema),
+    values: userInfo && { ...userInfo, birth: userInfo?.birth.replace(/-/g, '') },
   })
 
   return formMethod

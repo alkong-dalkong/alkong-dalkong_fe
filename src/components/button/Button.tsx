@@ -1,22 +1,23 @@
 'use client'
 
-import type { PropsWithChildren } from 'react'
+import type { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren } from 'react'
 
-type ButtonProps = {
-  onClick?: () => void
+type NativeButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>
+type ButtonProps = NativeButtonProps & {
   size?: 'md' | 'sm'
   primary?: boolean
-  disabled?: boolean
-  type?: 'button' | 'submit'
 }
 
 export const Button = ({
   children,
-  onClick,
   size = 'md',
   primary = true,
   disabled = false,
   type = 'button',
+  ...props
 }: PropsWithChildren<ButtonProps>) => {
   const color = disabled
     ? 'bg-gray-5 text-white'
@@ -26,10 +27,10 @@ export const Button = ({
   const buttonSize = size === 'md' ? 'subtitle-B h-[56px]' : 'headline-B h-[52px]'
   return (
     <button
-      type={type}
       className={`flex-center rounded-[12px] ${color} w-full ${buttonSize}`}
-      onClick={onClick}
       disabled={disabled}
+      type={type}
+      {...props}
     >
       {children}
     </button>

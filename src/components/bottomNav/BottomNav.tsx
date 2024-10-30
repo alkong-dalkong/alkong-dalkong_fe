@@ -36,7 +36,7 @@ export const BottomNav = () => {
   return (
     <>
       {isShowing && <ProfileModal onClickProfileModal={toggleShowing} />}
-      <nav className={`absolute bottom-0 w-full ${zIndex.bottomNav}`}>
+      <nav className={`fixed bottom-0 w-full ${zIndex.bottomNav} min-w-[320px] max-w-[450px]`}>
         <div className="flex-between items-end bg-white px-[26px] pb-[11px] pt-[4px] shadow-topShadow">
           {navItems.map(({ text, icon, path }, index) => {
             const selected = path === pathname && !isShowing

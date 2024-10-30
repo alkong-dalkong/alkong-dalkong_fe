@@ -5,3 +5,13 @@ export type BottomSheetType = {
   isShowing: boolean
   onClickScrim: VoidFunction
 }
+
+export type CustomBottomSheetProps = {
+  isShowing: boolean
+  onClickScrim: VoidFunction
+}
+
+export type ModalProps = {
+  isOpen: boolean
+  onClose: () => void
+}

@@ -6,7 +6,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
 import Label from '@/components/label/Label'
-import type { AccountEditFormType } from '@/types'
+import type { UserInfoFormType } from '@/types'
 
 import { useAccountEditForm } from '../useAccountEditForm'
 
@@ -22,7 +22,7 @@ export const AccountEditForm: StoryFn = () => {
   const formMethod = useAccountEditForm()
   const { handleSubmit, control } = formMethod
 
-  const handleSubmitAccountEditForm = (formData: AccountEditFormType) => {
+  const handleSubmitAccountEditForm = (formData: UserInfoFormType) => {
     alert(JSON.stringify(formData, null, 2))
   }
 
