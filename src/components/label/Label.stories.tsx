@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { iconMap } from '../icons'
 
-import Label from './Label'
+import { Label } from './Label'
 
 const meta: Meta<typeof Label> = {
   title: 'Label',

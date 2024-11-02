@@ -1,6 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
-import Tag from './Tag'
+import { Tag } from './Tag'
 
 export default {
   title: 'Tag',

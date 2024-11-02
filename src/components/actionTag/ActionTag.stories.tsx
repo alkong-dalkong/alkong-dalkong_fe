@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react'
 
 import type { ActionTagProps } from './ActionTag'
-import ActionTag from './ActionTag'
+import { ActionTag } from './ActionTag'
 
 export default {
   title: 'ActionTag',
