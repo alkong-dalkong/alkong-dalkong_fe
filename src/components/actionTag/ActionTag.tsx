@@ -2,19 +2,24 @@
 
 import { Icon } from '../icons'
 
-export type Props = {
+export type ActionTagProps = {
   label: string
   onClick: () => void
   primary?: boolean
   icon?: 'plus' | 'minus'
 }
 
-type ActionTagType = React.FC<Props> & {
-  Plus: React.FC<Props>
-  Minus: React.FC<Props>
+type ActionTagType = React.FC<ActionTagProps> & {
+  Plus: React.FC<ActionTagProps>
+  Minus: React.FC<ActionTagProps>
 }
 
-const ActionTag: ActionTagType = ({ label, onClick, primary = false, icon = 'plus' }: Props) => {
+const ActionTag: ActionTagType = ({
+  label,
+  onClick,
+  primary = false,
+  icon = 'plus',
+}: ActionTagProps) => {
   const color = primary ? 'bg-mint-6 text-white' : 'bg-gray-2 text-gray-7'
 
   return (
@@ -29,15 +34,15 @@ const ActionTag: ActionTagType = ({ label, onClick, primary = false, icon = 'plu
   )
 }
 
-const Plus = (props: Props) => {
+const Plus = (props: ActionTagProps) => {
   return <ActionTag {...props} icon="plus" />
 }
 
-const Minus = (props: Props) => {
+const Minus = (props: ActionTagProps) => {
   return <ActionTag {...props} primary icon="minus" />
 }
 
 ActionTag.Plus = Plus
 ActionTag.Minus = Minus
 
-export default ActionTag
+export { ActionTag }
