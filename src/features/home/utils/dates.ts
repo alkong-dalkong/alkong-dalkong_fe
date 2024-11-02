@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 
 import 'dayjs/locale/ko'
 
-const weekEn2Ko: { [key: string]: string } = {
+const weekEn2Ko: Record<string, string> = {
   MONDAY: '월',
   TUESDAY: '화',
   WEDNESDAY: '수',

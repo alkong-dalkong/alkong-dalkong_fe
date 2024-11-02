@@ -1,11 +1,7 @@
-import { HomePage } from '@/features'
+import { HomeClientPage } from '@/features'
 
-export type HomeRouteParams = {
-  params: { userId: string }
-}
-
-const Home = ({ params: { userId } }: HomeRouteParams) => {
-  return <HomePage userId={userId} />
+const Home = () => {
+  return <HomeClientPage />
 }
 
 export default Home

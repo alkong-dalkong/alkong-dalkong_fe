@@ -1,8 +1,7 @@
 import dayjs from 'dayjs'
 
+import { api } from '@/apis'
 import type { HomeResponseType } from '@/types'
-
-import { api } from '.'
 
 export const getHomePageData = async (userId: string) => {
   const currentTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
