@@ -1,4 +1,4 @@
-export const queryKeys = {
+export const healthQueryKeys = {
   all: ['health'] as const,
-  page: (userId: string, period: string) => [...queryKeys.all, userId, period],
+  page: (userId: string, period: string) => [...healthQueryKeys.all, userId, period],
 }

@@ -3,22 +3,22 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   clinicCalendar,
   clinicInfo,
+  clinicQueryKeys,
   createClinicInfo,
   deleteClinicInfo,
   editClinicInfo,
-  queryKeys,
 } from '@/features'
 import type { ClinicCalendarRequest } from '@/types'
 
 export const useClinicInfo = (medicalId: number) =>
   useQuery({
-    queryKey: queryKeys.detail(medicalId),
+    queryKey: clinicQueryKeys.detail(medicalId),
     queryFn: () => clinicInfo(medicalId),
   })
 
 export const useClinicCalendar = ({ userId, localDate }: ClinicCalendarRequest) =>
   useQuery({
-    queryKey: queryKeys.calendar(userId, localDate),
+    queryKey: clinicQueryKeys.calendar(userId, localDate),
     queryFn: () => clinicCalendar({ userId, localDate }),
   })
 
@@ -33,7 +33,7 @@ export const useEditClinicInfo = (medicalId: number) => {
 
   return useMutation({
     mutationFn: editClinicInfo,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: queryKeys.detail(medicalId) }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: clinicQueryKeys.detail(medicalId) }),
   })
 }
 

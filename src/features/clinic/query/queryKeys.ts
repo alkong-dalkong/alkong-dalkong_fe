@@ -1,6 +1,6 @@
-export const queryKeys = {
+export const clinicQueryKeys = {
   all: ['clinic'] as const,
-  detail: (medicalId: number) => [...queryKeys.all, 'detail', medicalId] as const,
+  detail: (medicalId: number) => [...clinicQueryKeys.all, 'detail', medicalId] as const,
   calendar: (userId: string, localDate: string) =>
-    [...queryKeys.all, 'calendar', userId, localDate] as const,
+    [...clinicQueryKeys.all, 'calendar', userId, localDate] as const,
 }
