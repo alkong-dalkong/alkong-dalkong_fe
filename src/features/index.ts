@@ -6,6 +6,9 @@ export * from './health/store/healthStore'
 export * from './health/ui/HealthClientPage'
 
 // home
+export * from './home/query/home'
+export * from './home/query/queryKeys'
+export * from './home/query/useHome'
 export * from './home/ui/HelperBox'
 export * from './home/ui/HomePage'
 export * from './home/ui/InfoBox'

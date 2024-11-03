@@ -3,10 +3,10 @@
 import { DashBoardTemplate, HelperBox } from '@/features'
 import { ClinicSection, HealthSection, MedicineSection } from '@/features'
 import { HealthInfo, MedicineInfo, RecentMedicalInfo, UpcomingMedicalInfo } from '@/features'
-import { useHome } from '@/hooks/apis/useHome'
+import { useFetchHome } from '@/features'
 
-export const HomePage = ({ userId }: { userId: string }) => {
-  const { data: homePageData } = useHome(userId)
+export const HomeClientPage = () => {
+  const { data: homePageData } = useFetchHome()
 
   if (!homePageData) {
     return (
@@ -22,7 +22,7 @@ export const HomePage = ({ userId }: { userId: string }) => {
   return (
     <DashBoardTemplate route="home">
       <ClinicSection>
-        {!upcomingMedicalInfo && !recentMedicalInfo && (
+        {!(upcomingMedicalInfo || recentMedicalInfo) && (
           <HelperBox title="진료에서 내원 일정을 추가해 보세요!" />
         )}
         {upcomingMedicalInfo && <UpcomingMedicalInfo {...upcomingMedicalInfo} />}
