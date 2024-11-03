@@ -5,7 +5,7 @@ import type { Meta, StoryFn } from '@storybook/react'
 
 import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
-import Label from '@/components/label/Label'
+import { Label } from '@/components/label/Label'
 import type { UserInfoFormType } from '@/types'
 
 import { useAccountEditForm } from '../useAccountEditForm'
