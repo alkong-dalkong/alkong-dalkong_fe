@@ -1,0 +1,19 @@
+.swiper-slide {
+  padding: 12vh 20px 5vh;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.swiper-pagination {
+  top: 7vh !important;
+  width: 100%;
+  height: 20px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

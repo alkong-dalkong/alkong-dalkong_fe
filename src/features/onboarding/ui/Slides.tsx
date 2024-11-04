@@ -8,7 +8,7 @@ import Image3 from '@/assets/onboarding3.png'
 const FirstSlide = () => {
   return (
     <>
-      <Image src={Image1} width={242} height={480} alt="온보딩 이미지" />
+      <Image src={Image1} width={242} height={480} sizes="242px, 60vh" alt="온보딩 이미지" />
       <p className="subtitle-M whitespace-pre text-center">
         {'가족의 정보를 확인해야 할 때,\n동그란 버튼을 눌러주세요!'}
       </p>
@@ -19,7 +19,7 @@ const FirstSlide = () => {
 const SecondSlide = () => {
   return (
     <>
-      <Image src={Image2} width={242} height={480} alt="온보딩 이미지" />
+      <Image src={Image2} width={242} height={480} sizes="242px, 60vh" alt="온보딩 이미지" />
       <p className="subtitle-M whitespace-pre text-center">
         {'내원 예정을 입력해 두면\n 까먹지 않고 확인할 수 있어요!'}
       </p>
@@ -30,7 +30,7 @@ const SecondSlide = () => {
 const ThirdSlide = () => {
   return (
     <>
-      <Image src={Image3} width={242} height={480} alt="온보딩 이미지" />
+      <Image src={Image3} width={242} height={480} sizes="242px, 54vh" alt="온보딩 이미지" />
       <p className="subtitle-M whitespace-pre text-center">
         {'내원 예정을 입력해 두면\n 까먹지 않고 확인할 수 있어요!'}
       </p>

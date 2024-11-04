@@ -10,7 +10,7 @@ import { useSwiper } from '@/features'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import '../styles/swiper.css'
+import '../styles/onboarding-swiper.css'
 
 export const OnBoardingClientPage = () => {
   const { SwiperOptions, isBeginning, isEnd, handlePrev, handleNext } = useSwiper()
@@ -27,12 +27,12 @@ export const OnBoardingClientPage = () => {
         ))}
       </Swiper>
       {!isBeginning && (
-        <button onClick={handlePrev} className="absolute left-2 top-[40%]">
+        <button type="button" onClick={handlePrev} className="absolute left-2 top-1/2 z-10">
           <Icon name="arrow-left" size={28} color="#000" />
         </button>
       )}
       {!isEnd && (
-        <button onClick={handleNext} className="absolute right-2 top-[40%]">
+        <button type="button" onClick={handleNext} className="absolute right-2 top-1/2 z-10">
           <Icon name="arrow-right" size={28} color="#000" />
         </button>
       )}
