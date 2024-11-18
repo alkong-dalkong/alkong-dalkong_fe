@@ -7,7 +7,7 @@ import { domMax, LazyMotion } from 'framer-motion'
 import { BottomSheet } from '@/components/bottomSheet/BottomSheet'
 import { Button } from '@/components/button/Button'
 import { InputGroup } from '@/components/inputGroup'
-import Label from '@/components/label/Label'
+import { Label } from '@/components/label/Label'
 import { useToggle } from '@/hooks'
 
 const Container = ({ children }: PropsWithChildren) => {

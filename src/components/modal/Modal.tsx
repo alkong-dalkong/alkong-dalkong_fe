@@ -11,7 +11,7 @@ type ModalProps = {
   onClose: () => void
 }
 
-const Modal = ({ children, isOpen, onClose }: PropsWithChildren<ModalProps>) => {
+export const Modal = ({ children, isOpen, onClose }: PropsWithChildren<ModalProps>) => {
   const { lockScroll } = useScrollLock()
   const modalBackground = useRef<HTMLDivElement | null>(null)
   const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -44,5 +44,3 @@ const Modal = ({ children, isOpen, onClose }: PropsWithChildren<ModalProps>) => 
     )
   )
 }
-
-export default Modal

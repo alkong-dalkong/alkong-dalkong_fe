@@ -4,7 +4,7 @@ import { useBoolean } from '@/hooks/useBoolean'
 
 import { Button } from '../button/Button'
 
-import Modal from './Modal'
+import { Modal } from './Modal'
 
 type Props = {
   isOpen: boolean
